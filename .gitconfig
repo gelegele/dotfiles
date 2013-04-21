@@ -1,0 +1,88 @@
+[core]
+	autocrlf = false
+	safecrlf = false
+  excludesfile = ~/.gitignore
+[color]
+	ui = true
+
+[diff]
+  external = ~/git_diff_wrapper
+[pager]
+	diff =
+
+[pull]
+	rebase = true
+
+[alias]
+  co =  checkout
+  cob = checkout -b
+  cot = checkout --track
+	com = checkout master
+	cow = checkout work
+
+	f = fetch
+	pom = !~/git_pull_origin_master.sh #masterブランチ以外ではpullさせない
+
+	pushom = push origin master
+
+	b  = branch -v
+  ba = branch -va
+
+	aa = add .
+
+	cmt = commit -m
+
+	mfh = !git checkout master && git merge origin/master && git lg
+  rework = !git checkout master && git branch -D work && git checkout -b work
+
+  cp = cherry-pick
+  cprn = cherry-pick -rn # without commit
+
+	bl = blame
+
+	s = !git status -sb && git skipped
+
+	lg  = log --oneline --decorate --all --graph -40
+	l   = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso -40
+	la  = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso
+	lnm = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso --no-merges -40
+	ls  = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso --stat -40
+	lp  = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso -p -40
+
+	lm =  log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso master..
+	lw =  log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso work..
+	lom = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso origin/master..
+
+	cfl = config --local -l
+	cfg = config --global -l
+
+	d  =   diff --no-ext-diff --diff-filter=M
+	dw =   diff --no-ext-diff --diff-filter=M --color-words
+	dn =   diff --no-ext-diff --name-only
+	ds =   diff --no-ext-diff --stat
+	dm =   diff --no-ext-diff master
+	dsm =  diff --no-ext-diff --stat master
+	dom =  diff --no-ext-diff origin/master
+	dsom = diff --no-ext-diff --stat origin/master
+	dc =   diff --no-ext-diff --cached --diff-filter=M
+	dnc =  diff --no-ext-diff --name-only --cached
+	vd =   diff --ext-diff --diff-filter=M
+	vdc =  diff --ext-diff --cached --diff-filter=M
+
+	shown = show --name-only
+	shows = show --stat
+
+	gr = grep -n -I --break --heading
+
+	amend = commit --amend -C HEAD
+	amendm = commit --amend -m
+
+	skip = update-index --skip-worktree
+	unskip = update-index --no-skip-worktree
+  skipped = !git ls-files -v | grep ^S
+
+[include]
+	path = ~/.gitconfig.local
+[user]
+	name = gelegele
+	email = ryo500209@gmail.com
