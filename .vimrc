@@ -32,6 +32,7 @@ set hlsearch
 set smartcase
 "置換の時 g オプションをデフォルトで有効にする
 set gdefault
+
 set enc=utf-8
 set fileformat=unix
 set nowrap
@@ -92,7 +93,8 @@ endif
 
 "unite
 NeoBundle 'https://github.com/Shougo/unite.vim.git'
-
+":VimFiler
+NeoBundle 'https://github.com/Shougo/vimfiler.git'
 
 NeoBundle 'https://github.com/tpope/vim-fugitive'
 NeoBundle 'https://github.com/gregsexton/gitv.git'
