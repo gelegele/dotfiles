@@ -32,6 +32,8 @@
 
 	cmt = commit -m
 
+  mnoff = merge --no-ff -m 
+
 	mfh = !git checkout master && git merge origin/master && git lg
   rework = !git checkout master && git branch -D work && git checkout -b work
 

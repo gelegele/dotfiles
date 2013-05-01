@@ -5,6 +5,9 @@ noremap! <C-j> <Esc>
 nnoremap <silent> cy ce<C-r>0<Esc>:let@/=@1<CR>:noh<CR>
 vnoremap <silent> cy c<C-r>0<Esc>:let@/=@1<CR>:noh<CR>
 nnoremap <silent> ciy ciw<C-r>0<Esc>:let@/=@1<CR>:noh<CR>
+"括弧を補完
+inoremap { {<CR><CR>}<Up>
+
 
 "カーソルキー有効化
 set t_ku=OA
@@ -32,6 +35,8 @@ set hlsearch
 set smartcase
 "置換の時 g オプションをデフォルトで有効にする
 set gdefault
+"ヤンク文字列をクリップボードに
+set clipboard=unnamed,autoselect
 
 set enc=utf-8
 set fileformat=unix
@@ -101,7 +106,7 @@ NeoBundle 'https://github.com/gregsexton/gitv.git'
 NeoBundle 'https://github.com/mattn/zencoding-vim'
 "ステータスラインにモード毎の色を付ける
 NeoBundle 'https://github.com/Lokaltog/vim-powerline.git'
-"
+
 " NeoBundle 'https://github.com/vim-scripts/project.vim.git'
 ":Rでmvc移動
 NeoBundle 'https://github.com/tpope/vim-rails.git'
@@ -129,3 +134,7 @@ filetype plugin indent on     " Required!
 
 " Installation check.
 NeoBundleCheck
+
+if filereadable(expand('~/.vimrc.local'))
+  source ~/.vimrc.local
+endif

@@ -11,10 +11,10 @@ if [ -f  .git-prompt.sh ]; then
 	#PS1='\033[00;32m\]\u@\h \033[00;33m\]\w\033[01;31m\]\n\033[0m\]\$ '
 fi
 
-alias ll='ls -alF'
+alias ll='ls -alF --color=auto'
 alias hs=history
 #alias l=less
-alias gr=grep
+alias gr='grep --color=auto'
 alias g=git
 alias src=source
 alias j=jobs
