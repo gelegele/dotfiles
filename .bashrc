@@ -11,6 +11,12 @@ if [ -f  .git-prompt.sh ]; then
 	#PS1='\033[00;32m\]\u@\h \033[00;33m\]\w\033[01;31m\]\n\033[0m\]\$ '
 fi
 
+#gitのbranch名を表示
+git_branch() {
+  echo $(git branch --no-color 2>/dev/null | sed -ne "s/^\* \(.*\)$/\1/p")
+}
+export PS1='\[\e[0;33m\]\w/ \[\e[1;32m\]$(git_branch)\[\e[0m\]\r\n$ '
+
 case "${OSTYPE}" in
 darwin*)
   alias ll='ls -alF -G'
@@ -34,4 +40,7 @@ alias r=rails
 #ローカル設定ファイルの読み込み
 if [ -f .bashrc.local ]; then
   source .bashrc.local
+  echo 'My .bashrc.local is loaded.'
 fi
+
+echo 'My .bashrc is loaded.'
