@@ -1,3 +1,6 @@
+"----------------------------------------------------------
+" Key Mapping
+"----------------------------------------------------------
 "ctrl+j でesc
 noremap <C-j> <Esc>
 noremap! <C-j> <Esc>
@@ -10,6 +13,9 @@ inoremap { {<CR><CR>}<Up>
 "ESC2度押しでハイライト消去
 nmap <silent> <ESC><ESC> :nohl<CR><ESC>
 
+"----------------------------------------------------------
+" Setting
+"----------------------------------------------------------
 "viとの互換性を優先しない
 set nocompatible
 "カーソルキー有効化
@@ -66,7 +72,9 @@ syntax on
 colorscheme molokai
 "colorscheme hybrid
 
-"Settings for NeoBundle
+"----------------------------------------------------------
+" NeoBundle
+"----------------------------------------------------------
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
@@ -117,8 +125,10 @@ NeoBundle 'https://github.com/Lokaltog/vim-powerline.git'
 ":Rでmvc移動
 NeoBundle 'https://github.com/tpope/vim-rails.git'
 
-NeoBundle 'https://github.com/scrooloose/nerdtree.git'
 ":Rtreeでrailsツリー表示。vim-railsとセットで
+"m でメニュー
+"B でブックマーク表示  追加は:BookMark, 削除はD
+NeoBundle 'https://github.com/scrooloose/nerdtree.git'
 "<C-e>でNERDTreeをオンオフ。いつでもどこでも。
 map <silent> <C-e>   :NERDTreeToggle<CR>
 imap <silent> <C-e>  <Esc>:NERDTreeToggle<CR>
@@ -131,6 +141,8 @@ NeoBundle 'https://github.com/thinca/vim-quickrun.git'
 NeoBundle 'https://github.com/thinca/vim-visualstar.git'
 "gcc でコメントアウト
 NeoBundle 'https://github.com/tomtom/tcomment_vim.git'
+"ctrl+pでファイル一覧
+NeoBundle 'https://github.com/kien/ctrlp.vim.git'
 "保存時に文法チェック
 NeoBundle 'https://github.com/scrooloose/syntastic.git'
 "vimrcの読み込み時間計測
@@ -148,6 +160,10 @@ filetype plugin indent on     " Required!
 " Installation check.
 NeoBundleCheck
 
+
+"----------------------------------------------------------
+" .vimr.local
+"----------------------------------------------------------
 if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local
 endif
