@@ -48,6 +48,7 @@
 	l   = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso -40
 	la  = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso
 	lnm = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso --no-merges -40
+	lfp = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso --first-parent -40
 	ls  = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso --stat -40
 	lp  = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso -p -40
 
@@ -78,6 +79,9 @@
 
 	amend = commit --amend -C HEAD
 	amendm = commit --amend -m
+
+  clnn = !git clean -n | grep '^\\would remove'
+  clnf = !git clean -f | grep '^Removing'
 
 	skip = update-index --skip-worktree
 	unskip = update-index --no-skip-worktree
