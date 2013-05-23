@@ -2,21 +2,16 @@
 if [ -f .git-.git-completion.bash ]; then
 	source .git-completion.bash
 fi
-#Gitのブランチ名表示
-if [ -f  .git-prompt.sh ]; then
-	source .git-prompt.sh
-	#Cygwinのタイトルバーにカレントディレクトリ名を表示させる
-	#PROMPT_COMMAND='echo -ne "\033]0;${PWD##*/} $(__git_ps1 " ( %s )")\007"'
-	#PS1='\033[00;32m\]\u@\h \033[00;33m\]\w\033[01;31m\]$(__git_ps1 " %s")\n\033[0m\]\$ '
-	#PS1='\033[00;32m\]\u@\h \033[00;33m\]\w\033[01;31m\]\n\033[0m\]\$ '
-fi
 
-#gitのbranch名を表示
+
+#show current git branch name
 git_branch() {
   echo $(git branch --no-color 2>/dev/null | sed -ne "s/^\* \(.*\)$/\1/p")
 }
 export PS1='\[\e[0;33m\]\w/ \[\e[1;32m\]$(git_branch)\[\e[0m\]\r\n$ '
 
+
+#color ls
 case "${OSTYPE}" in
 darwin*)
   alias ll='ls -alF -G'
@@ -26,8 +21,13 @@ darwin*)
   ;;
 esac
 
+#rbenv
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+#alias
 alias hs=history
-#alias l=less
+alias l=less
 alias gr='grep --color=auto'
 alias g=git
 alias src=source
@@ -37,7 +37,7 @@ alias k2='kill %2'
 alias r=rails
 
 
-#ローカル設定ファイルの読み込み
+#.bashrc.local
 if [ -f .bashrc.local ]; then
   source .bashrc.local
   echo 'My .bashrc.local is loaded.'
