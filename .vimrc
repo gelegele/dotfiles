@@ -128,6 +128,7 @@ NeoBundle 'https://github.com/tpope/vim-rails.git'
 ":Rtreeでrailsツリー表示。vim-railsとセットで
 "m でメニュー
 "B でブックマーク表示  追加は:BookMark, 削除はD
+":NERDTreeFind でファイル位置まで展開
 NeoBundle 'https://github.com/scrooloose/nerdtree.git'
 "<C-e>でNERDTreeをオンオフ。いつでもどこでも。
 map <silent> <C-e>   :NERDTreeToggle<CR>
@@ -145,6 +146,8 @@ NeoBundle 'https://github.com/tomtom/tcomment_vim.git'
 NeoBundle 'https://github.com/kien/ctrlp.vim.git'
 "保存時に文法チェック
 NeoBundle 'https://github.com/scrooloose/syntastic.git'
+"+でtrue/falseをトグル
+NeoBundle 'https://github.com/taku-o/vim-toggle.git'
 "vimrcの読み込み時間計測
 "NeoBundle 'https://github.com/mattn/benchvimrc-vim.git'
 
