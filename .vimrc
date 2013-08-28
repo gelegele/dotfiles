@@ -70,7 +70,8 @@ set statusline=%t\ %r%m%=%c:%l/%L[0x\%04.4B]%y%{'['.(&fenc!=''?&fenc:&enc).':'.&
 syntax on
 
 colorscheme molokai
-"colorscheme hybrid
+" colorscheme hybrid
+
 
 "----------------------------------------------------------
 " NeoBundle
@@ -119,7 +120,8 @@ NeoBundle 'https://github.com/gregsexton/gitv.git'
 "ctrl+y -> ,
 NeoBundle 'https://github.com/mattn/zencoding-vim'
 "ステータスラインにモード毎の色を付ける
-NeoBundle 'https://github.com/Lokaltog/vim-powerline.git'
+" NeoBundle 'https://github.com/Lokaltog/vim-powerline.git'
+NeoBundle 'https://github.com/itchyny/lightline.vim'
 
 " NeoBundle 'https://github.com/vim-scripts/project.vim.git'
 ":Rでmvc移動
