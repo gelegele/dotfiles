@@ -4,12 +4,18 @@
 "ctrl+j でesc
 noremap <C-j> <Esc>
 noremap! <C-j> <Esc>
+"ノーマルモードでCtrl+Enterキーで改行挿入
+noremap <C-CR> o<ESC>
+"スペースキーでスクロール
+nnoremap <Space> jzz
+nnoremap <C-Space> kzz
+"検索単語移動＋スクロール
+nnoremap n nzz
+nnoremap N Nzz
 "ヤンク文字列で置換
 nnoremap <silent> cy ce<C-r>0<Esc>:let@/=@1<CR>:noh<CR>
 vnoremap <silent> cy c<C-r>0<Esc>:let@/=@1<CR>:noh<CR>
 nnoremap <silent> ciy ciw<C-r>0<Esc>:let@/=@1<CR>:noh<CR>
-"括弧を補完
-inoremap { {<CR><CR>}<Up>
 "ESC2度押しでハイライト消去
 nmap <silent> <ESC><ESC> :nohl<CR><ESC>
 
@@ -61,7 +67,8 @@ set shiftwidth=2
 set noswapfile
 "GUIツールバーを非表示
 set guioptions-=T
-
+"<C-a>と<C-x>で00xを10進数扱いする
+set nrformats=
 "ステータスライン
 set laststatus=2
 set statusline=%t\ %r%m%=%c:%l/%L[0x\%04.4B]%y%{'['.(&fenc!=''?&fenc:&enc).':'.&ff.']'}
@@ -72,6 +79,8 @@ syntax on
 colorscheme molokai
 " colorscheme hybrid
 
+"開いているファイルのパスをworkingdirectoryとする
+set autochdir
 
 "----------------------------------------------------------
 " NeoBundle
@@ -150,6 +159,8 @@ NeoBundle 'https://github.com/kien/ctrlp.vim.git'
 NeoBundle 'https://github.com/scrooloose/syntastic.git'
 "+でtrue/falseをトグル
 NeoBundle 'https://github.com/taku-o/vim-toggle.git'
+" ys{motion}{surround} cs{old_surround}{new_surround} S{surround} on visual mode
+NeoBundle 'https://github.com/tpope/vim-surround'
 "vimrcの読み込み時間計測
 "NeoBundle 'https://github.com/mattn/benchvimrc-vim.git'
 
