@@ -1,3 +1,7 @@
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc 
+fi
+
 #Gitの補完機能
 if [ -f .git-.git-completion.bash ]; then
 	source .git-completion.bash
@@ -22,8 +26,10 @@ darwin*)
 esac
 
 #rbenv
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
+if [ -d $HOME/.rbenv/bin ]; then
+	export PATH="$HOME/.rbenv/bin:$PATH"
+	eval "$(rbenv init -)"
+fi
 
 #alias
 alias hs=history
@@ -40,7 +46,4 @@ alias r=rails
 #.bashrc.local
 if [ -f .bashrc.local ]; then
   source .bashrc.local
-  echo 'My .bashrc.local is loaded.'
 fi
-
-echo 'My .bashrc is loaded.'
