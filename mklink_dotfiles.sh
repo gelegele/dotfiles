@@ -25,10 +25,10 @@ fi
 
 
 for file in `ls -a $src`; do
-  if [ $file = "." -o $file = ".." -o $file = ".git" ]; then
+  if [ $file = "." -o $file = ".." -o $file = ".DS_Store" -o $file = ".git" -o $file = "`basename $0`" ]; then
     continue
   fi
-	lncmd="ln -s $src$file $dst$file"
+	lncmd="ln -sb $src$file $dst$file"
   echo $lncmd
 	$lncmd
 done
