@@ -19,7 +19,6 @@
 	cop = checkout @{-1}
 	f = fetch
 	fa = fetch
-	pullom = !~/git_pull_origin_master.sh #masterブランチ以外ではpullさせなぁE
 	pushom = push origin master
 	b = branch -v
 	ba = branch -va
@@ -78,4 +77,4 @@
 	rev = https://{host}/{path}/commit/{commit}
 	file = "https://{host}/{path}/blob/{short_rev}/{file}{line && \"#L%d\" % line}"
 [push]
-  default = upstream #tracking branchなら引数なしpush可
+  default = upstream #allow to  push without args on the tracking branch
