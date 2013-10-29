@@ -2,6 +2,7 @@
 	autocrlf = false
 	safecrlf = false
 	excludesfile = ~/.gitignore
+  editor = vim
 [color]
 	ui = true
 [diff]
@@ -18,7 +19,6 @@
 	com = checkout master
 	cop = checkout @{-1}
 	f = fetch
-	fa = fetch
 	pushom = push origin master
 	b = branch -v
 	ba = branch -va
@@ -28,7 +28,6 @@
 	mnoffm = merge --no-ff -m
 	mff = merge --ff-only FETCH_HEAD
 	rmall = !git rm `git ls-files --deleted`
-	rework = !git checkout master && git branch -D work && git checkout -b work
 	cp = cherry-pick
 	cprn = cherry-pick -rn # without commit
 	bl = blame

@@ -9,6 +9,9 @@ noremap <C-CR> o<ESC>
 "スペースキーでスクロール
 nnoremap <Space> jzz
 nnoremap <C-Space> kzz
+"検索開始時に次の単語に移動させない
+noremap * *N
+noremap # #N
 "検索単語移動＋スクロール
 nnoremap n nzz
 nnoremap N Nzz
@@ -54,6 +57,8 @@ set smartcase
 set gdefault
 "ヤンク文字列をクリップボードに
 set clipboard=unnamed,autoselect
+"自動改行無効
+set textwidth=0
 
 set enc=utf-8
 set fileformat=unix
@@ -163,7 +168,6 @@ NeoBundle 'https://github.com/taku-o/vim-toggle.git'
 NeoBundle 'https://github.com/tpope/vim-surround'
 "vimrcの読み込み時間計測
 "NeoBundle 'https://github.com/mattn/benchvimrc-vim.git'
-
 " ...
 
 filetype plugin indent on     " Required!

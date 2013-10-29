@@ -2,6 +2,10 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc 
 fi
 
+#history
+HISTCONTROL=ignoredups
+HISTIGNORE=hs:ll:cd
+
 #Gitの補完機能
 if [ -f .git-.git-completion.bash ]; then
 	source .git-completion.bash
@@ -36,6 +40,7 @@ alias hs=history
 alias l=less
 alias gr='grep --color=auto'
 alias g=git
+alias vg=vagrant
 alias src=source
 alias j=jobs
 alias k1='kill %1'
