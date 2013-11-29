@@ -1,0 +1,4 @@
+*.rb diff=ruby
+*.java diff=java
+*.html diff=html
+
