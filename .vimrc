@@ -6,6 +6,7 @@ noremap <C-j> <Esc>
 noremap! <C-j> <Esc>
 "ノーマルモードでCtrl+Enterキーで改行挿入
 noremap <C-CR> o<ESC>
+noremap <C-S-CR> O<ESC>
 "スペースキーでスクロール
 nnoremap <Space> jzz
 nnoremap <C-Space> kzz
@@ -59,6 +60,7 @@ set gdefault
 set clipboard=unnamed,autoselect
 "自動改行無効
 set textwidth=0
+set formatoptions=q
 
 set enc=utf-8
 set fileformat=unix
@@ -86,6 +88,9 @@ colorscheme molokai
 
 "開いているファイルのパスをworkingdirectoryとする
 set autochdir
+
+"多重起動防止
+runtime macros/editexisting.vim
 
 "----------------------------------------------------------
 " NeoBundle
@@ -132,7 +137,7 @@ NeoBundle 'https://github.com/Shougo/vimfiler.git'
 NeoBundle 'https://github.com/tpope/vim-fugitive'
 NeoBundle 'https://github.com/gregsexton/gitv.git'
 "ctrl+y -> ,
-NeoBundle 'https://github.com/mattn/zencoding-vim'
+NeoBundle 'https://github.com/mattn/emmet-vim.git'
 "ステータスラインにモード毎の色を付ける
 " NeoBundle 'https://github.com/Lokaltog/vim-powerline.git'
 NeoBundle 'https://github.com/itchyny/lightline.vim'
@@ -168,6 +173,7 @@ NeoBundle 'https://github.com/taku-o/vim-toggle.git'
 NeoBundle 'https://github.com/tpope/vim-surround'
 "vimrcの読み込み時間計測
 "NeoBundle 'https://github.com/mattn/benchvimrc-vim.git'
+
 " ...
 
 filetype plugin indent on     " Required!
