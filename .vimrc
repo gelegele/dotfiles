@@ -1,15 +1,18 @@
 "----------------------------------------------------------
 " Key Mapping
 "----------------------------------------------------------
+"<Space> も何かに使おう
+noremap <Space> <Nop>
+
 "ctrl+j でesc
 noremap <C-j> <Esc>
 noremap! <C-j> <Esc>
 "ノーマルモードでCtrl+Enterキーで改行挿入
 noremap <C-CR> o<ESC>
 noremap <C-S-CR> O<ESC>
-"スペースキーでスクロール
-nnoremap <Space> jzz
-nnoremap <C-Space> kzz
+"j/kキーで3倍速スクロール
+noremap <C-j> 3jzz
+noremap <C-k> 3kzz
 "検索開始時に次の単語に移動させない
 noremap * *N
 noremap # #N
@@ -91,6 +94,12 @@ set autochdir
 
 "多重起動防止
 runtime macros/editexisting.vim
+
+"----------------------------------------------------------
+" Command
+"----------------------------------------------------------
+command Sov so ~/.vimrc
+
 
 "----------------------------------------------------------
 " NeoBundle

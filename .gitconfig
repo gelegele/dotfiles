@@ -19,20 +19,37 @@
 	cot = checkout --track
 	com = checkout master
 	cop = checkout @{-1}
+
 	f = fetch
 	pushom = push origin master
+
 	b = branch -v
 	ba = branch -va
+
 	aa = add .
+	rmall = !git rm `git ls-files --deleted`
+
 	cmt = commit -m
+	cmte = commit -m --alow-empty
+	amend = commit --amend -C HEAD
+	amendm = commit --amend -m
+
 	mnoff = merge --no-ff
 	mnoffm = merge --no-ff -m
-	mff = merge --ff-only FETCH_HEAD
-	rmall = !git rm `git ls-files --deleted`
+  mff = merge --ff-only FETCH_HEAD
+  mnoc = merge --no-commit
+
 	cp = cherry-pick
 	cprn = cherry-pick -rn # without commit
+
+  rebasem = rebase master
+  rebasei = rebase -i
+  rebasec = rebase --continue
+  rebasea = rebase --abort
+
 	bl = blame
 	s = !git status -sb && git skipped
+
 	lg = log --oneline --decorate --all --graph -40
 	l = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso -40
 	la = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso
@@ -42,8 +59,10 @@
 	lp = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso -p -40
 	lm = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso master..
 	lom = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso origin/master..
+
 	cfgl = config --local -l
 	cfgg = config --global -l
+
 	d = diff --no-ext-diff --diff-filter=M
 	dw = diff --no-ext-diff --diff-filter=M --color-words
 	dn = diff --no-ext-diff --name-only
@@ -56,13 +75,15 @@
 	dnc = diff --no-ext-diff --name-only --cached
 	vd = diff --ext-diff --diff-filter=M
 	vdc = diff --ext-diff --cached --diff-filter=M
+
 	shown = show --name-only
 	shows = show --stat
+
 	gr = grep -n -I --break --heading
-	amend = commit --amend -C HEAD
-	amendm = commit --amend -m
+
 	clnn = !git clean -n | grep '^\\would remove'
 	clnf = !git clean -f | grep '^Removing'
+
 	skip = update-index --skip-worktree
 	unskip = update-index --no-skip-worktree
 	skipped = !git ls-files -v | grep ^S

@@ -18,7 +18,6 @@ git_branch() {
 }
 export PS1='\[\e[1;32m\][\u@\h]\[\e[0;33m\]\w/ \[\e[1;32m\]$(git_branch)\[\e[0m\]\r\n$ '
 
-
 #color ls
 case "${OSTYPE}" in
 darwin*)
