@@ -16,6 +16,8 @@ noremap <C-k> 3kzz
 "検索開始時に次の単語に移動させない
 noremap * *N
 noremap # #N
+map * <Plug>(visualstar-*)N
+map # <Plug>(visualstar-#)N
 "検索単語移動＋スクロール
 nnoremap n nzz
 nnoremap N Nzz
@@ -180,6 +182,9 @@ NeoBundle 'https://github.com/scrooloose/syntastic.git'
 NeoBundle 'https://github.com/taku-o/vim-toggle.git'
 " ys{motion}{surround} cs{old_surround}{new_surround} S{surround} on visual mode
 NeoBundle 'https://github.com/tpope/vim-surround'
+"Mark行をマークしてくれる
+NeoBundle 'https://github.com/vim-scripts/ShowMarks'
+let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 "vimrcの読み込み時間計測
 "NeoBundle 'https://github.com/mattn/benchvimrc-vim.git'
 
