@@ -89,9 +89,6 @@
 	skipped = !git ls-files -v | grep ^S
 [include]
 	path = ~/.gitconfig.local
-[user]
-	name = gelegele
-	email = ryo500209@gmail.com
 [browse-remote "github.com"]
 	top = https://{host}/{path}
 	ref = https://{host}/{path}/tree/{short_ref}
