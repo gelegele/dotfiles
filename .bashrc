@@ -35,6 +35,7 @@ if [ -d $HOME/.rbenv/bin ]; then
 fi
 
 #alias
+alias vi=vim
 alias hs=history
 alias l=less
 alias gr='grep --color=auto'
