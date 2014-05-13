@@ -55,10 +55,11 @@
 	la = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso
 	lnm = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso --no-merges -40
 	lfp = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso --first-parent -40
-	ls = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso --stat -40
 	lp = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso -p -40
 	lm = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso master..
 	lom = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s\" --date=iso origin/master..
+
+  ls = ls-files
 
 	cfgl = config --local -l
 	cfgg = config --global -l
