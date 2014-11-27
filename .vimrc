@@ -7,7 +7,9 @@ noremap <Space> <Nop>
 "ctrl+j でesc
 noremap <C-j> <Esc>
 noremap! <C-j> <Esc>
-"ノーマルモードでCtrl+Enterキーで改行挿入
+"ノーマルモードでEnterキーでカーソル位置右で改行
+noremap <CR> a<CR><ESC>
+"ノーマルモードでCtrl+Enterキーで空行挿入
 noremap <C-CR> o<ESC>
 noremap <C-S-CR> O<ESC>
 "j/kキーで3倍速スクロール
@@ -187,7 +189,8 @@ NeoBundle 'https://github.com/vim-scripts/ShowMarks'
 let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 "vimrcの読み込み時間計測
 "NeoBundle 'https://github.com/mattn/benchvimrc-vim.git'
-
+"PowerShell
+NeoBundle 'https://github.com/PProvost/vim-ps1.git'
 " ...
 
 filetype plugin indent on     " Required!
