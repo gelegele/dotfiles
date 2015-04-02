@@ -40,6 +40,7 @@ alias hs=history
 alias l=less
 alias gr='grep --color=auto'
 alias g=git
+alias git_delete_merged_branches="git branch --merged | grep -v '*' | xargs -I % git branch -d %"
 alias vg=vagrant
 alias src=source
 alias j=jobs
