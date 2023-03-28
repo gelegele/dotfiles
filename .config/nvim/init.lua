@@ -10,7 +10,7 @@ How to check health is [:checkhealth]:
 -- Leaderはスペース
 vim.g.mapleader = ' '       
 vim.g.maplocalleader = ' '
--- TABとシフトインデントは4
+-- TABとシフトインデントは2
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
@@ -58,7 +58,7 @@ vim.keymap.set('n', 'N', 'Nzz')
 -- ESCハイライト消去
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
 -- Fernの起動
-vim.keymap.set('n', '<C-n>', ':Fern . -reveal=% -drawer -toggle<CR>')
+vim.keymap.set('n', '<Leader>e', ':Fern . -reveal=% -drawer -toggle<CR>')
 
 
 -- Install package manager
@@ -133,5 +133,11 @@ require('lazy').setup({
         mapping = "<leader>t",
       })
     end,
-  }
+  },
+  { -- git
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  },
 }, {})
