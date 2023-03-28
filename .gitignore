@@ -1,0 +1,21 @@
+.DS_Store
+.env
+.ssh/
+.vim/
+.vs/
+.vscode/
+obj/
+token.pickle
+*.log
+*.local
+
+# python
+__pycache__/
+
+# python venv
+venv/
+
+# python coverage
+.coverage
+htmlcov/
+

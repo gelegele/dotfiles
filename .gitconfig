@@ -1,0 +1,107 @@
+[core]
+	autocrlf = false
+	safecrlf = false
+	excludesfile = ~/.gitignore
+	attributesfile = ~/.gitattributes_global
+  editor = vim
+  filemode = false
+[color]
+	ui = auto
+[pull]
+	rebase = true
+[pager]
+  #log = diff-highlight | less
+  #show = diff-highlight | less
+  #diff = diff-highlight | less
+[alias]
+	co = checkout
+	cob = checkout -b
+	cot = checkout --track
+	com = checkout master
+  cod = checkout develop
+	cop = checkout @{-1}
+
+	f = fetch --prune
+	p = pull --prune
+
+  pushf = push --force-with-lease
+
+	b = branch -v
+	ba = branch -va
+
+	aa = add .
+	rmall = !git rm `git ls-files --deleted`
+
+	cmt = commit -m
+	cmte = commit -m --alow-empty
+	amend = commit --amend -C HEAD
+	amendm = commit --amend -m
+
+	mnoff = merge --no-ff
+	mnoffm = merge --no-ff -m
+  mff = merge --ff-only FETCH_HEAD
+  mnoc = merge --no-commit
+
+	cp = cherry-pick
+	cprn = cherry-pick -rn # without commit
+
+  rebasei = rebase -i
+  rebasec = rebase --continue
+  rebasea = rebase --abort
+
+	bl = blame
+	s = !git status -sb && git skipped
+
+	lg = log --oneline --all --graph --decorate -20
+  l = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s%C(red)%d\" --date=iso -20
+	la = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s%C(red)%d\" --date=iso
+	lnm = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s%C(red)%d\" --date=iso --no-merges -20
+	lfp = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s%C(red)%d\" --date=iso --first-parent -20
+	lp = log --pretty=format:\"%C(yellow)%h %Cblue%an %Creset %ad : %s%C(red)%d\" --date=iso -p -20
+
+  ls = ls-files
+
+	cfgl = config --local -l
+	cfgg = config --global -l
+
+	d = diff --no-ext-diff --diff-filter=M
+	dw = diff --no-ext-diff --diff-filter=M --color-words
+	dn = diff --no-ext-diff --name-only
+	ds = diff --no-ext-diff --stat
+	dm = diff --no-ext-diff master
+	dsm = diff --no-ext-diff --stat master
+	dom = diff --no-ext-diff origin/master
+	dsom = diff --no-ext-diff --stat origin/master
+	dc = diff --no-ext-diff --cached --diff-filter=M
+	dnc = diff --no-ext-diff --name-only --cached
+	vd = diff --ext-diff --diff-filter=M
+	vdc = diff --ext-diff --cached --diff-filter=M
+
+	shown = show --name-only
+	shows = show --stat
+
+	gr = grep -n -I --break --heading
+
+	clnn = !git clean -n | grep '^\\would remove'
+	clnf = !git clean -f | grep '^Removing'
+
+	skip = update-index --skip-worktree
+	unskip = update-index --no-skip-worktree
+	skipped = !git ls-files -v | grep ^S
+[include]
+	path = ~/.gitconfig.local
+[push]
+	default = current
+[filter "lfs"]
+	clean = git-lfs clean %f
+	smudge = git-lfs smudge %f
+	required = true
+[fetch]
+	prune = true
+[secrets]
+	providers = git secrets --aws-provider
+	patterns = (A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
+	patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
+	patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
+	allowed = AKIAIOSFODNN7EXAMPLE
+	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
