@@ -91,20 +91,22 @@ require('lazy').setup({
     'nvim-lualine/lualine.nvim',
     opts = {
       options = {
-        icons_enabled = false,
-        theme = 'onedark',
+        icons_enabled = true,
+        -- theme = 'onedark',
+        -- theme = 'iceberg_dark',
+        theme = 'PaperColor',
         component_separators = '|',
         section_separators = '',
       },
     },
   },
-  { -- ColorScheme
-    'marko-cerovac/material.nvim',
+  -- { 'cocopon/iceberg.vim', },
+  -- { 'sonph/onehalf' },
+  -- { 'jacoborus/tender.vim' },
+  { 'NLKNguyen/papercolor-theme',
     config = function()
-      -- スタイル確認コマンドはこれ
-      -- :lua require('material.functions').toggle_style()
-      vim.g.material_style = 'darker'
-      vim.cmd.colorscheme 'material'
+      -- 初期値として
+      vim.cmd.colorscheme 'PaperColor'
     end,
   },
   { -- vwS' Vモード選択した単語を囲う
