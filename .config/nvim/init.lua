@@ -118,6 +118,9 @@ require('lazy').setup({
       },
     },
   },
+  { -- インデント見える化
+    "lukas-reineke/indent-blankline.nvim",
+  },
   { -- vwS' Vモード選択した単語を囲う
     -- cs'" シングルをダブルに変更
     'kylechui/nvim-surround',
