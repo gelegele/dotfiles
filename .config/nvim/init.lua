@@ -8,7 +8,7 @@ How to check health is [:checkhealth]:
 ]]--
 
 -- Leaderはスペース
-vim.g.mapleader = ' '       
+vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 -- TABとシフトインデントは2
 vim.opt.expandtab = true
@@ -16,6 +16,8 @@ vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 -- 行番号表示 :set number <-> :set nonumber
 vim.opt.number = true
+-- 行末空白可視化
+vim.opt.list = true
 -- ハイライトサーチ
 vim.opt.hlsearch = true
 -- 検索大文字無視
@@ -57,8 +59,10 @@ vim.keymap.set('n', 'n', 'nzz')
 vim.keymap.set('n', 'N', 'Nzz')
 -- ESCハイライト消去
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
+-- 行番号表示トグル
+vim.keymap.set('n', '<Leader>g', ':set nonumber!<CR>')
 -- Fernの起動
-vim.keymap.set('n', '<Leader>e', ':Fern . -reveal=% -drawer -toggle<CR>')
+vim.keymap.set('n', '<Leader>e', ':Fern . -reveal=% -drawer -toggle -width=35<CR>')
 
 
 -- Install package manager
@@ -79,14 +83,28 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   { -- ファイラー
     'lambdalisue/fern.vim',
+    dependencies = {
+      { -- netrw無効化（Fern使用）
+      'lambdalisue/fern-hijack.vim'
+      },
+      { -- git status表示
+      'lambdalisue/fern-git-status.vim',
+      },
+    },
     config = function()
       -- 隠しファイルをデフォルト表示
       vim.g['fern#default_hidden'] = 1
     end
   },
-  { -- netrw無効化（Fern使用）
-    'lambdalisue/fern-hijack.vim'
+  { 'NLKNguyen/papercolor-theme',
+    config = function()
+      -- 初期値設定
+      vim.cmd.colorscheme 'PaperColor'
+    end,
   },
+  -- { 'cocopon/iceberg.vim', },
+  -- { 'sonph/onehalf' },
+  -- { 'jacoborus/tender.vim' },
   { -- ステータスライン
     'nvim-lualine/lualine.nvim',
     opts = {
@@ -99,15 +117,6 @@ require('lazy').setup({
         section_separators = '',
       },
     },
-  },
-  -- { 'cocopon/iceberg.vim', },
-  -- { 'sonph/onehalf' },
-  -- { 'jacoborus/tender.vim' },
-  { 'NLKNguyen/papercolor-theme',
-    config = function()
-      -- 初期値として
-      vim.cmd.colorscheme 'PaperColor'
-    end,
   },
   { -- vwS' Vモード選択した単語を囲う
     -- cs'" シングルをダブルに変更
@@ -143,3 +152,8 @@ require('lazy').setup({
     end
   },
 }, {})
+
+-- TODO
+-- - スペース入力にラグが発生する
+-- - Clipboard
+-- - 画面分割の習得
