@@ -110,11 +110,10 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = true,
-        -- theme = 'onedark',
-        -- theme = 'iceberg_dark',
-        theme = 'PaperColor',
+        theme = 'auto',
         component_separators = '|',
         section_separators = '',
+        path = 2, -- 0:filename, 1:relative, 2:absolute
       },
     },
   },
