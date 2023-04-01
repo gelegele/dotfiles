@@ -120,7 +120,18 @@ require('lazy').setup({
     },
   },
   { -- インデント見える化
-    "lukas-reineke/indent-blankline.nvim",
+    'lukas-reineke/indent-blankline.nvim',
+  },
+  { -- スクロールバー
+    'petertriho/nvim-scrollbar',
+    config = function()
+      require('scrollbar').setup({
+        handlers = {
+          cursor = false,
+          gitsigns = true, -- Requires gitsigns
+        },
+      })
+    end
   },
   { -- vwS' Vモード選択した単語を囲う
     -- cs'" シングルをダブルに変更
