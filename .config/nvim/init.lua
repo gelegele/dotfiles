@@ -36,6 +36,9 @@ vim.opt.winblend = 10
 vim.opt.pumblend = 10
 -- True Color
 vim.opt.termguicolors = true
+-- netrw無効化
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- Space + Enterで保存
 vim.keymap.set({'n', 'i'}, '<Leader><CR>', ':w<CR>')
@@ -61,8 +64,8 @@ vim.keymap.set('n', 'N', 'Nzz')
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
 -- 行番号表示トグル
 vim.keymap.set('n', '<Leader>g', ':set nonumber!<CR>')
--- Fernの起動
-vim.keymap.set('n', '<Leader>e', ':Fern . -reveal=% -drawer -toggle -width=35<CR>')
+-- filerの起動
+vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
 
 
 -- Install package manager
@@ -81,19 +84,16 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
-  { -- ファイラー
-    'lambdalisue/fern.vim',
+  { -- Filer
+    -- Help: g+?
+    'nvim-tree/nvim-tree.lua',
     dependencies = {
-      { -- netrw無効化（Fern使用）
-      'lambdalisue/fern-hijack.vim'
-      },
-      { -- git status表示
-      'lambdalisue/fern-git-status.vim',
-      },
+      { -- Install NERD FONTS on your OS.
+        'nvim-tree/nvim-web-devicons',
+      }
     },
     config = function()
-      -- 隠しファイルをデフォルト表示
-      vim.g['fern#default_hidden'] = 1
+      require("nvim-tree").setup()
     end
   },
   { 'olimorris/onedarkpro.nvim',
@@ -102,11 +102,8 @@ require('lazy').setup({
       vim.cmd.colorscheme 'onedark'
     end,
   },
-  { 'nordtheme/vim', },
   { 'NLKNguyen/papercolor-theme', },
-  -- { 'cocopon/iceberg.vim', },
-  -- { 'sonph/onehalf' },
-  -- { 'jacoborus/tender.vim' },
+  { 'sonph/onehalf' },
   { -- ステータスライン
     'nvim-lualine/lualine.nvim',
     opts = {
@@ -131,6 +128,12 @@ require('lazy').setup({
           gitsigns = true, -- Requires gitsigns
         },
       })
+    end
+  },
+  { -- git
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
     end
   },
   { -- vwS' Vモード選択した単語を囲う
@@ -159,12 +162,6 @@ require('lazy').setup({
         mapping = "<leader>t",
       })
     end,
-  },
-  { -- git
-    'lewis6991/gitsigns.nvim',
-    config = function()
-      require('gitsigns').setup()
-    end
   },
 }, {})
 
