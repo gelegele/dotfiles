@@ -2,23 +2,23 @@
 My init.lua for NEOVIM
 
 How to reload this is [:luafile %]
-
 How to check health is [:checkhealth]:
-
 ]]--
 
--- Leaderはスペース
+-- Leader key is space.
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
--- TABとシフトインデントは2
+-- I don't need swap files.
+vim.opt.swapfile = false
+-- tab space is 2.
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
--- 行番号表示 :set number <-> :set nonumber
+-- Show line numbers.
 vim.opt.number = true
--- 行末空白可視化
+-- Show tail spaces.
 vim.opt.list = true
--- ハイライトサーチ
+-- High Light Search
 vim.opt.hlsearch = true
 -- 検索大文字無視
 vim.opt.ignorecase = true
@@ -63,10 +63,9 @@ vim.keymap.set('n', 'N', 'Nzz')
 -- ESCハイライト消去
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
 -- 行番号表示トグル
-vim.keymap.set('n', '<Leader>g', ':set nonumber!<CR>')
+vim.keymap.set('n', '<Leader>g', ':set nonumber!<CR><C-l>')
 -- filerの起動
-vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
-
+vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR><C-l>')
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
@@ -74,37 +73,34 @@ vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
+    'git', 'clone', '--filter=blob:none',
+    'https://github.com/folke/lazy.nvim.git', '--branch=stable',
     lazypath,
   }
 end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
-  { -- Filer
-    -- Help: g+?
+  { -- Filer (Help: g+?)
     'nvim-tree/nvim-tree.lua',
     dependencies = {
-      { -- Install NERD FONTS on your OS.
+      { -- Install NERD FONT on your OS.
         'nvim-tree/nvim-web-devicons',
       }
     },
     config = function()
-      require("nvim-tree").setup()
+      require("nvim-tree").setup({
+        -- open_on_setup = true -- Show filer if not file.
+      })
     end
   },
   { 'olimorris/onedarkpro.nvim',
     config = function()
-      -- 初期値設定
       vim.cmd.colorscheme 'onedark'
     end,
   },
   { 'NLKNguyen/papercolor-theme', },
   { 'sonph/onehalf' },
-  { -- ステータスライン
+  { -- Status Line
     'nvim-lualine/lualine.nvim',
     opts = {
       options = {
@@ -113,24 +109,25 @@ require('lazy').setup({
         component_separators = '|',
         section_separators = '',
         path = 2, -- 0:filename, 1:relative, 2:absolute
+        disabled_filetypes = {'NvimTree'}, -- Hide on nvim-tree
       },
     },
   },
-  { -- インデント見える化
+  { -- Show indents
     'lukas-reineke/indent-blankline.nvim',
   },
-  { -- スクロールバー
+  { -- Scroll Bar
     'petertriho/nvim-scrollbar',
     config = function()
       require('scrollbar').setup({
         handlers = {
-          cursor = false,
+          cursor = false,  -- Hide cursor mark on bar
           gitsigns = true, -- Requires gitsigns
         },
       })
     end
   },
-  { -- git
+  { -- Show git status
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup()
@@ -146,7 +143,7 @@ require('lazy').setup({
       })
     end
   },
-  { -- gccでコメントアウト
+  { -- Comment in/out with gcc
     'tpope/vim-commentary',
     event = 'VeryLazy',
   },
@@ -164,6 +161,17 @@ require('lazy').setup({
     end,
   },
 }, {})
+
+-- If buffer is a dir, change to the dir and open the tree.
+local function open_nvim_tree(data)
+  local directory = vim.fn.isdirectory(data.file) == 1
+  if not directory then
+    return
+  end
+  vim.cmd.cd(data.file)
+  require("nvim-tree.api").tree.open()
+end
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 -- TODO
 -- - スペース入力にラグが発生する
