@@ -96,12 +96,14 @@ require('lazy').setup({
       vim.g['fern#default_hidden'] = 1
     end
   },
-  { 'NLKNguyen/papercolor-theme',
+  { 'olimorris/onedarkpro.nvim',
     config = function()
       -- 初期値設定
-      vim.cmd.colorscheme 'PaperColor'
+      vim.cmd.colorscheme 'onedark'
     end,
   },
+  { 'nordtheme/vim', },
+  { 'NLKNguyen/papercolor-theme', },
   -- { 'cocopon/iceberg.vim', },
   -- { 'sonph/onehalf' },
   -- { 'jacoborus/tender.vim' },
