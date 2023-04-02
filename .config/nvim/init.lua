@@ -44,10 +44,10 @@ vim.opt.termguicolors = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Space + Enterで保存
-vim.keymap.set('n', '<Leader><CR>', ':w<CR>')
+-- Space + Shift + Enter to save
+vim.keymap.set('n', '<Leader>w', ':w<CR>')
 -- Q で終了
-vim.keymap.set('n', 'Q', ':q<CR>')
+vim.keymap.set('n', '<Leader>q', ':q<CR>')
 -- Space + q で強制終了
 vim.keymap.set('n', '<Leader>Q', ':q!<CR>')
 -- jj でNORMALモードへ
@@ -72,13 +72,13 @@ vim.keymap.set('n', 'N', 'Nzz')
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
 -- 行番号表示トグル
 vim.keymap.set('n', '<Leader>g', ':set nonumber!<CR><C-l>')
--- filerの起動
+-- Open the tree
 vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR><C-l>')
+-- Focus on the tree
+vim.keymap.set('n', '<Leader>h', ':NvimTreeFocus<CR><C-l>')
 
 
 -- Install package manager
---    https://github.com/folke/lazy.nvim
---    `:help lazy.nvim.txt` for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -89,7 +89,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
-  { -- Filer (Help: g+?)
+  { -- Filer (Help: ?)
     'nvim-tree/nvim-tree.lua',
     dependencies = {
       { -- Install NERD FONT on your OS.
@@ -99,8 +99,7 @@ require('lazy').setup({
     config = function()
       -- If buffer is a dir, change to the dir and open the tree.
       local function open_nvim_tree(data)
-        local directory = vim.fn.isdirectory(data.file) == 1
-        if not directory then
+        if vim.fn.isdirectory(data.file) == 0 then
           return
         end
         vim.cmd.cd(data.file)
@@ -119,8 +118,8 @@ require('lazy').setup({
           vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts(bufnr, 'Close Directory'))
           vim.keymap.set('n', 'l', api.node.open.edit,             opts(bufnr, 'Open Edit'))
           vim.keymap.set('n', '<Leader>', api.node.open.preview,   opts(bufnr, 'Open Preview'))
+          vim.keymap.set('n', '<Leader>e', api.tree.toggle,        opts(bufnr, 'Toggle Tree'))
         end
-        -- open_on_setup = true -- Show filer if not file.
       })
     end
   },
@@ -196,4 +195,3 @@ require('lazy').setup({
 
 -- TODO
 -- - Clipboard
--- - 画面分割の習得
