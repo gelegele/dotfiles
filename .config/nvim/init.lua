@@ -1,6 +1,10 @@
 --[[
 My init.lua for NEOVIM
 
+This file path is
+Linux: ~/.config/nvim/init.lua
+Windows: %LOCALAPPDATA%\nvim\init.lua
+
 How to reload this is [:luafile %]
 How to check health is [:checkhealth]:
 ]]--
@@ -49,7 +53,11 @@ vim.keymap.set('n', '<Leader>Q', ':q!<CR>')
 -- jj でNORMALモードへ
 vim.keymap.set('i', 'jj', '<ESC>')
 -- Ctrl + Enterで空行挿入
-vim.keymap.set('n', '<NL>', 'o<ESC>')
+if vim.fn.has('win64') == 1 then
+  vim.keymap.set('n', '<C-CR>', 'o<ESC>')
+else
+  vim.keymap.set('n', '<NL>', 'o<ESC>')
+end
 -- Jで空白なし結合
 vim.keymap.set('n', 'J', 'gJ')
 -- 行移動先を中央表示
