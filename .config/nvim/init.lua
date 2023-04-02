@@ -67,6 +67,7 @@ vim.keymap.set('n', '<Leader>g', ':set nonumber!<CR><C-l>')
 -- filerの起動
 vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR><C-l>')
 
+
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -88,7 +89,29 @@ require('lazy').setup({
       }
     },
     config = function()
+      -- If buffer is a dir, change to the dir and open the tree.
+      local function open_nvim_tree(data)
+        local directory = vim.fn.isdirectory(data.file) == 1
+        if not directory then
+          return
+        end
+        vim.cmd.cd(data.file)
+        require("nvim-tree.api").tree.open()
+      end
+      vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+      -- My keymaps
+      local api = require("nvim-tree.api")
+      local function opts(bufnr, desc)
+        return { desc = desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+      end
       require("nvim-tree").setup({
+        on_attach = function(bufnr)
+          api.config.mappings.default_on_attach(bufnr)
+          vim.keymap.set('n', '?', api.tree.toggle_help,           opts(bufnr, 'Help'))
+          vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts(bufnr, 'Close Directory'))
+          vim.keymap.set('n', 'l', api.node.open.edit,             opts(bufnr, 'Open Edit'))
+          vim.keymap.set('n', '<Leader>', api.node.open.preview,   opts(bufnr, 'Open Preview'))
+        end
         -- open_on_setup = true -- Show filer if not file.
       })
     end
@@ -162,16 +185,6 @@ require('lazy').setup({
   },
 }, {})
 
--- If buffer is a dir, change to the dir and open the tree.
-local function open_nvim_tree(data)
-  local directory = vim.fn.isdirectory(data.file) == 1
-  if not directory then
-    return
-  end
-  vim.cmd.cd(data.file)
-  require("nvim-tree.api").tree.open()
-end
-vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 -- TODO
 -- - スペース入力にラグが発生する
