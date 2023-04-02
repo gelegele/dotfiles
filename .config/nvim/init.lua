@@ -41,7 +41,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- Space + Enterで保存
-vim.keymap.set({'n', 'i'}, '<Leader><CR>', ':w<CR>')
+vim.keymap.set('n', '<Leader><CR>', ':w<CR>')
 -- Q で終了
 vim.keymap.set('n', 'Q', ':q<CR>')
 -- Space + q で強制終了
@@ -187,6 +187,5 @@ require('lazy').setup({
 
 
 -- TODO
--- - スペース入力にラグが発生する
 -- - Clipboard
 -- - 画面分割の習得
