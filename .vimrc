@@ -10,11 +10,11 @@ let &t_EI = "\e[2 q"
 "<Space> をLeaderキーに
 let mapleader = "\<Space>"
 
-"Space + Enterで保存
-nnoremap <Leader><CR> :w<CR>
+"Space + wで保存
+nnoremap <Leader>w :w<CR>
 "Qで終了
-nnoremap Q :q<CR>
-nnoremap <Leader>q :q!<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>Q :q!<CR>
 
 " jj to normal mode
 inoremap <silent> jj <ESC>
@@ -40,7 +40,6 @@ noremap N Nzz
 "ESCハイライト消去
 noremap <silent> <ESC> :nohl<CR><ESC>
 
-map <silent> <Leader><Leader> <ESC>
 "ブラックホールレジスタに切り取り
 noremap <Leader>D "_d
 "ヤンクレジスタに切り取り
@@ -148,8 +147,6 @@ Plugin 'tomtom/tcomment_vim.git'
 Plugin 'taku-o/vim-toggle.git'
 " cs"', ds[
 Plugin 'tpope/vim-surround'
-" LSP
-Plugin 'prabirshrestha/vim-lsp'
 " ファイラー
 Plugin 'scrooloose/nerdtree'
 Plugin 'davidhalter/jedi-vim'
