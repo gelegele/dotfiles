@@ -192,6 +192,8 @@ require('lazy').setup({
   },
 }, {})
 
+-- Local setting if ./lua/local-init.lua exists
+pcall(require, 'local-init')
 
 -- TODO
 -- - Clipboard
