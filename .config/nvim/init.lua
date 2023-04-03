@@ -166,7 +166,7 @@ require('lazy').setup({
   { -- vwS' Vモード選択した単語を囲う
     -- cs'" シングルをダブルに変更
     'kylechui/nvim-surround',
-    event = 'VeryLazy',
+    event = 'BufRead',
     config = function()
       require('nvim-surround').setup({
           -- Configuration here, or leave empty to use defaults
@@ -175,15 +175,15 @@ require('lazy').setup({
   },
   { -- Comment in/out with gcc
     'tpope/vim-commentary',
-    event = 'VeryLazy',
+    event = 'BufReadPost ',
   },
   { -- 自動で括弧閉じ
     'jiangmiao/auto-pairs', 
-    event = 'VeryLazy',
+    event = 'BufReadPost ',
   },
   { -- Space + t でtrue/false切替
     'gerazov/toggle-bool.nvim',
-    event = 'VeryLazy',
+    event = 'BufReadPost ',
     config = function()
       require('toggle-bool').setup({
         mapping = "<leader>t",
