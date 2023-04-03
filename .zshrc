@@ -126,6 +126,7 @@ alias ipython=ipython3
 alias venv-create='python -m venv venv'
 alias venv-activate='source ./venv/bin/activate'
 alias venv-deactivate='deactivate'
+alias vi='nvim'
 alias nv='nvim .'
 alias env-load='set -a && source .env && set +a'
 alias gcloud-config-list='gcloud config configurations list'
