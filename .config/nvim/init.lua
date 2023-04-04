@@ -71,11 +71,14 @@ vim.keymap.set('n', 'N', 'Nzz')
 -- ESCハイライト消去
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
 -- 行番号表示トグル
-vim.keymap.set('n', '<Leader>g', ':set nonumber!<CR><C-l>')
+vim.keymap.set('n', '<Leader>g', ':set nonumber!<CR>')
+-- change buffer
+vim.keymap.set('n', ']b', ':bn<CR>')
+vim.keymap.set('n', '[b', ':bp<CR>')
 -- Open the tree
-vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR><C-l>')
+vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
 -- Focus on the tree
-vim.keymap.set('n', '<Leader>h', ':NvimTreeFocus<CR><C-l>')
+vim.keymap.set('n', '<Leader>h', ':NvimTreeFocus<CR>')
 
 
 -- Install package manager
@@ -97,11 +100,10 @@ require('lazy').setup({
     config = function()
       -- If buffer is a dir, change to the dir and open the tree.
       local function open_nvim_tree(data)
-        if vim.fn.isdirectory(data.file) == 0 then
-          return
+        if vim.fn.isdirectory(data.file) == 1 then
+          vim.cmd.cd(data.file)
+          require("nvim-tree.api").tree.open()
         end
-        vim.cmd.cd(data.file)
-        require("nvim-tree.api").tree.open()
       end
       vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
       -- My keymaps
@@ -117,20 +119,20 @@ require('lazy').setup({
           vim.keymap.set('n', 'l', api.node.open.edit,             opts(bufnr, 'Open Edit'))
           vim.keymap.set('n', '<Leader>', api.node.open.preview,   opts(bufnr, 'Open Preview'))
           vim.keymap.set('n', '<Leader>e', api.tree.toggle,        opts(bufnr, 'Toggle Tree'))
-        end
+        end,
       })
     end
   },
   -- { 'olimorris/onedarkpro.nvim', },
   { 'joshdick/onedark.vim', },
   { 'projekt0n/github-nvim-theme', },
+  { 'cpea2506/one_monokai.nvim', },
   { 'jacoborus/tender.vim',
     priority = 1000,
     config = function()
       vim.cmd.colorscheme 'tender'
     end,
   },
-  { 'cpea2506/one_monokai.nvim', },
   { -- Status Line
     'nvim-lualine/lualine.nvim',
     opts = {
@@ -144,15 +146,34 @@ require('lazy').setup({
       },
     },
   },
+  { -- show buffer tabs
+    'akinsho/bufferline.nvim',
+    event = 'BufRead',
+    config = function()
+      require("bufferline").setup{
+        options = {
+          offsets = {{
+              filetype = "NvimTree",
+          }}
+        }
+      }
+    end,
+  },
+  -- {
+  --   'nvim-treesitter/nvim-treesitter',
+  --   build = ':TSUpdate'
+  -- },
   { -- Show indents
     'lukas-reineke/indent-blankline.nvim',
+    event = 'BufRead',
   },
   { -- Scroll Bar
     'petertriho/nvim-scrollbar',
+    event = 'BufRead',
     config = function()
       require('scrollbar').setup({
         handlers = {
-          cursor = false,  -- Hide cursor mark on bar
+          -- cursor = false,  -- Hide cursor mark on bar
           gitsigns = true, -- Requires gitsigns
         },
       })
@@ -160,6 +181,7 @@ require('lazy').setup({
   },
   { -- Show git status
     'lewis6991/gitsigns.nvim',
+    event = 'BufRead',
     config = function()
       require('gitsigns').setup()
     end
@@ -176,25 +198,24 @@ require('lazy').setup({
   },
   { -- Comment in/out with gcc
     'tpope/vim-commentary',
-    event = 'BufReadPost ',
-  },
-  { -- 自動で括弧閉じ
-    'jiangmiao/auto-pairs', 
-    event = 'BufReadPost ',
+    event = 'BufRead',
   },
   { -- Space + t でtrue/false切替
     'gerazov/toggle-bool.nvim',
-    event = 'BufReadPost ',
+    event = 'BufRead',
     config = function()
       require('toggle-bool').setup({
         mapping = "<leader>t",
       })
     end,
   },
+  { -- 自動で括弧閉じ
+    'jiangmiao/auto-pairs', 
+    event = 'BufReadPost ',
+  },
 }, {})
 
 -- Local setting if ./lua/local-init.lua exists
 pcall(require, 'local-init')
 
--- TODO
--- - Clipboard
+print('Loading init.lua is completed.')
