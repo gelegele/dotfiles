@@ -89,13 +89,11 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
+  { -- Install NERD FONT on your OS.
+  'nvim-tree/nvim-web-devicons',
+  },
   { -- Filer (Help: ?)
     'nvim-tree/nvim-tree.lua',
-    dependencies = {
-      { -- Install NERD FONT on your OS.
-        'nvim-tree/nvim-web-devicons',
-      }
-    },
     config = function()
       -- If buffer is a dir, change to the dir and open the tree.
       local function open_nvim_tree(data)
@@ -123,13 +121,16 @@ require('lazy').setup({
       })
     end
   },
-  { 'olimorris/onedarkpro.nvim',
+  -- { 'olimorris/onedarkpro.nvim', },
+  { 'joshdick/onedark.vim', },
+  { 'projekt0n/github-nvim-theme', },
+  { 'jacoborus/tender.vim',
+    priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'onedark'
+      vim.cmd.colorscheme 'tender'
     end,
   },
-  { 'NLKNguyen/papercolor-theme', },
-  { 'sonph/onehalf' },
+  { 'cpea2506/one_monokai.nvim', },
   { -- Status Line
     'nvim-lualine/lualine.nvim',
     opts = {
