@@ -131,7 +131,10 @@ require('lazy').setup({
   { 'Mofiqul/vscode.nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'vscode'
+      -- Prevent error on VS Code
+      if not vim.g.vscode then
+        vim.cmd.colorscheme 'vscode'
+      end
     end,
   },
   { -- show buffer tabs
