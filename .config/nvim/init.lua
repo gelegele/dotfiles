@@ -46,10 +46,15 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Space + Shift + Enter to save
 vim.keymap.set('n', '<Leader>w', ':w<CR>')
--- Q で終了
+-- Change buffer
+vim.keymap.set('n', '<Leader>]', ':bn<CR>')
+vim.keymap.set('n', '<Leader>[', ':bp<CR>')
+-- Delete buffer
+vim.keymap.set('n', '<Leader>x', ':bd|bn<CR>')
+-- Space + q で終了
 vim.keymap.set('n', '<Leader>q', ':q<CR>')
--- Space + q で強制終了
-vim.keymap.set('n', '<Leader>Q', ':q!<CR>')
+-- Space + Q で全強制終了
+vim.keymap.set('n', '<Leader>Q', ':qa!<CR>')
 -- jj でNORMALモードへ
 vim.keymap.set('i', 'jj', '<ESC>')
 -- Ctrl + Enterで空行挿入
@@ -72,9 +77,6 @@ vim.keymap.set('n', 'N', 'Nzz')
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
 -- 行番号表示トグル
 vim.keymap.set('n', '<Leader>g', ':set nonumber!<CR>')
--- change buffer
-vim.keymap.set('n', ']b', ':bn<CR>')
-vim.keymap.set('n', '[b', ':bp<CR>')
 -- Open the tree
 vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
 -- Focus on the tree
@@ -133,6 +135,21 @@ require('lazy').setup({
       vim.cmd.colorscheme 'tender'
     end,
   },
+  { -- show buffer tabs
+    'akinsho/bufferline.nvim',
+    event = 'BufRead',
+    config = function()
+      require('bufferline').setup{
+        options = {
+          right_mouse_command = nil, -- default was bdelete!
+          offsets = {{
+              filetype = 'NvimTree',
+              separator = true,
+          }},
+        }
+      }
+    end,
+  },
   { -- Status Line
     'nvim-lualine/lualine.nvim',
     opts = {
@@ -146,23 +163,10 @@ require('lazy').setup({
       },
     },
   },
-  { -- show buffer tabs
-    'akinsho/bufferline.nvim',
-    event = 'BufRead',
-    config = function()
-      require("bufferline").setup{
-        options = {
-          offsets = {{
-              filetype = "NvimTree",
-          }}
-        }
-      }
-    end,
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate'
   },
-  -- {
-  --   'nvim-treesitter/nvim-treesitter',
-  --   build = ':TSUpdate'
-  -- },
   { -- Show indents
     'lukas-reineke/indent-blankline.nvim',
     event = 'BufRead',
