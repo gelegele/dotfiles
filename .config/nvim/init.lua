@@ -125,14 +125,13 @@ require('lazy').setup({
       })
     end
   },
-  -- { 'olimorris/onedarkpro.nvim', },
+  { 'jacoborus/tender.vim', },
   { 'joshdick/onedark.vim', },
-  { 'projekt0n/github-nvim-theme', },
-  { 'cpea2506/one_monokai.nvim', },
-  { 'jacoborus/tender.vim',
+  { 'sainnhe/sonokai', },
+  { 'Mofiqul/vscode.nvim',
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme 'tender'
+      vim.cmd.colorscheme 'vscode'
     end,
   },
   { -- show buffer tabs
@@ -165,7 +164,21 @@ require('lazy').setup({
   },
   {
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate'
+    build = ':TSUpdate',
+    config = function()
+      require'nvim-treesitter.configs'.setup {
+        ensure_installed = { "bash", "python", "lua", "html", "dockerfile", "javascript" },
+        auto_install = true,
+        highlight = {
+          enable = true,
+          disable = {},
+        },
+        indent = {
+          enable = true,
+          disable = {},
+        },
+      }
+    end
   },
   { -- Show indents
     'lukas-reineke/indent-blankline.nvim',
