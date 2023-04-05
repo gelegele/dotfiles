@@ -76,7 +76,7 @@ vim.keymap.set('n', 'N', 'Nzz')
 -- ESCハイライト消去
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
 -- 行番号表示トグル
-vim.keymap.set('n', '<Leader>g', ':set nonumber!<CR>')
+vim.keymap.set('n', '<Leader>n', ':set nonumber!<CR>')
 -- Open the tree
 vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
 -- Focus on the tree
@@ -155,10 +155,10 @@ require('lazy').setup({
       options = {
         icons_enabled = true,
         theme = 'auto',
-        component_separators = '|',
-        section_separators = '',
+        component_separators = '',
+        -- section_separators = '',
         path = 2, -- 0:filename, 1:relative, 2:absolute
-        disabled_filetypes = {'NvimTree'}, -- Hide on nvim-tree
+        disabled_filetypes = {'NvimTree'}, -- Hide in nvim-tree
       },
     },
   },
@@ -171,11 +171,9 @@ require('lazy').setup({
         auto_install = true,
         highlight = {
           enable = true,
-          disable = {},
         },
         indent = {
           enable = true,
-          disable = {},
         },
       }
     end
@@ -200,7 +198,38 @@ require('lazy').setup({
     'lewis6991/gitsigns.nvim',
     event = 'BufRead',
     config = function()
-      require('gitsigns').setup()
+      require('gitsigns').setup({
+        signcolumn = false,
+        numhl      = true,
+        on_attach = function(bufnr)
+          local gs = package.loaded.gitsigns
+
+          local function map(mode, l, r, opts)
+            opts = opts or {}
+            opts.buffer = bufnr
+            vim.keymap.set(mode, l, r, opts)
+          end
+
+          -- Navigation
+          map('n', '<leader>g]', function()
+            if vim.wo.diff then return ']c' end
+            vim.schedule(function() gs.next_hunk() end)
+            return '<Ignore>'
+          end, {expr=true})
+
+          map('n', '<leader>g[', function()
+            if vim.wo.diff then return '[c' end
+            vim.schedule(function() gs.prev_hunk() end)
+            return '<Ignore>'
+          end, {expr=true})
+
+          -- Actions
+          map({'n', 'v'}, '<leader>gs', ':Gitsigns stage_hunk<CR>')
+          map({'n', 'v'}, '<leader>gr', ':Gitsigns reset_hunk<CR>')
+          map('n', '<leader>gS', gs.stage_buffer)
+          map('n', '<leader>gd', function() gs.diffthis('~') end)
+        end
+      })
     end
   },
   { -- vwS' Vモード選択した単語を囲う
@@ -208,9 +237,7 @@ require('lazy').setup({
     'kylechui/nvim-surround',
     event = 'BufRead',
     config = function()
-      require('nvim-surround').setup({
-          -- Configuration here, or leave empty to use defaults
-      })
+      require('nvim-surround').setup()
     end
   },
   { -- Comment in/out with gcc
