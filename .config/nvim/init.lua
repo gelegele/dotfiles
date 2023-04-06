@@ -235,6 +235,11 @@ require('lazy').setup({
       })
     end
   },
+  {
+    'sindrets/diffview.nvim',
+    dependencies = {'nvim-lua/plenary.nvim'},
+    event = 'BufRead',
+  },
   { -- vwS' Vモード選択した単語を囲う
     -- cs'" シングルをダブルに変更
     'kylechui/nvim-surround',
