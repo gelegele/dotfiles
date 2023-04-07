@@ -128,10 +128,6 @@ colorscheme default
 "開いているファイルのパスをworkingdirectoryとする
 set autochdir
 
-"多重起動防止
-"runtime macros/editexisting.vim
-"packadd! editexisting
-
 "-----------------------------------------------------------------
 " Vundle
 "-----------------------------------------------------------------

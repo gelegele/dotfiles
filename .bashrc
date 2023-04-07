@@ -37,8 +37,6 @@ alias shell='echo $0'
 alias gr='grep --color=auto'
 alias g=git
 alias g_delete_merged_branches="git branch --merged | grep -v '*' | xargs -I % git branch -d %"
-alias k1='kill %1'
-alias k2='kill %2'
 alias venv-activate='source ./venv/bin/activate'
 alias vs='code .'
 
