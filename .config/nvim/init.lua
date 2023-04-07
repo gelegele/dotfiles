@@ -169,6 +169,10 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function()
+      if vim.fn.has('win64') == 1 then
+        -- Disabled to prevent errors on Windows.
+        return
+      end
       require'nvim-treesitter.configs'.setup {
         ensure_installed = { "bash", "python", "lua", "html", "dockerfile", "javascript" },
         auto_install = true,
