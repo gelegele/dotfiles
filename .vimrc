@@ -40,23 +40,6 @@ noremap N Nzz
 "ESCハイライト消去
 noremap <silent> <ESC> :nohl<CR><ESC>
 
-"ブラックホールレジスタに切り取り
-noremap <Leader>D "_d
-"ヤンクレジスタに切り取り
-noremap <Leader>d "0d
-"ヤンクレジスタをペースト
-noremap <Leader>p "0p<CR>
-"クリップボードをペースト
-noremap <Leader>v "*p<CR>
-
-"ヤンク文字列で置換
-nnoremap <silent> cy ce<C-r>0<Esc>:let@/=@1<CR>:noh<CR>
-vnoremap <silent> cy c<C-r>0<Esc>:let@/=@1<CR>:noh<CR>
-nnoremap <silent> ciy ciw<C-r>0<Esc>:let@/=@1<CR>:noh<CR>
-
-"ファイラー開閉
-nnoremap <Leader>e :NERDTreeToggle<CR>
-
 "----------------------------------------------------------
 " Setting
 "----------------------------------------------------------
@@ -128,41 +111,6 @@ colorscheme default
 "開いているファイルのパスをworkingdirectoryとする
 set autochdir
 
-"-----------------------------------------------------------------
-" Vundle
-"-----------------------------------------------------------------
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-"ステータスラインにモード毎の色を付ける
-Plugin 'itchyny/lightline.vim'
-"gcc でコメントアウト
-Plugin 'tomtom/tcomment_vim.git'
-"+でtrue/falseをトグル
-Plugin 'taku-o/vim-toggle.git'
-" cs"', ds[
-Plugin 'tpope/vim-surround'
-" ファイラー
-Plugin 'scrooloose/nerdtree'
-Plugin 'davidhalter/jedi-vim'
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-" NERDTreeで隠しファイルを表示
-let NERDTreeShowHidden = 1
-
 "----------------------------------------------------------
 " For WSL
 "----------------------------------------------------------
@@ -173,11 +121,4 @@ set t_RV=
 set t_u7=
 "wsl のビープ音を抑制
 set belloff=all
-
-"----------------------------------------------------------
-" .vimrc.local
-"----------------------------------------------------------
-if filereadable(expand('~/.vimrc.local'))
-  source ~/.vimrc.local
-endif
 
