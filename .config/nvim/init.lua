@@ -97,6 +97,31 @@ require('lazy').setup({
   { -- Install NERD FONT on your OS.
     'nvim-tree/nvim-web-devicons',
   },
+  { -- Dashboard
+    'glepnir/dashboard-nvim',
+    event = 'VimEnter',
+    config = function()
+      require('dashboard').setup {
+        config ={
+          header = {
+            [[ ███╗   ██╗ ███████╗ ██████╗  ██╗   ██╗ ██╗ ███╗   ███╗ ]],
+            [[ ████╗  ██║ ██╔════╝██╔═══██╗ ██║   ██║ ██║ ████╗ ████║ ]],
+            [[ ██╔██╗ ██║ █████╗  ██║   ██║ ██║   ██║ ██║ ██╔████╔██║ ]],
+            [[ ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║ ]],
+            [[ ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║ ]],
+            [[ ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝ ]],
+          },
+          shortcut = {
+            { desc = ' Config', group = 'Label', action = 'e ~/.config/nvim/init.lua', key = 'c' },
+            { desc = ' Update', group = 'Label', action = 'Lazy update',               key = 'u' },
+            { desc = ' Files',  group = 'Label', action = 'Telescope find_files',      key = 'f' },
+            { desc = ' dotfiles', group = 'Label', action = 'Telescope find_files hidden=true', key = 'd' },
+          },
+          footer = {}
+        }
+      }
+    end,
+  },
   { -- fuzzy finder
     'nvim-telescope/telescope.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
