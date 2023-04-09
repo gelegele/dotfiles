@@ -1,7 +1,8 @@
 #!/bin/bash
 
+# telescopeにripgrepが必要
 # appimageにFUSEが必要
-sudo apt install -y fuse
+sudo apt install -y ripgrep fuse
 
 # インストール
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage

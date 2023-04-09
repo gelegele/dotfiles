@@ -95,7 +95,33 @@ end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   { -- Install NERD FONT on your OS.
-  'nvim-tree/nvim-web-devicons',
+    'nvim-tree/nvim-web-devicons',
+  },
+  { -- fuzzy finder
+    'nvim-telescope/telescope.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require('telescope').setup {
+        defaults = {
+          -- Default configuration for telescope goes here:
+          -- config_key = value,
+          hidden = true,
+          mappings = {
+            i = {
+              -- map actions.which_key to <C-h> (default: <C-/>)
+              -- actions.which_key shows the mappings for your picker,
+              -- e.g. git_{create, delete, ...}_branch for the git_branches picker
+              ["<C-h>"] = "which_key"
+            }
+          },
+        },
+      }
+      local builtin = require('telescope.builtin')
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+      vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+      vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+      vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+    end
   },
   { -- Filer (Help: ?)
     'nvim-tree/nvim-tree.lua',
@@ -184,6 +210,18 @@ require('lazy').setup({
         },
       }
     end
+  },
+  {
+    'folke/which-key.nvim',
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup({
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      })
+    end,
   },
   { -- Show indents
     'lukas-reineke/indent-blankline.nvim',
