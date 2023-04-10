@@ -97,6 +97,9 @@ require('lazy').setup({
   { -- Install NERD FONT on your OS.
     'nvim-tree/nvim-web-devicons',
   },
+  { -- Check startup time
+    'dstein64/vim-startuptime'
+  },
   { -- Dashboard
     'glepnir/dashboard-nvim',
     event = 'VimEnter',
