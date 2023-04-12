@@ -34,7 +34,22 @@ vim.opt.wrap = false
 vim.opt.cursorline = true
 -- カーソル移動で次の行への移動を許可
 vim.opt.whichwrap = "b,s,[,],<,>"
+-- enable clipboard sync.
+if vim.fn.has("wsl") == 1 then
+  -- Suppress clipboard.vim loading delay at startup if wsl.
+  vim.g.clipboard = {
+    copy = {
+      ["+"] = "win32yank.exe -i --crlf",
+      ["*"] = "win32yank.exe -i --crlf",
+    },
+    paste = {
+      ["+"] = "win32yank.exe -o --lf",
+      ["*"] = "win32yank.exe -o --lf",
+    },
+  }
+end
 vim.opt.clipboard = 'unnamedplus'
+
 -- floating window と popup nenu を半透明に
 vim.opt.winblend = 10
 vim.opt.pumblend = 10
