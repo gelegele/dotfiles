@@ -24,9 +24,9 @@ vim.opt.number = true
 vim.opt.list = true
 -- High Light Search
 vim.opt.hlsearch = true
--- 検索大文字無視
+-- ignore case
 vim.opt.ignorecase = true
--- 大文字で検索したら区別をつける
+-- case-sensitive if capital letters
 vim.opt.smartcase = true
 -- 自動改行表示しない
 vim.opt.wrap = false
@@ -61,15 +61,16 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Space + Shift + Enter to save
 vim.keymap.set('n', '<Leader>w', ':w<CR>')
+vim.keymap.set('n', '<Leader>q', ':q<CR>')
+vim.keymap.set('n', '<Leader>Q', ':qa!<CR>')
+-- Space + p ->  put clipboard text
+vim.keymap.set('n', '<Leader>p', '"+p')
+vim.keymap.set('n', '<Leader>P', '"+P')
 -- Change buffer
 vim.keymap.set('n', '<Leader>]', ':bn<CR>')
 vim.keymap.set('n', '<Leader>[', ':bp<CR>')
 -- Delete buffer
 vim.keymap.set('n', '<Leader>x', ':bd|bn<CR>')
--- Space + q で終了
-vim.keymap.set('n', '<Leader>q', ':q<CR>')
--- Space + Q で全強制終了
-vim.keymap.set('n', '<Leader>Q', ':qa!<CR>')
 -- jj でNORMALモードへ
 vim.keymap.set('i', 'jj', '<ESC>')
 -- Ctrl + Enterで空行挿入
