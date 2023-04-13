@@ -38,14 +38,16 @@ vim.opt.whichwrap = "b,s,[,],<,>"
 if vim.fn.has("wsl") == 1 then
   -- Suppress clipboard.vim loading delay at startup if wsl.
   vim.g.clipboard = {
+    name = 'WslClipboard',
     copy = {
-      ["+"] = "win32yank.exe -i --crlf",
-      ["*"] = "win32yank.exe -i --crlf",
+      ['+'] = 'clip.exe',
+      ['*'] = 'clip.exe',
     },
     paste = {
-      ["+"] = "win32yank.exe -o --lf",
-      ["*"] = "win32yank.exe -o --lf",
+      ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", "")',
+      ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
     },
+    cache_enabled = 0,
   }
 end
 vim.opt.clipboard = 'unnamedplus'
@@ -64,8 +66,8 @@ vim.keymap.set('n', '<Leader>w', ':w<CR>')
 vim.keymap.set('n', '<Leader>q', ':q<CR>')
 vim.keymap.set('n', '<Leader>Q', ':qa!<CR>')
 -- Space + p ->  put clipboard text
-vim.keymap.set('n', '<Leader>p', '"+p')
-vim.keymap.set('n', '<Leader>P', '"+P')
+vim.keymap.set('n', '<Leader>p', '"*p')
+vim.keymap.set('n', '<Leader>P', '"*P')
 -- Change buffer
 vim.keymap.set('n', '<Leader>]', ':bn<CR>')
 vim.keymap.set('n', '<Leader>[', ':bp<CR>')
