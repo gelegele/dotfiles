@@ -271,10 +271,6 @@ require('lazy').setup({
       })
     end,
   },
-  { -- Show indents
-    'lukas-reineke/indent-blankline.nvim',
-    event = 'BufRead',
-  },
   { -- Scroll Bar
     'petertriho/nvim-scrollbar',
     event = 'BufRead',
