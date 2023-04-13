@@ -43,10 +43,11 @@ if vim.fn.has("wsl") == 1 then
       ['+'] = 'clip.exe',
       ['*'] = 'clip.exe',
     },
-    paste = {
-      ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", "")',
-      ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    },
+    -- Below is too heavy to load registers. You should use terminal function to paste clipboard.
+    -- paste = {
+    --   ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", "")',
+    --   ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    -- },
     cache_enabled = 0,
   }
 end
@@ -167,6 +168,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'find files' })
       vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'live grep' })
       vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'buffers' })
+      vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = 'registers. But you can use which-key.' })
       vim.keymap.set('n', '<leader>fs', builtin.git_status, { desc = 'git status' })
       vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'help tags' })
     end
@@ -376,9 +378,9 @@ require('lazy').setup({
               return '<Ignore>'
             end,
             { desc='prev hunk', expr=true})
-          map({'n', 'v'}, '<leader>gs', ':Gitsigns stage_hunk<CR>', { desc = 'stage hunk' })
-          map({'n', 'v'}, '<leader>gr', ':Gitsigns reset_hunk<CR>', { desc = 'reset hunk' })
-          map('n', '<leader>gS', gs.stage_buffer, { desc = 'stage buffer' })
+          map({'n', 'v'}, '<leader>gu', ':Gitsigns stage_hunk<CR>', { desc = 'stage hunk' })
+          map({'n', 'v'}, '<leader>g!', ':Gitsigns reset_hunk<CR>', { desc = 'reset hunk' })
+          map('n', '<leader>gU', gs.stage_buffer, { desc = 'stage buffer' })
           map('n', '<leader>gd', function() gs.diffthis('~') end, { desc = 'diff HEAD' })
         end
       })
