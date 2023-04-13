@@ -118,7 +118,6 @@ require('lazy').setup({
   },
   { -- Dashboard
     'glepnir/dashboard-nvim',
-    event = 'VimEnter',
     config = function()
       require('dashboard').setup {
         config ={
@@ -130,10 +129,12 @@ require('lazy').setup({
             [[ ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║ ]],
             [[ ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝ ]],
           },
+          project = { enable  = false },
           shortcut = {
-            { desc = ' Config', group = 'Label', action = 'e ~/.config/nvim/init.lua', key = 'c' },
-            { desc = ' Update', group = 'Label', action = 'Lazy update',               key = 'u' },
-            { desc = ' Files',  group = 'Label', action = 'Telescope find_files',      key = 'f' },
+            { desc = ' New',      group = 'Label', action = 'enew',                             key = 'n' },
+            { desc = ' Config',   group = 'Label', action = 'e ~/.config/nvim/init.lua',        key = 'c' },
+            { desc = ' Update',   group = 'Label', action = 'Lazy update',                      key = 'u' },
+            { desc = ' Files',    group = 'Label', action = 'Telescope find_files',             key = 'f' },
             { desc = ' dotfiles', group = 'Label', action = 'Telescope find_files hidden=true', key = 'd' },
           },
           footer = {}
@@ -161,10 +162,11 @@ require('lazy').setup({
         },
       }
       local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-      vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-      vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'find files' })
+      vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'live grep' })
+      vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'buffers' })
+      vim.keymap.set('n', '<leader>fs', builtin.git_status, { desc = 'git status' })
+      vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'help tags' })
     end
   },
   { -- Filer (Help: ?)
@@ -299,24 +301,25 @@ require('lazy').setup({
             vim.keymap.set(mode, l, r, opts)
           end
 
-          -- Navigation
-          map('n', '<leader>g]', function()
-            if vim.wo.diff then return ']c' end
-            vim.schedule(function() gs.next_hunk() end)
-            return '<Ignore>'
-          end, {expr=true})
-
-          map('n', '<leader>g[', function()
-            if vim.wo.diff then return '[c' end
-            vim.schedule(function() gs.prev_hunk() end)
-            return '<Ignore>'
-          end, {expr=true})
-
-          -- Actions
-          map({'n', 'v'}, '<leader>gs', ':Gitsigns stage_hunk<CR>')
-          map({'n', 'v'}, '<leader>gr', ':Gitsigns reset_hunk<CR>')
-          map('n', '<leader>gS', gs.stage_buffer)
-          map('n', '<leader>gd', function() gs.diffthis('~') end)
+          -- keymaps
+          map('n', '<leader>g]',
+            function()
+              if vim.wo.diff then return ']c' end
+              vim.schedule(function() gs.next_hunk() end)
+              return '<Ignore>'
+            end,
+            { desc='next hunk', expr=true})
+          map('n', '<leader>g[',
+            function()
+              if vim.wo.diff then return '[c' end
+              vim.schedule(function() gs.prev_hunk() end)
+              return '<Ignore>'
+            end,
+            { desc='prev hunk', expr=true})
+          map({'n', 'v'}, '<leader>gs', ':Gitsigns stage_hunk<CR>', { desc = 'stage hunk' })
+          map({'n', 'v'}, '<leader>gr', ':Gitsigns reset_hunk<CR>', { desc = 'reset hunk' })
+          map('n', '<leader>gS', gs.stage_buffer, { desc = 'stage buffer' })
+          map('n', '<leader>gd', function() gs.diffthis('~') end, { desc = 'diff HEAD' })
         end
       })
     end
