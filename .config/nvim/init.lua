@@ -5,7 +5,6 @@ This file path is
 Linux: ~/.config/nvim/init.lua
 Windows: %LOCALAPPDATA%\nvim\init.lua
 
-How to reload this is [:luafile %]
 How to check health is [:checkhealth]:
 ]]--
 
@@ -28,12 +27,14 @@ vim.opt.hlsearch = true
 vim.opt.ignorecase = true
 -- case-sensitive if capital letters
 vim.opt.smartcase = true
--- 自動改行表示しない
+-- no auto wrap
 vim.opt.wrap = false
--- カーソル行下線
+-- show cursor horizontal line
 vim.opt.cursorline = true
--- カーソル移動で次の行への移動を許可
-vim.opt.whichwrap = "b,s,[,],<,>"
+-- show cursor vertical line
+vim.opt.cursorcolumn = true
+-- Allow keys below that move the cursor to move to the pre/next line.
+vim.opt.whichwrap = "b,[,],<,>"
 -- enable clipboard sync.
 if vim.fn.has("wsl") == 1 then
   -- Suppress clipboard.vim loading delay at startup if wsl.
@@ -53,12 +54,12 @@ if vim.fn.has("wsl") == 1 then
 end
 vim.opt.clipboard = 'unnamedplus'
 
--- floating window と popup nenu を半透明に
+-- pseudo-transparency for a floating window and the popup menu.
 vim.opt.winblend = 10
 vim.opt.pumblend = 10
 -- True Color
 vim.opt.termguicolors = true
--- netrw無効化
+-- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -74,31 +75,30 @@ vim.keymap.set('n', '<Leader>]', ':bn<CR>')
 vim.keymap.set('n', '<Leader>[', ':bp<CR>')
 -- Delete buffer
 vim.keymap.set('n', '<Leader>x', ':bd|bn<CR>')
--- jj でNORMALモードへ
+-- jj to go to NORMAL mode
 vim.keymap.set('i', 'jj', '<ESC>')
--- Ctrl + Enterで空行挿入
+-- Ctrl + Enter to insert a blank line.
 if vim.fn.has('win64') == 1 then
   vim.keymap.set('n', '<C-CR>', 'o<ESC>')
 else
   vim.keymap.set('n', '<NL>', 'o<ESC>')
 end
--- Jで空白なし結合
+-- J to join lines without space.
 vim.keymap.set('n', 'J', 'gJ')
--- 行移動先を中央表示
 vim.keymap.set('n', 'gg', 'ggzz')
--- 検索開始時に次の単語に移動させない
-vim.keymap.set('n', '*', '*N')
-vim.keymap.set('n', '#', '#N')
--- 検索単語を中央表示
+-- Keep the cursor while moving search words 
 vim.keymap.set('n', 'n', 'nzz')
 vim.keymap.set('n', 'N', 'Nzz')
--- ESCハイライト消去
+-- Don't move the cursor when starting a word search.
+vim.keymap.set('n', '*', '*N')
+vim.keymap.set('n', '#', '#N')
+-- ESC to clear search highlight.
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
--- 行番号表示トグル
+-- Space + n to toggle line numbers.
 vim.keymap.set('n', '<Leader>n', ':set nonumber!<CR>')
--- Open the tree
+-- Space + e to open the tree.
 vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
--- Focus on the tree
+-- Space + h to focus on the tree
 vim.keymap.set('n', '<Leader>h', ':NvimTreeFocus<CR>')
 
 
@@ -131,16 +131,24 @@ require('lazy').setup({
             [[ ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║ ]],
             [[ ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║ ]],
             [[ ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝ ]],
+            [[                                                        ]],
           },
-          project = { enable  = false },
           shortcut = {
-            { desc = ' New',      group = 'Label', action = 'enew',                             key = 'n' },
-            { desc = ' Config',   group = 'Label', action = 'e ~/.config/nvim/init.lua',        key = 'c' },
-            { desc = ' Update',   group = 'Label', action = 'Lazy update',                      key = 'u' },
-            { desc = ' Files',    group = 'Label', action = 'Telescope find_files',             key = 'f' },
-            { desc = ' dotfiles', group = 'Label', action = 'Telescope find_files hidden=true', key = 'd' },
+            { desc = ' New',        group = 'Label', action = 'enew',                             key = 'n' },
+            { desc = ' Config',     group = 'Label', action = 'e ~/.config/nvim/init.lua',        key = 'c' },
+            { desc = ' Lazy',       group = 'Label', action = 'Lazy',                             key = 'l' },
+            { desc = ' Files',      group = 'Label', action = 'Telescope find_files',             key = 'f' },
+            { desc = ' dotfiles',   group = 'Label', action = 'Telescope find_files hidden=true', key = 'd' },
+            { desc = ' StartupTime',group = 'Label', action = 'StartupTime',                      key = 's' },
           },
-          footer = {}
+          packages = { enable  = false },
+          project = { enable  = false },
+          mru = { limit = 8, key = '', },
+          footer = {
+            '',
+            'This is your life.',
+            'Be yourself.'
+          },
         }
       }
     end,
@@ -391,19 +399,19 @@ require('lazy').setup({
     dependencies = {'nvim-lua/plenary.nvim'},
     event = 'BufRead',
   },
-  { -- vwS' Vモード選択した単語を囲う
-    -- cs'" シングルをダブルに変更
+  { -- vwS' to quote the v-mode selected word.
+    -- cs'" to change single quotation to double quotation.
     'kylechui/nvim-surround',
     event = 'BufRead',
     config = function()
       require('nvim-surround').setup()
     end
   },
-  { -- Comment in/out with gcc
+  { -- gcc to comment in/out
     'tpope/vim-commentary',
     event = 'BufRead',
   },
-  { -- Space + t でtrue/false切替
+  { -- Space + t to toggle boolean
     'gerazov/toggle-bool.nvim',
     event = 'BufRead',
     config = function()
@@ -412,7 +420,7 @@ require('lazy').setup({
       })
     end,
   },
-  { -- 自動で括弧閉じ
+  { -- Automatically close brackets
     'jiangmiao/auto-pairs', 
     event = 'BufReadPost ',
   },
