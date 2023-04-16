@@ -273,9 +273,6 @@ require('lazy').setup({
     event = 'BufRead',
   },
   {
-    'neovim/nvim-lspconfig',
-  },
-  {
     'williamboman/mason.nvim',
     config = function()
       require('mason').setup()
@@ -284,21 +281,24 @@ require('lazy').setup({
   {
     'williamboman/mason-lspconfig.nvim',
     config = function()
-      require('mason-lspconfig').setup_handlers({ function(server)
-        local opt = {
-          -- -- Function executed when the LSP server startup
-          -- on_attach = function(client, bufnr)
-          --   local opts = { noremap=true, silent=true }
-          --   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-          --   vim.cmd 'autocmd BufWritePre * lua vim.lsp.buf.formatting_sync(nil, 1000)'
-          -- end,
-          capabilities = require('cmp_nvim_lsp').update_capabilities(
-            vim.lsp.protocol.make_client_capabilities()
-          )
-        }
-        require('lspconfig')[server].setup(opt)
-      end })
+      require('mason-lspconfig').setup {
+         ensure_installed = {
+          'bashls', 'dockerls', 'docker_compose_language_service',
+          'html', 'jsonls', 'lua_ls', 'marksman', 'yamlls',
+        },
+      }
+      require("mason-lspconfig").setup_handlers {
+        function (server_name) -- default handler (optional)
+          require("lspconfig")[server_name].setup {
+            on_attach = on_attach, --keyバインドなどの設定を登録
+            capabilities = capabilities, --cmpを連携
+          }
+        end,
+      }
     end,
+  },
+  {
+    'neovim/nvim-lspconfig',
   },
   {
     "hrsh7th/nvim-cmp",
