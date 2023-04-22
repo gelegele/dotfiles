@@ -407,6 +407,12 @@ require('lazy').setup({
     dependencies = {'nvim-lua/plenary.nvim'},
     event = 'BufRead',
   },
+  { -- Preview markdown with nodejs
+    "iamcco/markdown-preview.nvim",
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
   { -- vwS' to quote the v-mode selected word.
     -- cs'" to change single quotation to double quotation.
     'kylechui/nvim-surround',
