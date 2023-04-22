@@ -10,7 +10,7 @@ for f in $(ls $dir); do
   if [[ "$f" = $(basename $0) ]]; then
     continue
   fi
-  if [[ "$f" != 2?_*.sh ]]; then
+  if [[ "$f" != 2??_*.sh ]]; then
     continue
   fi
   if [[ "$f" != 20?_*.sh ]]; then
