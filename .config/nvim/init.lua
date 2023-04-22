@@ -275,12 +275,20 @@ require('lazy').setup({
   {
     'williamboman/mason.nvim',
     config = function()
+      if vim.fn.has('win64') == 1 then
+        -- No LSP on Windows
+        return
+      end
       require('mason').setup()
     end,
   },
   {
     'williamboman/mason-lspconfig.nvim',
     config = function()
+      if vim.fn.has('win64') == 1 then
+        -- No LSP on Windows
+        return
+      end
       require('mason-lspconfig').setup {
          ensure_installed = {
           'bashls', 'dockerls', 'docker_compose_language_service',
