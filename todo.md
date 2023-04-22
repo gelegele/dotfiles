@@ -1,2 +1,0 @@
-clasp
-docker-compose

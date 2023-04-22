@@ -31,8 +31,9 @@ docker --version
 sudo service docker start
 
 # WSLだとエラーになるのでこれをたたく
-# sudo gpasswd -a $(whoami) docker
-# sudo chgrp docker /var/run/docker.sock
-# sudo service docker restart
-# echo 一度exitすること
-
+if [[ "$(uname -r)" == *microsoft* ]]; then
+  sudo gpasswd -a $(whoami) docker
+  sudo chgrp docker /var/run/docker.sock
+  sudo service docker restart
+  echo 'You have to exit now.'
+fi

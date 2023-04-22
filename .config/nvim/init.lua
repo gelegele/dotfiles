@@ -412,6 +412,9 @@ require('lazy').setup({
     build = function()
       vim.fn["mkdp#util#install"]()
     end,
+    config = function()
+      vim.keymap.set('n', '<leader>m', '<Plug>MarkdownPreviewToggle', { desc = 'MarkdownPreviewToggle' })
+    end,
   },
   { -- vwS' to quote the v-mode selected word.
     -- cs'" to change single quotation to double quotation.
