@@ -147,5 +147,11 @@ fi
 # Linuxのバージョンによってどっちが入ってるかわからないのでどっちも対応できるよう
 export LANG=`locale -a | grep -i c.utf | grep 8`
 
-# ローカル設定読み込み
+# load .zshrc.local if it exists.
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+# Added by nvm installer
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
