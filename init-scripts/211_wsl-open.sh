@@ -5,5 +5,5 @@ if [[ "$(uname -r)" != *microsoft* ]]; then
   exit
 fi
 
-sudo npm install -g wsl-open
+npm install -g wsl-open
 sudo ln -s $(which wsl-open) /usr/local/bin/xdg-open

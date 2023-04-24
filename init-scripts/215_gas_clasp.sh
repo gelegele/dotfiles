@@ -1,4 +1,4 @@
 #!/bin/bash
 
-sudo npm install -g @google/clasp
+npm install -g @google/clasp
 
