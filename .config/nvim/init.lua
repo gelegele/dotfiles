@@ -297,10 +297,14 @@ require('lazy').setup({
       }
       require("mason-lspconfig").setup_handlers {
         function (server_name) -- default handler (optional)
-          require("lspconfig")[server_name].setup {
-            on_attach = on_attach, --keyバインドなどの設定を登録
-            capabilities = capabilities, --cmpを連携
-          }
+          local opts = {}
+          opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
+          opts.settings = {
+            Lua = {
+              diagnostics = { globals = { 'vim' } }
+            }
+	        }
+          require("lspconfig")[server_name].setup(opts)
         end,
       }
     end,
