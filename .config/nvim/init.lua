@@ -63,11 +63,13 @@ vim.opt.termguicolors = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Space + Shift + Enter to save
+-- Space + w to :w
 vim.keymap.set('n', '<Leader>w', ':w<CR>')
+-- Space + q to :q
 vim.keymap.set('n', '<Leader>q', ':q<CR>')
+-- Space + q to :q!
 vim.keymap.set('n', '<Leader>Q', ':qa!<CR>')
--- Space + p ->  put clipboard text
+-- Space + p to put clipboard text
 vim.keymap.set('n', '<Leader>p', '"*p')
 vim.keymap.set('n', '<Leader>P', '"*P')
 -- Change buffer
@@ -135,20 +137,16 @@ require('lazy').setup({
           },
           shortcut = {
             { desc = ' New',        group = 'Label', action = 'enew',                             key = 'n' },
+            { desc = ' Tree',       group = 'Label', action = 'e .',                              key = 't' },
             { desc = ' Config',     group = 'Label', action = 'e ~/.config/nvim/init.lua',        key = 'c' },
             { desc = ' Lazy',       group = 'Label', action = 'Lazy',                             key = 'l' },
-            { desc = ' Files',      group = 'Label', action = 'Telescope find_files',             key = 'f' },
-            { desc = ' dotfiles',   group = 'Label', action = 'Telescope find_files hidden=true', key = 'd' },
+            { desc = ' Files',      group = 'Label', action = 'Telescope find_files hidden=true', key = 'f' },
             { desc = ' StartupTime',group = 'Label', action = 'StartupTime',                      key = 's' },
           },
           packages = { enable  = false },
           project = { enable  = false },
           mru = { limit = 8, key = '', },
-          footer = {
-            '',
-            'This is your life.',
-            'Be yourself.'
-          },
+          footer = { '', 'This is your life.', 'Be yourself.' },
         }
       }
     end,
@@ -343,16 +341,12 @@ require('lazy').setup({
   {
     "hrsh7th/cmp-nvim-lsp",
   },
-  {
+  { -- Show shortcut keys
     'folke/which-key.nvim',
     config = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300
-      require("which-key").setup({
-        -- your configuration comes here
-        -- or leave it empty to use the default settings
-        -- refer to the configuration section below
-      })
+      require("which-key").setup({})
     end,
   },
   { -- Scroll Bar
@@ -442,7 +436,7 @@ require('lazy').setup({
     end,
   },
   { -- Automatically close brackets
-    'jiangmiao/auto-pairs', 
+    'jiangmiao/auto-pairs',
     event = 'BufReadPost ',
   },
 }, {})
