@@ -22,14 +22,14 @@ for appdir in `ls -A $confdir`; do
   srcdir=$confdir/$appdir/
   dstdir=~/.config/$appdir/
 
-  sudo mkdir -p $dstdir
+  mkdir -p $dstdir
 
   for file in `ls -A $srcdir`; do
-    lncmd="sudo ln -sb $srcdir$file $dstdir$file"
+    lncmd="ln -sb $srcdir$file $dstdir$file"
     echo $lncmd
     $lncmd
   done
 done
 
 # make tig dir for tig_history not in HOME dir.
-sudo mkdir -p .local/share/tig/
+mkdir -p .local/share/tig/

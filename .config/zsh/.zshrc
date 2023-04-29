@@ -119,18 +119,15 @@ alias gr='grep --color=auto'
 if [ -e /usr/local/bin/ccat ]; then
   alias cat=ccat
 fi
-alias v='nvim'
-alias vr='nvim -R '
+alias nv='nvim'
+alias nr='nvim -R '
 alias g=git
-alias g_pull_master="git checkout master | git pull"
-alias g_delete_merged_branches="git branch --merged | grep -v '*' | xargs -I % git branch -d %"
 alias docker-start='sudo service docker start'
 alias check-true-color='curl -s https://gist.githubusercontent.com/lifepillar/09a44b8cf0f9397465614e622979107f/raw/24-bit-color.sh | bash'
 alias aptfzf="dpkg -l | sed -e '1,5d' | fzf"
 alias py=python3
 alias python=python3
 alias pip=pip3
-alias ipython=ipython3
 alias venv-create='python -m venv venv'
 alias venv-activate='source ./venv/bin/activate'
 alias venv-deactivate='deactivate'
