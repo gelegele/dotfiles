@@ -1,4 +1,9 @@
 filetype off
+
+"XDG_CONFIG_HOME
+let g:netrw_home = $XDG_CONFIG_HOME."/vim"
+set viminfofile=$XDG_CONFIG_HOME/vim/viminfo
+
 "----------------------------------------------------------
 " Key Mapping
 "----------------------------------------------------------

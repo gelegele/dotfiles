@@ -2,8 +2,10 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-# config files path
+# XDG_CONFIG
 export XDG_CONFIG_HOME=$HOME/.config
+# XDG for Vim. Suppress Neovim loads vimrc.
+export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/.vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
 
 #history
 HISTCONTROL=ignoredups
