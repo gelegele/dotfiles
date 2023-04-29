@@ -1,8 +1,6 @@
 [core]
 	autocrlf = false
 	safecrlf = false
-	excludesfile = ~/.gitignore
-	attributesfile = ~/.gitattributes_global
   editor = nvim
   filemode = false
 [color]

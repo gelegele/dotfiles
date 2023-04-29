@@ -18,6 +18,9 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
+# config files path
+export XDG_CONFIG_HOME=$HOME/.config
+
 # promptコマンド有効化
 autoload -U promptinit
 promptinit
@@ -42,7 +45,7 @@ function _ssh {
 }
 
 # git settings
-source ~/.git-prompt.sh
+source $XDG_CONFIG_HOME/git/prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWUPSTREAM="auto"
 setopt PROMPT_SUBST ; PS1='%F{cyan}%n@%m%f %F{green}%~%f%F{red}$(__git_ps1 " (%s)")%f\$ '

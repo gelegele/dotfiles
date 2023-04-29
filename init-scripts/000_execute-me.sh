@@ -8,6 +8,7 @@ dir=$(dirname $0)
 echo "Execute sh files in $dir folder."
 for f in $(ls $dir); do
   if [[ "$f" = $(basename $0) ]]; then
+    # skip this file.
     continue
   fi
   if [[ "$f" != 1??_*.sh ]]; then

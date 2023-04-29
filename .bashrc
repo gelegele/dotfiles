@@ -2,6 +2,9 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# config files path
+export XDG_CONFIG_HOME=$HOME/.config
+
 #history
 HISTCONTROL=ignoredups
 HISTIGNORE=hs:ll:cd
@@ -10,8 +13,7 @@ HISTIGNORE=hs:ll:cd
 # set -o vi
 
 # git settings
-source ~/.git-prompt.sh
-source ~/.git-completion.bash
+source $XDG_CONFIG_HOME/git/prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=true
 # export PS1='\h\[\033[00m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
 export PS1='\[\e[36m\]\h\[\e[00m\]:\[\e[32m\]\w\[\e[31m\]$(__git_ps1)\[\e[00m\]\$ '
