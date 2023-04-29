@@ -67,9 +67,9 @@ autoload bashcompinit && bashcompinit
 complete -C '/usr/local/bin/aws_completer' aws
 
 # z hoge => cd /aaa/bb/hoge 
-if [ -e ~/.z.d/z.sh ]; then
-  _Z_DATA=~/.z.d/z.data
-  source ~/.z.d/z.sh
+if [ -e $XDG_CONFIG_HOME/z/z.sh ]; then
+  _Z_DATA=$XDG_CONFIG_HOME/z/z.data
+  source $XDG_CONFIG_HOME/z/z.sh
 fi
 
 #Source-hilight with less
