@@ -20,16 +20,16 @@ for appdir in `ls -A $confdir`; do
   fi
 
   srcdir=$confdir/$appdir/
-  dstdir=$XDG_CONFIG_HOME/$appdir/
+  dstdir=~/.config/$appdir/
 
-  mkdir -p $dstdir
+  sudo mkdir -p $dstdir
 
   for file in `ls -A $srcdir`; do
-    lncmd="ln -sb $srcdir$file $dstdir$file"
+    lncmd="sudo ln -sb $srcdir$file $dstdir$file"
     echo $lncmd
     $lncmd
   done
 done
 
 # make tig dir for tig_history not in HOME dir.
-mkdir -p .local/share/tig/
+sudo mkdir -p .local/share/tig/
