@@ -8,6 +8,10 @@ export XDG_CONFIG_HOME=$HOME/.config
 export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/.vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
 
 #history
+if [ ! -d ~/.local/share/bash ]; then
+  mkdir -p ~/.local/share/bash
+fi
+HISTFILE=~/.local/share/bash/bash_history
 HISTCONTROL=ignoredups
 HISTIGNORE=hs:ll:cd
 
