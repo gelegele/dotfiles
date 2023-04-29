@@ -2,16 +2,17 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
-# XDG_CONFIG
+# XDG
 export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
 # XDG for Vim. Suppress Neovim loads vimrc.
 export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/.vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
 
 #history
-if [ ! -d ~/.local/share/bash ]; then
-  mkdir -p ~/.local/share/bash
+if [ ! -d $XDG_DATA_HOME/bash ]; then
+  mkdir -p $XDG_DATA_HOME/bash
 fi
-HISTFILE=~/.local/share/bash/bash_history
+HISTFILE=$XDG_DATA_HOME/bash/bash_history
 HISTCONTROL=ignoredups
 HISTIGNORE=hs:ll:cd
 

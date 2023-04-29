@@ -2,7 +2,7 @@
 
 sudo apt update -y
 sudo apt upgrade -y
-sudo apt install -y curl vim git tig ssh source-highlight tree unzip
+sudo apt install -y less curl vim git tig ssh source-highlight tree unzip
 
 packages=(tmux language-pack-ja python3-pip ipython3)
 for p in "${packages[@]}"
