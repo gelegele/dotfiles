@@ -1,5 +1,7 @@
+# .zshrc is loaded after ~/.zshenv loading.
+
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.zsh/.zsh_history
+HISTFILE=$ZDOTDIR/zsh_history
 HISTSIZE=1000
 SAVEHIST=1000
 setopt hist_ignore_dups
@@ -13,20 +15,21 @@ setopt autocd
 unsetopt beep
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
-zstyle :compinstall filename '~/.zshrc'
+zstyle :compinstall filename '$ZDOTDIR/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-# config files path
-export XDG_CONFIG_HOME=$HOME/.config
+# LANGはutf8またはUTF-8にしたい（ll表示順に影響）。日本語にするなら ja_JP.UTF8
+# Linuxのバージョンによってどっちが入ってるかわからないのでどっちも対応できるよう
+export LANG=`locale -a | grep -i c.utf | grep 8`
 
 # promptコマンド有効化
 autoload -U promptinit
 promptinit
 
 # コマンド補完
-fpath=(~/.zsh/completion $fpath)
+fpath=($ZDOTDIR/completion $fpath)
 
 # TABキーで補完候補から選択
 zstyle ':completion:*:default' menu select=1
@@ -55,7 +58,7 @@ bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 
 # 履歴からの補完
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZDOTDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
 
 # aws補完
@@ -110,7 +113,6 @@ esac
 
 alias ls='ls -CF'
 alias osv='cat /etc/os-release'
-alias shell='echo $0'
 alias gip='curl https://ifconfig.io'
 alias du='du -h --total'
 alias gr='grep --color=auto'
@@ -145,12 +147,8 @@ if [[ "$(uname -r)" == *microsoft* ]]; then
   alias adlist='w32tm.exe /monitor'
 fi
 
-# LANGはutf8またはUTF-8にしたい（ll表示順に影響）。日本語にするなら ja_JP.UTF8
-# Linuxのバージョンによってどっちが入ってるかわからないのでどっちも対応できるよう
-export LANG=`locale -a | grep -i c.utf | grep 8`
-
 # load .zshrc.local if it exists.
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+[ -f $ZDOTDIR/.zshrc.local ] && source $ZDOTDIR/.zshrc.local
 
 # Added by nvm installer
 export NVM_DIR="$HOME/.nvm"
