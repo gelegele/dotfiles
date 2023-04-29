@@ -5,7 +5,7 @@ src=$(cd $(dirname $0)/..;pwd)
 dst=~
 
 for file in `ls -A $src`; do
-  if [ $file = "init-scripts" -o $file = ".config" -o $file = ".DS_Store" -o $file = ".git" ]; then
+  if [[ -d $file ]]; then
     continue
   fi
 	lncmd="ln -sb $src/$file $dst/$file"
