@@ -116,13 +116,17 @@ alias osv='cat /etc/os-release'
 alias gip='curl https://ifconfig.io'
 alias du='du -h --total'
 alias gr='grep --color=auto'
-alias aptfzf="dpkg -l | sed -e '1,5d' | fzf"
 if [ -e /usr/local/bin/ccat ]; then
   alias cat=ccat
 fi
+alias v='nvim'
+alias vr='nvim -R '
 alias g=git
 alias g_pull_master="git checkout master | git pull"
 alias g_delete_merged_branches="git branch --merged | grep -v '*' | xargs -I % git branch -d %"
+alias docker-start='sudo service docker start'
+alias check-true-color='curl -s https://gist.githubusercontent.com/lifepillar/09a44b8cf0f9397465614e622979107f/raw/24-bit-color.sh | bash'
+alias aptfzf="dpkg -l | sed -e '1,5d' | fzf"
 alias py=python3
 alias python=python3
 alias pip=pip3
@@ -130,13 +134,9 @@ alias ipython=ipython3
 alias venv-create='python -m venv venv'
 alias venv-activate='source ./venv/bin/activate'
 alias venv-deactivate='deactivate'
-alias v='nvim'
-alias vr='nvim -R '
 alias env-load='set -a && source .env && set +a'
 alias gcloud-config-list='gcloud config configurations list'
 alias gcloud-config-activate='gcloud config configurations activate'
-alias docker-start='sudo service docker start'
-alias check-true-color='curl -s https://gist.githubusercontent.com/lifepillar/09a44b8cf0f9397465614e622979107f/raw/24-bit-color.sh | bash'
 # for wsl2
 if [[ "$(uname -r)" == *microsoft* ]]; then
   alias vs='code .'
@@ -147,11 +147,10 @@ if [[ "$(uname -r)" == *microsoft* ]]; then
   alias adlist='w32tm.exe /monitor'
 fi
 
-# load .zshrc.local if it exists.
-[ -f $ZDOTDIR/.zshrc.local ] && source $ZDOTDIR/.zshrc.local
-
 # Added by nvm installer
-export NVM_DIR="$HOME/.nvm"
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# load .zshrc.local if it exists.
+[ -f $ZDOTDIR/.zshrc.local ] && source $ZDOTDIR/.zshrc.local
