@@ -13,7 +13,7 @@ packages=(tmux language-pack-ja build-essential python3-pip ipython3)
 for p in "${packages[@]}"
 do
   read -p "Do you install ${p}? [y/n]: " yn
-  if [ $yn = [yY] ]; then
+  if [[ $yn = [yY] ]]; then
     echo ""
     echo "apt install $p"
     sudo apt install -y $p
