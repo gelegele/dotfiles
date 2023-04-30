@@ -11,7 +11,7 @@ confdir=$(cd $(dirname $0)/../.config;pwd)
 for appdir in `ls -AF $confdir`; do
 
   if [[ $mode = interactive ]]; then
-    # Interactive mode
+    # You can skip in interactive mode
     read -p "Do you setup ${appdir}? (y or else): " ans
     if [[ $ans != 'y' ]]; then
       echo "Skip ${appdir} setup."
@@ -32,4 +32,4 @@ for appdir in `ls -AF $confdir`; do
 done
 
 # make tig dir for tig_history not in HOME dir.
-mkdir -p .local/share/tig/
+mkdir -p ~/.local/share/tig/
