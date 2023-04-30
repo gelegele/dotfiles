@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ "$(uname -r)" != *microsoft* ]]; then
+if [ "$(uname -r)" != *microsoft* ]; then
   echo 'You are not on WSL. No need this.'
   exit
 fi
