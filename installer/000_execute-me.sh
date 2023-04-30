@@ -23,7 +23,8 @@ for f in $(ls $dir); do
     fi
   fi
   chmod u+x $dir/$f
-  echo "Executing $f..."
+  echo ""
+  echo "Executing $f ..."
   $dir/$f
 done
 echo "Done."

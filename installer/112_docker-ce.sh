@@ -4,6 +4,9 @@
 # ※下記のURLをdebianからubuntuに書き換える必要がある
 # https://download.docker.com/linux/debian -> https://download.docker.com/linux/ubuntu
 
+echo ""
+echo "Installing docker-ce"
+
 if cat /etc/issue | grep -i ubuntu; then
   distro=ubuntu
 elif cat /etc/issue | grep -i debian; then
