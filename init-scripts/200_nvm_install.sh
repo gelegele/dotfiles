@@ -1,12 +1,12 @@
 #!/bin/bash
 
-if [[ $0 != -zsh ]]; then
-  echo "Error: You should use zsh."
+if [[ $SHELL != *zsh ]]; then
+  echo "Error: You should use zsh instead of ${SHELL}."
   exit 1
 fi
 
-if [[ -z $XDG_CONFIG_HOME ]]; then
-  echo "Error: You have to set XDG_CONFIG_HOME."
+if [[ -z $XDG_CONFIG_HOME -a -z $XDG_DATA_HOME -a -z $XDG_CACHE_HOME ]]; then
+  echo "Error: You have to set XDG_CONFIG_HOME, XDG_DATA_HOME and XDG_CACHE_HOME."
   exit 1
 fi
 
