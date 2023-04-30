@@ -8,7 +8,7 @@ fi
 
 confdir=$(cd $(dirname $0)/../.config;pwd)
 
-for appdir in `ls -A $confdir`; do
+for appdir in `ls -AF $confdir`; do
 
   if [[ $mode = interactive ]]; then
     # Interactive mode
@@ -19,8 +19,8 @@ for appdir in `ls -A $confdir`; do
     fi
   fi
 
-  srcdir=$confdir/$appdir/
-  dstdir=~/.config/$appdir/
+  srcdir=$confdir/$appdir
+  dstdir=~/.config/$appdir
 
   mkdir -p $dstdir
 
