@@ -27,4 +27,5 @@ for f in $(ls $dir); do
   echo "Executing $f ..."
   $dir/$f
 done
-echo "Done."
+echo ""
+echo "Done. Log out your terminal and execute installer/200_nvm_install.sh"
