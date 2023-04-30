@@ -19,13 +19,15 @@ HISTFILE=$XDG_DATA_HOME/bash/bash_history
 HISTCONTROL=ignoredups
 HISTIGNORE=hs:ll:cd
 
-#vi keybind
-# set -o vi
+# Release ctrl + S and ctrl +q to be enabled to map.
+if [[ -t 0 ]]; then
+  stty stop undef
+  stty start undef
+fi
 
 # git settings
 source $XDG_CONFIG_HOME/git/prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=true
-# export PS1='\h\[\033[00m\]\w\[\033[31m\]$(__git_ps1)\[\033[00m\]\$ '
 export PS1='\[\e[36m\]\h\[\e[00m\]:\[\e[32m\]\w\[\e[31m\]$(__git_ps1)\[\e[00m\]\$ '
 
 #Source-hilight with less
@@ -48,8 +50,6 @@ alias hs=history
 alias shell='echo $0'
 alias gr='grep --color=auto'
 alias g=git
-alias g_delete_merged_branches="git branch --merged | grep -v '*' | xargs -I % git branch -d %"
-alias venv-activate='source ./venv/bin/activate'
 alias vs='code .'
 
 #.bashrc.local

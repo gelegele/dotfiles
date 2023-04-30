@@ -93,7 +93,7 @@ function mkcd() {
   mkdir $1 && cd $1
 }
 
-# ctrl + S を無効化
+# Release ctrl + S and ctrl +q to be enabled to map.
 if [[ -t 0 ]]; then
   stty stop undef
   stty start undef

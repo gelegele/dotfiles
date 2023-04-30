@@ -27,8 +27,8 @@ vim.opt.hlsearch = true
 vim.opt.ignorecase = true
 -- case-sensitive if capital letters
 vim.opt.smartcase = true
--- no auto wrap
-vim.opt.wrap = false
+-- auto wrap
+vim.opt.wrap = true
 -- show cursor horizontal line
 vim.opt.cursorline = true
 -- show cursor vertical line
@@ -63,12 +63,12 @@ vim.opt.termguicolors = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- Space + w to :w
-vim.keymap.set('n', '<Leader>w', ':w<CR>')
+-- Ctrl + s to :w
+vim.keymap.set('n', '<C-s>', ':w<CR>')
 -- Space + q to :q
-vim.keymap.set('n', '<Leader>q', ':q<CR>')
+vim.keymap.set('n', '<C-q>', ':q<CR>')
 -- Space + q to :q!
-vim.keymap.set('n', '<Leader>Q', ':qa!<CR>')
+vim.keymap.set('n', '!!', ':qa!<CR>')
 -- Space + p to put clipboard text
 vim.keymap.set('n', '<Leader>p', '"*p')
 vim.keymap.set('n', '<Leader>P', '"*P')
@@ -85,6 +85,9 @@ if vim.fn.has('win64') == 1 then
 else
   vim.keymap.set('n', '<NL>', 'o<ESC>')
 end
+-- j, k replace gj, gk not to slip wrap lines.
+vim.keymap.set('n', 'j', 'gj')
+vim.keymap.set('n', 'k', 'gk')
 -- J to join lines without space.
 vim.keymap.set('n', 'J', 'gJ')
 vim.keymap.set('n', 'gg', 'ggzz')
@@ -98,6 +101,8 @@ vim.keymap.set('n', '#', '#N')
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
 -- Space + n to toggle line numbers.
 vim.keymap.set('n', '<Leader>n', ':set nonumber!<CR>')
+-- Space + n to toggle auto wrap.
+vim.keymap.set('n', '<Leader>w', ':set wrap!<CR>')
 -- Space + e to open the tree.
 vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
 -- Space + h to focus on the tree

@@ -15,11 +15,12 @@ let &t_EI = "\e[2 q"
 "<Space> をLeaderキーに
 let mapleader = "\<Space>"
 
-"Space + wで保存
-nnoremap <Leader>w :w<CR>
-"Qで終了
-nnoremap <Leader>q :q<CR>
-nnoremap <Leader>Q :q!<CR>
+"Ctrl + s to :w
+nnoremap <C-s> :w<CR>
+"Ctrl + q to :q
+nnoremap <C-q> :q<CR>
+"!! to :q!
+nnoremap !! :q!<CR>
 
 " jj to normal mode
 inoremap <silent> jj <ESC>
@@ -33,6 +34,9 @@ else
   noremap <NL> o<ESC>
 endif
 
+noremap j gj
+noremap k gk
+
 "行移動先を中央表示
 noremap gg ggzz
 
@@ -44,6 +48,9 @@ noremap n nzz
 noremap N Nzz
 "ESCハイライト消去
 noremap <silent> <ESC> :nohl<CR><ESC>
+
+noremap <Leader>n :set nonumber!<CR>
+noremap <Leader>w :set wrap!<CR>
 
 "----------------------------------------------------------
 " Setting
