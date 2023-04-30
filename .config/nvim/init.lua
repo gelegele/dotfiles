@@ -67,11 +67,11 @@ vim.g.loaded_netrwPlugin = 1
 vim.keymap.set('n', '<C-s>', ':w<CR>')
 -- Space + q to :q
 vim.keymap.set('n', '<C-q>', ':q<CR>')
--- Space + q to :q!
+-- !! to :q!
 vim.keymap.set('n', '!!', ':qa!<CR>')
 -- Space + p to put clipboard text
-vim.keymap.set('n', '<Leader>p', '"*p')
-vim.keymap.set('n', '<Leader>P', '"*P')
+-- vim.keymap.set('n', '<Leader>p', '"*p')
+-- vim.keymap.set('n', '<Leader>P', '"*P')
 -- Change buffer
 vim.keymap.set('n', '<Leader>]', ':bn<CR>')
 vim.keymap.set('n', '<Leader>[', ':bp<CR>')
@@ -142,7 +142,7 @@ require('lazy').setup({
           },
           shortcut = {
             { desc = ' New',        group = 'Label', action = 'enew',                             key = 'n' },
-            { desc = ' Tree',       group = 'Label', action = 'e .',                              key = 't' },
+            { desc = ' Tree',       group = 'Label', action = 'e .',                              key = '.' },
             { desc = ' Config',     group = 'Label', action = 'e ~/.config/nvim/init.lua',        key = 'c' },
             { desc = ' Lazy',       group = 'Label', action = 'Lazy',                             key = 'l' },
             { desc = ' Files',      group = 'Label', action = 'Telescope find_files hidden=true', key = 'f' },
@@ -176,12 +176,12 @@ require('lazy').setup({
         },
       }
       local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'find files' })
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'live grep' })
-      vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'buffers' })
-      vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = 'registers. But you can use which-key.' })
-      vim.keymap.set('n', '<leader>fs', builtin.git_status, { desc = 'git status' })
-      vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'help tags' })
+      vim.keymap.set('n', '<leader>tf', builtin.find_files, { desc = 'find files' })
+      vim.keymap.set('n', '<leader>tg', builtin.live_grep, { desc = 'live grep' })
+      vim.keymap.set('n', '<leader>tb', builtin.buffers, { desc = 'buffers' })
+      vim.keymap.set('n', '<leader>tr', builtin.registers, { desc = 'registers. But you can use which-key.' })
+      vim.keymap.set('n', '<leader>ts', builtin.git_status, { desc = 'git status' })
+      vim.keymap.set('n', '<leader>th', builtin.help_tags, { desc = 'help tags' })
     end
   },
   { -- Filer (Help: ?)
@@ -206,7 +206,6 @@ require('lazy').setup({
           vim.keymap.set('n', '?', api.tree.toggle_help,           opts(bufnr, 'Help'))
           vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts(bufnr, 'Close Directory'))
           vim.keymap.set('n', 'l', api.node.open.edit,             opts(bufnr, 'Open Edit'))
-          vim.keymap.set('n', '<Leader>', api.node.open.preview,   opts(bufnr, 'Open Preview'))
           vim.keymap.set('n', '<Leader>e', api.tree.toggle,        opts(bufnr, 'Toggle Tree'))
         end,
       })
@@ -261,10 +260,6 @@ require('lazy').setup({
         return
       end
       require'nvim-treesitter.configs'.setup {
-        ensure_installed = {
-          "bash", "css", "diff", "dockerfile", "gitcommit", "git_rebase", "html",
-          "javascript", "json", "lua", "make", "passwd", "php", "python", "ruby", "sql", "yaml",
-        },
         auto_install = true,
         highlight = { enable = true, },
         indent = { enable = true, },
@@ -292,12 +287,7 @@ require('lazy').setup({
         -- No LSP on Windows
         return
       end
-      require('mason-lspconfig').setup {
-         ensure_installed = {
-          'bashls', 'dockerls', 'docker_compose_language_service',
-          'html', 'jsonls', 'lua_ls', 'marksman', 'yamlls',
-        },
-      }
+      require('mason-lspconfig').setup {}
       require("mason-lspconfig").setup_handlers {
         function (server_name) -- default handler (optional)
           local opts = {}
@@ -436,7 +426,7 @@ require('lazy').setup({
     event = 'BufRead',
     config = function()
       require('toggle-bool').setup({
-        mapping = "<leader>t",
+        mapping = "<leader>b",
       })
     end,
   },
