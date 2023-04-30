@@ -13,8 +13,5 @@ fi
 # Install nvm to manage node versions.
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
 
-# Install LTS node by nvm.
-nvm install --lts
-
-# npm is installed by nvm. You should update it.
-npm update -g npm
+echo 'nvm was installed.'
+echo 'Logout your terminal and execute installer/201_npm_install.sh'
