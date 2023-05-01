@@ -64,7 +64,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 -- Ctrl + s to :w
-vim.keymap.set('n', '<C-s>', ':w<CR>')
+vim.keymap.set('n', '<Leader><CR>', ':w<CR>')
 -- Space + q to :q
 vim.keymap.set('n', '<C-q>', ':q<CR>')
 -- !! to :q!

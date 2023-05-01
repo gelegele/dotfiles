@@ -16,7 +16,7 @@ let &t_EI = "\e[2 q"
 let mapleader = "\<Space>"
 
 "Ctrl + s to :w
-nnoremap <C-s> :w<CR>
+nnoremap <Leader><CR> :w<CR>
 "Ctrl + q to :q
 nnoremap <C-q> :q<CR>
 "!! to :q!
