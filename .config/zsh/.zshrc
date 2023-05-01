@@ -111,7 +111,6 @@ darwin*)
   ;;
 esac
 
-alias ls='ls -CF'
 alias osv='cat /etc/os-release'
 alias gip='curl https://ifconfig.io'
 alias du='du -h --total'
@@ -119,8 +118,10 @@ alias gr='grep --color=auto'
 if [ -e /usr/local/bin/ccat ]; then
   alias cat=ccat
 fi
-alias nv='nvim'
-alias nr='nvim -R '
+alias tm=tmux
+alias tmk='tmux kill-server'
+alias nv=nvim
+alias nr='nvim -R'
 alias g=git
 alias docker-start='sudo service docker start'
 alias check-true-color='curl -s https://gist.githubusercontent.com/lifepillar/09a44b8cf0f9397465614e622979107f/raw/24-bit-color.sh | bash'

@@ -44,10 +44,12 @@ darwin*)
   ;;
 esac
 
-alias ls='ls -CF'
+alias tm=tmux
+alias tmk='tmux kill-server'
+alias nv=nvim
+alias nr='nvim -R'
 alias osv='cat /etc/os-release'
 alias hs=history
-alias shell='echo $0'
 alias gr='grep --color=auto'
 alias g=git
 alias vs='code .'
