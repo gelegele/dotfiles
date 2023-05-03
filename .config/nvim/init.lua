@@ -102,6 +102,8 @@ vim.keymap.set('n', '<Leader>n', ':set nonumber!<CR>')
 vim.keymap.set('n', '<Leader>w', ':set wrap!<CR>')
 -- Space + e to open the tree.
 vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
+-- Space + d to open Dashboard
+vim.keymap.set('n', '<Leader>d', ':Dashboard<CR>')
 
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
