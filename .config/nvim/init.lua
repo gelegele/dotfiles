@@ -79,12 +79,9 @@ vim.keymap.set('n', '<Leader>[', ':bp<CR>')
 vim.keymap.set('n', '<Leader>x', ':bd|bn<CR>')
 -- jj to go to NORMAL mode
 vim.keymap.set('i', 'jj', '<ESC>')
--- Ctrl + Enter to insert a blank line.
-if vim.fn.has('win64') == 1 then
-  vim.keymap.set('n', '<C-CR>', 'o<ESC>')
-else
-  vim.keymap.set('n', '<NL>', 'o<ESC>')
-end
+-- Enter to insert a blank line in normal-mode.
+-- * C-CR = C-j and S-CR = CR on Windows Terminal. I gave up mapping these keys.
+vim.keymap.set('n', '<CR>', 'o<ESC>')
 -- j, k replace gj, gk not to slip wrap lines.
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
@@ -110,9 +107,6 @@ vim.keymap.set('n', '<Leader>n', ':set nonumber!<CR>')
 vim.keymap.set('n', '<Leader>w', ':set wrap!<CR>')
 -- Space + e to open the tree.
 vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
--- Space + h to focus on the tree
-vim.keymap.set('n', '<Leader>h', ':NvimTreeFocus<CR>')
-
 
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -404,6 +398,9 @@ require('lazy').setup({
     'sindrets/diffview.nvim',
     dependencies = {'nvim-lua/plenary.nvim'},
     event = 'BufRead',
+  },
+  { -- Seamless window selection with tmux
+    'christoomey/vim-tmux-navigator',
   },
   { -- Preview markdown with nodejs
     "iamcco/markdown-preview.nvim",
