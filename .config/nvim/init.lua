@@ -96,11 +96,6 @@ vim.keymap.set('n', '*', '*N')
 vim.keymap.set('n', '#', '#N')
 -- ESC to clear search highlight.
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
--- window resize enhanced
-vim.keymap.set('n', '<C-w>+', ':resize +3<CR>')
-vim.keymap.set('n', '<C-w>-', ':resize -3<CR>')
-vim.keymap.set('n', '<C-w>>', ':vertical resize +5<CR>')
-vim.keymap.set('n', '<C-w><', ':vertical resize -5<CR>')
 -- Space + n to toggle line numbers.
 vim.keymap.set('n', '<Leader>n', ':set nonumber!<CR>')
 -- Space + n to toggle auto wrap.
@@ -401,6 +396,10 @@ require('lazy').setup({
   },
   { -- Seamless window selection with tmux
     'christoomey/vim-tmux-navigator',
+  },
+  { -- resize nvim/tmux pane with the same hotkeys
+    -- as Alt-h, Alt-j, Alt-k, Alt-l
+    'RyanMillerC/better-vim-tmux-resizer'
   },
   { -- Preview markdown with nodejs
     "iamcco/markdown-preview.nvim",
