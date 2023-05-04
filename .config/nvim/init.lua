@@ -104,8 +104,6 @@ vim.keymap.set('n', '<Leader>n', ':set nonumber!<CR>')
 vim.keymap.set('n', '<Leader>w', ':set wrap!<CR>')
 -- Space + e to open the tree.
 vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
--- Space + d to open Dashboard
-vim.keymap.set('n', '<Leader>d', ':Dashboard<CR>')
 
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -142,16 +140,18 @@ require('lazy').setup({
             { desc = ' New',        group = 'Label', action = 'enew',                             key = 'n' },
             { desc = ' Tree',       group = 'Label', action = 'e .',                              key = '.' },
             { desc = ' Config',     group = 'Label', action = 'e ~/.config/nvim/init.lua',        key = 'c' },
-            { desc = ' Lazy',       group = 'Label', action = 'Lazy',                             key = 'l' },
+            { desc = ' zshrc',      group = 'Label', action = 'e ~/.config/zsh/.zshrc',            key = 'z' },
+            { desc = ' Lazy',       group = 'Label', action = 'Lazy',                             key = 'L' },
             { desc = ' Files',      group = 'Label', action = 'Telescope find_files hidden=true', key = 'f' },
             { desc = ' StartupTime',group = 'Label', action = 'StartupTime',                      key = 's' },
           },
           packages = { enable  = false },
           project = { enable  = false },
-          mru = { limit = 8, key = '', },
+          mru = { limit = 8 },
           footer = { '', 'This is your life.', 'Be yourself.' },
         }
       }
+      vim.keymap.set('n', '<Leader>d', ':Dashboard<CR>', { desc = 'Open Dashboard' } )
     end,
   },
   { -- fuzzy finder
