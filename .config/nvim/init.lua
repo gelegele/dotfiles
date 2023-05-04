@@ -118,6 +118,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   { -- Install NERD FONT on your OS.
     'nvim-tree/nvim-web-devicons',
+    lazy = true
   },
   { -- Check startup time
     'dstein64/vim-startuptime'
@@ -238,6 +239,7 @@ require('lazy').setup({
   },
   { -- Status Line
     'nvim-lualine/lualine.nvim',
+    event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
     opts = {
       options = {
         icons_enabled = true,
@@ -305,6 +307,7 @@ require('lazy').setup({
   },
   {
     "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
     config = function()
       local cmp = require("cmp")
       cmp.setup({
@@ -407,6 +410,7 @@ require('lazy').setup({
   },
   { -- Preview markdown with nodejs
     "iamcco/markdown-preview.nvim",
+    ft = { "markdown" },
     build = function()
       vim.fn["mkdp#util#install"]()
     end,

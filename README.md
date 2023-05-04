@@ -15,6 +15,3 @@ installer/100_execute-me.sh
 ```.sh
 installer/200_nvm_install.sh
 ```
-
-## TODO
-- nvim replace plugin
