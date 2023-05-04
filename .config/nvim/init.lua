@@ -96,6 +96,8 @@ vim.keymap.set('n', '*', '*N')
 vim.keymap.set('n', '#', '#N')
 -- ESC to clear search highlight.
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
+-- Space + s to replace search highlighted words.
+vim.keymap.set('n', '<Leader>s', ':%s///gc<Left><Left><Left>')
 -- Space + n to toggle line numbers.
 vim.keymap.set('n', '<Leader>n', ':set nonumber!<CR>')
 -- Space + n to toggle auto wrap.

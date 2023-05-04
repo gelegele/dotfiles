@@ -48,6 +48,8 @@ noremap n nzz
 noremap N Nzz
 "ESCハイライト消去
 noremap <silent> <ESC> :nohl<CR><ESC>
+"Space + s to replace search highlighted words.
+noremap <Leader>s :%s///gc<Left><Left><Left>
 
 noremap <Leader>n :set nonumber!<CR>
 noremap <Leader>w :set wrap!<CR>
