@@ -41,8 +41,3 @@ for appdir in `ls -AF $confdir`; do
     $makeln
   done
 done
-
-# 3. make tig dir for tig_history not in HOME dir.
-makedir="mkdir -p ~/.local/share/tig/"
-echo $makedir
-$makedir

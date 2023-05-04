@@ -5,7 +5,7 @@ echo ''
 sudo apt update -y
 sudo apt upgrade -y
 
-defaultpackages=(less curl wget vim git tig ssh source-highlight tree unzip)
+defaultpackages=(less curl wget vim git ssh source-highlight tree unzip)
 echo "apt install $defaultpackages"
 sudo apt install -y ${defaultpackages[@]}
 
