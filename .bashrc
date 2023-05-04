@@ -25,10 +25,10 @@ if [[ -t 0 ]]; then
   stty start undef
 fi
 
-# git settings
+# Prompt style
 source $XDG_CONFIG_HOME/git/prompt.sh
 GIT_PS1_SHOWDIRTYSTATE=true
-export PS1='\[\e[36m\]\h\[\e[00m\]:\[\e[32m\]\w\[\e[31m\]$(__git_ps1)\[\e[00m\]\$ '
+export PS1='\[\e[35m\]\h\[\e[00m\]:\[\e[33m\]\w\[\e[31m\]$(__git_ps1)\[\e[00m\]\$ '
 
 #Source-hilight with less
 export LESS='-R'
@@ -53,6 +53,12 @@ alias hs=history
 alias gr='grep --color=auto'
 alias g=git
 alias vs='code .'
+
+# z hoge => cd /aaa/bb/hoge 
+if [[ -e $XDG_CONFIG_HOME/z/z.sh ]]; then
+  _Z_DATA=$XDG_CONFIG_HOME/z/z.data
+  source $XDG_CONFIG_HOME/z/z.sh
+fi
 
 #.bashrc.local
 if [ -f .bashrc.local ]; then
