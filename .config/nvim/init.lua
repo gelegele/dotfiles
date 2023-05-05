@@ -44,11 +44,11 @@ if vim.fn.has("wsl") == 1 then
       ['+'] = 'clip.exe',
       ['*'] = 'clip.exe',
     },
-    -- Below is too heavy to load registers. You should use terminal function to paste clipboard.
-    -- paste = {
-    --   ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", "")',
-    --   ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    -- },
+    -- Below is a little heavy to load registers.
+    paste = {
+      ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", "")',
+      ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    },
     cache_enabled = 0,
   }
 end
