@@ -62,6 +62,11 @@ vim.opt.termguicolors = true
 -- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+-- Disabled to edit for read-only file.
+vim.api.nvim_create_autocmd("BufRead", {
+  command = "let &l:modifiable = !&readonly",
+  group = vim.api.nvim_create_augroup("NoModifiableIfReadOnly", { clear = true }),
+})
 
 -- Ctrl + s to :w
 vim.keymap.set('n', '<Leader><CR>', ':w<CR>')
@@ -247,6 +252,7 @@ require('lazy').setup({
         component_separators = '',
         -- section_separators = '',
         path = 2, -- 0:filename, 1:relative, 2:absolute
+        symbols = { readonly = '[]' },
         disabled_filetypes = {'NvimTree'}, -- Hide in nvim-tree
       },
     },
