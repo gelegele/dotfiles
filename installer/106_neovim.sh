@@ -3,9 +3,9 @@
 echo ''
 echo 'Install Neovim ...'
 
-# telescope needs ripgrep
 # appimage needs FUSE
-sudo apt install -y ripgrep fuse
+# telescope needs ripgrep and fd
+sudo apt install -y fuse ripgrep fd-find
 
 # Install appimage
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim.appimage

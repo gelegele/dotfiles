@@ -9,7 +9,7 @@ defaultpackages=(less curl wget vim git ssh source-highlight tree unzip)
 echo "apt install $defaultpackages"
 sudo apt install -y ${defaultpackages[@]}
 
-packages=(language-pack-ja build-essential python3-pip ipython3)
+packages=(language-pack-ja build-essential ipython3)
 for p in "${packages[@]}"
 do
   read -p "Do you install ${p}? [y/n]: " yn
