@@ -44,8 +44,7 @@ if vim.fn.has("wsl") == 1 then
       ['+'] = 'clip.exe',
       ['*'] = 'clip.exe',
     },
-    -- Below is a little heavy to load registers.
-    paste = {
+    paste = { -- This is a little heavy to load registers.
       ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", "")',
       ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
     },
@@ -63,10 +62,7 @@ vim.opt.termguicolors = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 -- Disabled to edit for read-only file.
-vim.api.nvim_create_autocmd("BufRead", {
-  command = "let &l:modifiable = !&readonly",
-  group = vim.api.nvim_create_augroup("NoModifiableIfReadOnly", { clear = true }),
-})
+vim.api.nvim_create_autocmd("BufRead", { command = "let &l:modifiable = !&readonly" })
 
 -- Ctrl + s to :w
 vim.keymap.set('n', '<Leader><CR>', ':w<CR>')
@@ -75,8 +71,8 @@ vim.keymap.set('n', '<C-q>', ':q<CR>')
 -- !! to :q!
 vim.keymap.set('n', '!!', ':qa!<CR>')
 -- Space + p to put clipboard text
--- vim.keymap.set('n', '<Leader>p', '"*p')
--- vim.keymap.set('n', '<Leader>P', '"*P')
+vim.keymap.set('n', '<Leader>p', '"*p')
+vim.keymap.set('n', '<Leader>P', '"*P')
 -- Change buffer
 vim.keymap.set('n', '<Leader>]', ':bn<CR>')
 vim.keymap.set('n', '<Leader>[', ':bp<CR>')
@@ -84,9 +80,6 @@ vim.keymap.set('n', '<Leader>[', ':bp<CR>')
 vim.keymap.set('n', '<Leader>x', ':bd|bn<CR>')
 -- jj to go to NORMAL mode
 vim.keymap.set('i', 'jj', '<ESC>')
--- Enter to insert a blank line in normal-mode.
--- * C-CR = C-j and S-CR = CR on Windows Terminal. I gave up mapping these keys.
-vim.keymap.set('n', '<CR>', 'o<ESC>')
 -- j, k replace gj, gk not to slip wrap lines.
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
@@ -101,11 +94,15 @@ vim.keymap.set('n', '*', '*N')
 vim.keymap.set('n', '#', '#N')
 -- ESC to clear search highlight.
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
+-- Space + h to :h
+vim.keymap.set('n', '<Leader>h', ':h ')
+-- Space + % to :luafile %
+vim.keymap.set('n', '<Leader>%', ':luafile %<CR>')
 -- Space + s to replace search highlighted words.
 vim.keymap.set('n', '<Leader>s', ':%s///gc<Left><Left><Left>')
 -- Space + n to toggle line numbers.
 vim.keymap.set('n', '<Leader>n', ':set nonumber!<CR>')
--- Space + n to toggle auto wrap.
+-- Space + w to toggle auto wrap.
 vim.keymap.set('n', '<Leader>w', ':set wrap!<CR>')
 -- Space + e to open the tree.
 vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
@@ -265,7 +262,7 @@ require('lazy').setup({
         -- Disabled to prevent errors on Windows.
         return
       end
-      require'nvim-treesitter.configs'.setup {
+      require('nvim-treesitter.configs').setup {
         auto_install = true,
         highlight = { enable = true, },
         indent = { enable = true, },
@@ -356,10 +353,7 @@ require('lazy').setup({
     event = 'BufRead',
     config = function()
       require('scrollbar').setup({
-        handlers = {
-          -- cursor = false,  -- Hide cursor mark on bar
-          gitsigns = true, -- Requires gitsigns
-        },
+        handlers = { gitsigns = true, },
       })
     end
   },
