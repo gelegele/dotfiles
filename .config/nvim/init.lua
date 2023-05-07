@@ -63,6 +63,8 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 -- Disabled to edit for read-only file.
 vim.api.nvim_create_autocmd("BufRead", { command = "let &l:modifiable = !&readonly" })
+-- TODO: Help is always open on vertical Left window.
+-- if FileType == help when BufRead
 
 -- Ctrl + s to :w
 vim.keymap.set('n', '<Leader><CR>', ':w<CR>')
@@ -83,6 +85,8 @@ vim.keymap.set('i', 'jj', '<ESC>')
 -- j, k replace gj, gk not to slip wrap lines.
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
+-- Space + o to insert blank line as normal mode.
+vim.keymap.set('n', '<Leader>o', 'o<ESC>')
 -- J to join lines without space.
 vim.keymap.set('n', 'J', 'gJ')
 vim.keymap.set('n', 'gg', 'ggzz')
@@ -92,12 +96,14 @@ vim.keymap.set('n', 'N', 'Nzz')
 -- Don't move the cursor when starting a word search.
 vim.keymap.set('n', '*', '*N')
 vim.keymap.set('n', '#', '#N')
+-- Enter to highlight the word.
+vim.keymap.set('n', '<CR>', '*N')
 -- ESC to clear search highlight.
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
 -- Space + h to :h
 vim.keymap.set('n', '<Leader>h', ':h ')
--- Space + % to :luafile %
-vim.keymap.set('n', '<Leader>%', ':luafile %<CR>')
+-- Space + r to :source $MYVIMRC
+vim.keymap.set('n', '<Leader>r', ':source $MYVIMRC<CR>')
 -- Space + s to replace search highlighted words.
 vim.keymap.set('n', '<Leader>s', ':%s///gc<Left><Left><Left>')
 -- Space + n to toggle line numbers.
@@ -180,7 +186,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>tf', builtin.find_files, { desc = 'find files' })
       vim.keymap.set('n', '<leader>tg', builtin.live_grep, { desc = 'live grep' })
       vim.keymap.set('n', '<leader>tb', builtin.buffers, { desc = 'buffers' })
-      vim.keymap.set('n', '<leader>tr', builtin.registers, { desc = 'registers. But you can use which-key.' })
+      vim.keymap.set('n', '<leader>tr', builtin.registers, { desc = 'registers' })
       vim.keymap.set('n', '<leader>ts', builtin.git_status, { desc = 'git status' })
       vim.keymap.set('n', '<leader>th', builtin.help_tags, { desc = 'help tags' })
     end
@@ -247,7 +253,6 @@ require('lazy').setup({
         icons_enabled = true,
         theme = 'auto',
         component_separators = '',
-        -- section_separators = '',
         path = 2, -- 0:filename, 1:relative, 2:absolute
         symbols = { readonly = '[]' },
         disabled_filetypes = {'NvimTree'}, -- Hide in nvim-tree
