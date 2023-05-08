@@ -3,6 +3,6 @@
 sudo apt install tig -y
 
 # make tig dir for tig_history not in HOME dir.
-makedir="mkdir -p ~/.local/share/tig/"
-echo $makedir
-$makedir
+echo 'make dir ~/.local/share/tig/ for tig_history'
+mkdir -p ~/.local/share/tig/
+
