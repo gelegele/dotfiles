@@ -435,18 +435,38 @@ require('lazy').setup({
     'tpope/vim-commentary',
     event = 'BufRead',
   },
-  { -- Space + t to toggle boolean
-    'gerazov/toggle-bool.nvim',
+  { -- Extends C-a, C-x
+    'monaqa/dial.nvim',
     event = 'BufRead',
     config = function()
-      require('toggle-bool').setup({
-        mapping = "<leader>b",
-      })
+      local augend = require("dial.augend")
+      require("dial.config").augends:register_group{
+        default = {
+          augend.integer.alias.decimal,
+          augend.integer.alias.hex,
+          augend.date.alias["%Y/%m/%d"],
+          augend.date.alias["%Y-%m-%d"],
+          augend.date.alias["%Y年%-m月%-d日"],
+          augend.date.alias["%m/%d"],
+          -- augend.date.alias["%-m月%-d日"],
+          augend.date.alias["%H:%M"],
+          augend.constant.alias.ja_weekday,
+          augend.constant.alias.bool,
+        },
+      }
+      vim.keymap.set("n", "<C-a>", require("dial.map").inc_normal(), {noremap = true})
+      vim.keymap.set("n", "<C-x>", require("dial.map").dec_normal(), {noremap = true})
+      vim.keymap.set("n", "g<C-a>", require("dial.map").inc_gnormal(), {noremap = true})
+      vim.keymap.set("n", "g<C-x>", require("dial.map").dec_gnormal(), {noremap = true})
+      vim.keymap.set("v", "<C-a>", require("dial.map").inc_visual(), {noremap = true})
+      vim.keymap.set("v", "<C-x>", require("dial.map").dec_visual(), {noremap = true})
+      vim.keymap.set("v", "g<C-a>",require("dial.map").inc_gvisual(), {noremap = true})
+      vim.keymap.set("v", "g<C-x>",require("dial.map").dec_gvisual(), {noremap = true})
     end,
   },
   { -- Automatically close brackets
     'jiangmiao/auto-pairs',
-    event = 'BufReadPost ',
+    event = 'BufRead',
   },
 }, {})
 
