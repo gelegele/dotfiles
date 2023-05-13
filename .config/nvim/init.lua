@@ -105,6 +105,8 @@ vim.keymap.set('n', '<Leader>s', ':%s///gc<Left><Left><Left>')
 vim.keymap.set('n', '<Leader>n', ':set nonumber!<CR>')
 -- Space + w to toggle auto wrap.
 vim.keymap.set('n', '<Leader>w', ':set wrap!<CR>')
+-- Space + h to prefix to open help on new tab.
+vim.keymap.set('n', '<Leader>h', ':tab help ')
 -- Space + e to open the tree.
 vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
 -- Space + gl to open LazyGit.
