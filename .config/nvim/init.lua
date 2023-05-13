@@ -91,14 +91,14 @@ vim.keymap.set('n', 'N', 'Nzz')
 vim.keymap.set('n', '*', '*N')
 vim.keymap.set('n', '#', '#N')
 -- Toggle word search highlight
-function toggle_hls()
+function ToggleHls()
   if vim.v.hlsearch == 1 then
     vim.cmd('nohl')
   else
     vim.api.nvim_feedkeys("*", "m", true)
   end
 end
-vim.keymap.set('n', '<CR>', ':lua toggle_hls()<CR>')
+vim.keymap.set('n', '<CR>', ':lua ToggleHls()<CR>')
 -- ESC to clear search highlight.
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
 -- Space + r to :source $MYVIMRC
@@ -465,6 +465,13 @@ require('lazy').setup({
     'jiangmiao/auto-pairs',
     event = 'BufRead',
   },
+  { -- gs? with motions or Visual select to convert casing.
+    --   gs_ -> snake_case
+    --   gsc -> camelCase
+    --   gsm -> CamelCase
+    'arthurxavierx/vim-caser',
+    event = 'BufRead',
+  }
 }, {})
 
 -- Local setting if ./lua/local-init.lua exists
