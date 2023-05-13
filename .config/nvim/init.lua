@@ -104,6 +104,8 @@ vim.keymap.set('n', '<Leader>n', ':set nonumber!<CR>')
 vim.keymap.set('n', '<Leader>w', ':set wrap!<CR>')
 -- Space + e to open the tree.
 vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
+-- Space + gl to open LazyGit.
+vim.keymap.set('n', '<Leader>gl', ':LazyGit<CR>')
 
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -391,10 +393,8 @@ require('lazy').setup({
       })
     end
   },
-  {
-    'sindrets/diffview.nvim',
-    dependencies = {'nvim-lua/plenary.nvim'},
-    event = 'BufRead',
+  { -- Open Lazygit
+    'kdheepak/lazygit.nvim',
   },
   { -- Seamless window selection with tmux
     'christoomey/vim-tmux-navigator',
