@@ -79,8 +79,8 @@ vim.keymap.set('i', 'jj', '<ESC>')
 -- j, k replace gj, gk not to slip wrap lines.
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
--- Space + o to insert blank line as normal mode.
-vim.keymap.set('n', '<Leader>o', 'o<ESC>')
+-- O to insert blank line as normal mode.
+vim.keymap.set('n', 'O', 'o<ESC>')
 -- J to join lines without space.
 vim.keymap.set('n', 'J', 'gJ')
 vim.keymap.set('n', 'gg', 'ggzz')
