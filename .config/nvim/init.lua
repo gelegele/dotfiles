@@ -109,8 +109,8 @@ vim.keymap.set('n', '<Leader>w', ':set wrap!<CR>')
 vim.keymap.set('n', '<Leader>h', ':tab help ')
 -- Space + e to open the tree.
 vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
--- Space + gl to open LazyGit.
-vim.keymap.set('n', '<Leader>gl', ':LazyGit<CR>')
+-- Key command Reminder
+-- <C-]> to go to the section of the word under the cursor in Help. <C-t> is back.
 
 -- My autocmds
 vim.api.nvim_create_autocmd("BufRead", {
@@ -411,6 +411,10 @@ require('lazy').setup({
   },
   { -- Open Lazygit
     'kdheepak/lazygit.nvim',
+    event = 'BufRead',
+    config = function()
+      vim.keymap.set('n', '<Leader>gl', ':LazyGit<CR>')
+    end,
   },
   { -- Seamless window selection with tmux
     'christoomey/vim-tmux-navigator',
