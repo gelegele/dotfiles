@@ -37,17 +37,11 @@ vim.opt.cursorcolumn = true
 vim.opt.whichwrap = "b,[,],<,>"
 -- enable clipboard sync.
 if vim.fn.has("wsl") == 1 then
-  -- Suppress clipboard.vim loading delay at startup if wsl.
+  -- The path to win32yank is passed if Windows Neovim is installed with winget.
   vim.g.clipboard = {
-    name = 'WslClipboard',
-    copy = {
-      ['+'] = 'win32yank.exe -i',
-      ['*'] = 'win32yank.exe -i',
-    },
-    paste = {
-      ['+'] = 'win32yank.exe -o',
-      ['*'] = 'win32yank.exe -o',
-    },
+    name  = 'WslClipboard',
+    copy  = { ['+'] = 'win32yank.exe -i', ['*'] = 'win32yank.exe -i' },
+    paste = { ['+'] = 'win32yank.exe -o', ['*'] = 'win32yank.exe -o' },
     cache_enabled = 0,
   }
 end
@@ -100,8 +94,6 @@ vim.keymap.set('n', '#', '#N')
 vim.keymap.set('n', '<CR>', '*N')
 -- ESC to clear search highlight.
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
--- Space + h to :h
-vim.keymap.set('n', '<Leader>h', ':h ')
 -- Space + r to :source $MYVIMRC
 vim.keymap.set('n', '<Leader>r', ':source $MYVIMRC<CR>')
 -- Space + s to replace search highlighted words.
@@ -169,8 +161,6 @@ require('lazy').setup({
     config = function()
       require('telescope').setup {
         defaults = {
-          -- Default configuration for telescope goes here:
-          -- config_key = value,
           hidden = true,
           mappings = {
             i = {
@@ -259,7 +249,7 @@ require('lazy').setup({
       },
     },
   },
-  {
+  { -- Tree-sitter
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function()
