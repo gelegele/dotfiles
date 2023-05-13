@@ -8,6 +8,9 @@ Windows: %LOCALAPPDATA%\nvim\init.lua
 How to check health is [:checkhealth]:
 ]]--
 
+-- disable netrw for NvimTree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 -- Leader key is space.
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -52,9 +55,6 @@ vim.opt.winblend = 10
 vim.opt.pumblend = 10
 -- True Color
 vim.opt.termguicolors = true
--- disable netrw
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 
 -- Ctrl + s to :w
 vim.keymap.set('n', '<Leader><CR>', ':w<CR>')
@@ -159,10 +159,10 @@ require('lazy').setup({
             { desc = ' New',        group = 'Label', action = 'enew',                             key = 'n' },
             { desc = ' Tree',       group = 'Label', action = 'e .',                              key = '.' },
             { desc = ' Config',     group = 'Label', action = 'e ~/.config/nvim/init.lua',        key = 'c' },
-            { desc = ' zshrc',      group = 'Label', action = 'e ~/.config/zsh/.zshrc',            key = 'z' },
+            { desc = ' zshrc',      group = 'Label', action = 'e ~/.config/zsh/.zshrc',           key = 'z' },
             { desc = ' Lazy',       group = 'Label', action = 'Lazy',                             key = 'L' },
             { desc = ' Files',      group = 'Label', action = 'Telescope find_files hidden=true', key = 'f' },
-            { desc = ' StartupTime',group = 'Label', action = 'StartupTime',                      key = 's' },
+            { desc = ' StartupTime',group = 'Label', action = 'StartupTime --tries 3',            key = 's' },
           },
           packages = { enable  = false },
           project = { enable  = false },
@@ -201,6 +201,7 @@ require('lazy').setup({
   },
   { -- Filer (Help: ?)
     'nvim-tree/nvim-tree.lua',
+    -- No event mapping is faster than event = "VimEnter"
     config = function()
       -- If buffer is a dir, change to the dir and open the tree.
       local function open_nvim_tree(data)
@@ -211,12 +212,12 @@ require('lazy').setup({
       end
       vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
       -- My keymaps
-      local api = require("nvim-tree.api")
-      local function opts(bufnr, desc)
-        return { desc = desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
-      end
       require("nvim-tree").setup({
         on_attach = function(bufnr)
+          local api = require("nvim-tree.api")
+          local function opts(bufnr, desc)
+            return { desc = desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+          end
           api.config.mappings.default_on_attach(bufnr)
           vim.keymap.set('n', '?', api.tree.toggle_help,           opts(bufnr, 'Help'))
           vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts(bufnr, 'Close Directory'))
