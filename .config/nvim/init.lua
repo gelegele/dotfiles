@@ -86,15 +86,6 @@ vim.keymap.set('n', 'N', 'Nzz')
 -- Don't move the cursor when starting a word search.
 vim.keymap.set('n', '*', '*N')
 vim.keymap.set('n', '#', '#N')
--- Toggle word search highlight
-function ToggleHls()
-  if vim.v.hlsearch == 1 then
-    vim.cmd('nohl')
-  else
-    vim.api.nvim_feedkeys("*", "m", true)
-  end
-end
-vim.keymap.set('n', '<CR>', ':lua ToggleHls()<CR>')
 -- ESC to clear search highlight.
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
 -- Space + r to :source $MYVIMRC
@@ -111,6 +102,21 @@ vim.keymap.set('n', '<Leader>h', ':tab help ')
 vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
 -- Key command Reminder
 -- <C-]> to go to the section of the word under the cursor in Help. <C-t> is back.
+
+-- TODO create plugin
+if pcall(require, 'togglehls') then
+  local ToggleHls = require("togglehls")
+  vim.keymap.set('n', '<CR>', ToggleHls.toggle)
+else
+  function ToggleHls()
+    if vim.v.hlsearch == 1 then
+      vim.cmd('nohl')
+    else
+      vim.api.nvim_feedkeys("*", "m", true)
+    end
+  end
+  vim.keymap.set('n', '<CR>', ':lua ToggleHls()<CR>')
+end
 
 -- My autocmds
 vim.api.nvim_create_autocmd("BufRead", {
