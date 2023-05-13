@@ -429,6 +429,9 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>m', '<Plug>MarkdownPreviewToggle', { desc = 'MarkdownPreviewToggle' })
     end,
   },
+  { -- CSV Viewer
+    'chrisbra/csv.vim',
+  },
   { -- vwS' to quote the v-mode selected word.
     -- cs'" to change single quotation to double quotation.
     'kylechui/nvim-surround',
@@ -480,7 +483,7 @@ require('lazy').setup({
     --   gsm -> CamelCase
     'arthurxavierx/vim-caser',
     event = 'BufRead',
-  }
+  },
 }, {})
 
 -- Local setting if ./lua/local-init.lua exists
