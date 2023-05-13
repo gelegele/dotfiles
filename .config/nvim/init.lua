@@ -55,10 +55,6 @@ vim.opt.termguicolors = true
 -- disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
--- Disabled to edit for read-only file.
-vim.api.nvim_create_autocmd("BufRead", { command = "let &l:modifiable = !&readonly" })
--- TODO: Help is always open on vertical Left window.
--- if FileType == help when BufRead
 
 -- Ctrl + s to :w
 vim.keymap.set('n', '<Leader><CR>', ':w<CR>')
@@ -113,6 +109,17 @@ vim.keymap.set('n', '<Leader>w', ':set wrap!<CR>')
 vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
 -- Space + gl to open LazyGit.
 vim.keymap.set('n', '<Leader>gl', ':LazyGit<CR>')
+
+-- My autocmds
+vim.api.nvim_create_autocmd("BufRead", {
+  desc = "Disabled to edit for read-only file.",
+  command = "let &l:modifiable = !&readonly",
+})
+vim.api.nvim_create_autocmd("BufRead", {
+  desc = "Go to EOF when SigmaMemo.txt is opened.",
+  pattern = "*/SigmaMemo.txt",
+  command = "normal G",
+})
 
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
