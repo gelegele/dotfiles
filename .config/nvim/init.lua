@@ -435,6 +435,7 @@ require('lazy').setup({
   },
   { -- CSV Viewer
     'chrisbra/csv.vim',
+    ft = { 'csv' },
   },
   { -- vwS' to quote the v-mode selected word.
     -- cs'" to change single quotation to double quotation.
@@ -488,6 +489,17 @@ require('lazy').setup({
     'arthurxavierx/vim-caser',
     event = 'BufRead',
   },
+  { -- Space j to split/join blocks of code.
+    'Wansmer/treesj',
+    event = 'BufRead',
+    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    config = function()
+      require('treesj').setup(
+        { use_default_keymaps = false }
+      )
+      vim.keymap.set("n", "<Leader>j", ':TSJToggle<CR>', { desc = 'TSJToggle' })
+    end,
+  }
 }, {})
 
 -- Local setting if ./lua/local-init.lua exists
