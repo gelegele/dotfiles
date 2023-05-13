@@ -90,8 +90,15 @@ vim.keymap.set('n', 'N', 'Nzz')
 -- Don't move the cursor when starting a word search.
 vim.keymap.set('n', '*', '*N')
 vim.keymap.set('n', '#', '#N')
--- Enter to highlight the word.
-vim.keymap.set('n', '<CR>', '*N')
+-- Toggle word search highlight
+function toggle_hls()
+  if vim.v.hlsearch == 1 then
+    vim.cmd('nohl')
+  else
+    vim.api.nvim_feedkeys("*", "m", true)
+  end
+end
+vim.keymap.set('n', '<CR>', ':lua toggle_hls()<CR>')
 -- ESC to clear search highlight.
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
 -- Space + r to :source $MYVIMRC
