@@ -506,7 +506,14 @@ require('lazy').setup({
       )
       vim.keymap.set("n", "<Leader>j", ':TSJToggle<CR>', { desc = 'TSJToggle' })
     end,
-  }
+  },
+  { -- autoclose and autorename html tag.
+    'windwp/nvim-ts-autotag',
+    event = 'BufRead',
+    config = function ()
+      require('nvim-ts-autotag').setup()
+    end,
+  },
 }, {})
 
 -- Local setting if ./lua/local-init.lua exists
