@@ -261,16 +261,27 @@ require('lazy').setup({
   { -- Status Line
     'nvim-lualine/lualine.nvim',
     event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
-    opts = {
-      options = {
-        icons_enabled = true,
-        theme = 'auto',
-        component_separators = '',
-        path = 2, -- 0:filename, 1:relative, 2:absolute
-        symbols = { readonly = '[]' },
-        disabled_filetypes = {'NvimTree'}, -- Hide in nvim-tree
-      },
-    },
+    config = function()
+      require('lualine').setup {
+        options = {
+          component_separators = '',
+          path = 1, -- 0:filename(default), 1:relative, 2:absolute
+          symbols = { readonly = '[]' },
+          disabled_filetypes = {'NvimTree'}, -- Hide in nvim-tree
+        },
+        sections = {
+          lualine_b = {
+            { 'branch',},
+            { 'diff', },
+            {
+              'diagnostics',
+              -- Don't use icons to prevent ui corruption by lualine line-breaking
+              icons_enabled = false,
+            },
+          },
+        }
+      }
+    end
   },
   { -- Tree-sitter
     'nvim-treesitter/nvim-treesitter',
