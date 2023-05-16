@@ -219,14 +219,13 @@ require('lazy').setup({
       require("nvim-tree").setup({
         on_attach = function(bufnr)
           local api = require("nvim-tree.api")
-          local function opts(bufnr, desc)
-            return { desc = desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+          local function opts(buffer, desc)
+            return { desc = desc, buffer = buffer, noremap = true, silent = true, nowait = true }
           end
           api.config.mappings.default_on_attach(bufnr)
           vim.keymap.set('n', '?', api.tree.toggle_help,           opts(bufnr, 'Help'))
           vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts(bufnr, 'Close Directory'))
           vim.keymap.set('n', 'l', api.node.open.edit,             opts(bufnr, 'Open Edit'))
-          vim.keymap.set('n', '<Leader>e', api.tree.toggle,        opts(bufnr, 'Toggle Tree'))
         end,
       })
     end
