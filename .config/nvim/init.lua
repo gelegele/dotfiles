@@ -104,7 +104,7 @@ vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
 -- TODO create plugin
 if pcall(require, 'togglehls') then
   local ToggleHls = require("togglehls")
-  vim.keymap.set('n', '<CR>', ToggleHls.toggle)
+  vim.keymap.set('n', '<C-n>', ToggleHls.toggle)
 else
   function ToggleHls()
     if vim.v.hlsearch == 1 then
@@ -113,7 +113,7 @@ else
       vim.api.nvim_feedkeys("*", "m", true)
     end
   end
-  vim.keymap.set('n', '<CR>', ':lua ToggleHls()<CR>')
+  vim.keymap.set('n', '<C-n>', ':lua ToggleHls()<CR>')
 end
 
 -- My autocmds
