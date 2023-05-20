@@ -62,13 +62,16 @@ vim.keymap.set('n', '<Leader><CR>', ':w<CR>')
 vim.keymap.set('n', '<C-q>', ':q<CR>')
 -- !! to :q!
 vim.keymap.set('n', '!!', ':qa!<CR>')
+-- TAB to add new line.
+vim.keymap.set('n', '<Tab>', 'o<ESC>')
+vim.keymap.set('n', '<S-Tab>', 'O<ESC>')
 -- Space + p to put clipboard text
 vim.keymap.set('n', '<Leader>p', '"*p')
 vim.keymap.set('n', '<Leader>P', '"*P')
--- Change buffer
+-- Space + [ to change buffer
 vim.keymap.set('n', '<Leader>]', ':bn<CR>')
 vim.keymap.set('n', '<Leader>[', ':bp<CR>')
--- Delete buffer
+-- Space + x to delete buffer
 vim.keymap.set('n', '<Leader>x', ':bd|bn<CR>')
 -- jj to go to NORMAL mode
 vim.keymap.set('i', 'jj', '<ESC>')
