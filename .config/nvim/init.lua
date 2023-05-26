@@ -56,51 +56,54 @@ vim.opt.pumblend = 10
 -- True Color
 vim.opt.termguicolors = true
 
+
+-- keymap option
+local keymapopt = { noremap = true, silent = true }
 -- Ctrl + s to :w
-vim.keymap.set('n', '<Leader><CR>', ':w<CR>')
+vim.keymap.set('n', '<Leader><CR>', ':w<CR>', keymapopt)
 -- Space + q to :q
-vim.keymap.set('n', '<C-q>', ':q<CR>')
+vim.keymap.set('n', '<C-q>', ':q<CR>', keymapopt)
 -- !! to :q!
-vim.keymap.set('n', '!!', ':qa!<CR>')
+vim.keymap.set('n', '!!', ':qa!<CR>', keymapopt)
 -- TAB to add new line.
-vim.keymap.set('n', '<Tab>', 'o<ESC>')
-vim.keymap.set('n', '<S-Tab>', 'O<ESC>')
+vim.keymap.set('n', '<Tab>', 'o<ESC>', keymapopt)
+vim.keymap.set('n', '<S-Tab>', 'O<ESC>', keymapopt)
 -- Space + p to put clipboard text
-vim.keymap.set('n', '<Leader>p', '"*p')
-vim.keymap.set('n', '<Leader>P', '"*P')
+vim.keymap.set('n', '<Leader>p', '"*p', keymapopt)
+vim.keymap.set('n', '<Leader>P', '"*P', keymapopt)
 -- Space + [ to change buffer
-vim.keymap.set('n', '<Leader>]', ':bn<CR>')
-vim.keymap.set('n', '<Leader>[', ':bp<CR>')
+vim.keymap.set('n', '<Leader>]', ':bn<CR>', keymapopt)
+vim.keymap.set('n', '<Leader>[', ':bp<CR>', keymapopt)
 -- Space + x to delete buffer
-vim.keymap.set('n', '<Leader>x', ':bd|bn<CR>')
+vim.keymap.set('n', '<Leader>x', ':bd|bn<CR>', keymapopt)
 -- jj to go to NORMAL mode
-vim.keymap.set('i', 'jj', '<ESC>')
+vim.keymap.set('i', 'jj', '<ESC>', keymapopt)
 -- j, k replace gj, gk not to slip wrap lines.
-vim.keymap.set('n', 'j', 'gj')
-vim.keymap.set('n', 'k', 'gk')
+vim.keymap.set('n', 'j', 'gj', keymapopt)
+vim.keymap.set('n', 'k', 'gk', keymapopt)
 -- J to join lines without space.
-vim.keymap.set('n', 'J', 'gJ')
-vim.keymap.set('n', 'gg', 'ggzz')
+vim.keymap.set('n', 'J', 'gJ', keymapopt)
+vim.keymap.set('n', 'gg', 'ggzz', keymapopt)
 -- Keep the cursor while moving search words 
-vim.keymap.set('n', 'n', 'nzz')
-vim.keymap.set('n', 'N', 'Nzz')
+vim.keymap.set('n', 'n', 'nzz', keymapopt)
+vim.keymap.set('n', 'N', 'Nzz', keymapopt)
 -- Don't move the cursor when starting a word search.
-vim.keymap.set('n', '*', '*N')
-vim.keymap.set('n', '#', '#N')
+vim.keymap.set('n', '*', '*N', keymapopt)
+vim.keymap.set('n', '#', '#N', keymapopt)
 -- ESC to clear search highlight.
-vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR><C-l>')
--- Space + r to :source $MYVIMRC
-vim.keymap.set('n', '<Leader>r', ':source $MYVIMRC<CR>')
+vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR>', keymapopt)
 -- Space + s to replace search highlighted words.
-vim.keymap.set('n', '<Leader>s', ':%s///gc<Left><Left><Left>')
+vim.keymap.set('n', '<Leader>s', ':%s///gc<Left><Left><Left>', { noremap = true })
 -- Space + n to toggle line numbers.
-vim.keymap.set('n', '<Leader>n', ':set nonumber!<CR>')
+vim.keymap.set('n', '<Leader>n', ':set nonumber!<CR>', keymapopt)
 -- Space + w to toggle auto wrap.
-vim.keymap.set('n', '<Leader>w', ':set wrap!<CR>')
+vim.keymap.set('n', '<Leader>w', ':set wrap!<CR>', keymapopt)
 -- Space + h to prefix to open help on new tab.
-vim.keymap.set('n', '<Leader>h', ':tab help ')
+vim.keymap.set('n', '<Leader>h', ':tab help ', { noremap = true })
 -- Space + e to open the tree.
-vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>')
+vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>', keymapopt)
+-- Space + r to :source $MYVIMRC
+vim.keymap.set('n', '<Leader>r', ':source $MYVIMRC<CR>', keymapopt)
 -- Key command Reminder
 -- <C-]> to go to the section of the word under the cursor in Help. <C-t> is back.
 
