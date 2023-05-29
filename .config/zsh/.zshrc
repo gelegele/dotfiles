@@ -66,11 +66,8 @@ export PATH=/usr/local/bin:$PATH
 autoload bashcompinit && bashcompinit
 complete -C '/usr/local/bin/aws_completer' aws
 
-# z hoge => cd /aaa/bb/hoge 
-if [ -e $XDG_CONFIG_HOME/z/z.sh ]; then
-  _Z_DATA=$XDG_CONFIG_HOME/z/z.data
-  source $XDG_CONFIG_HOME/z/z.sh
-fi
+# z dot
+eval "$(zoxide init zsh)"
 
 #Source-hilight with less
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"

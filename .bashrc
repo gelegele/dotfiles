@@ -54,11 +54,8 @@ alias gr='grep --color=auto'
 alias g=git
 alias vs='code .'
 
-# z hoge => cd /aaa/bb/hoge 
-if [[ -e $XDG_CONFIG_HOME/z/z.sh ]]; then
-  _Z_DATA=$XDG_CONFIG_HOME/z/z.data
-  source $XDG_CONFIG_HOME/z/z.sh
-fi
+# z dot
+eval "$(zoxide init bash)"
 
 #.bashrc.local
 if [ -f .bashrc.local ]; then
