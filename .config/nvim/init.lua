@@ -8,6 +8,10 @@ Windows: %LOCALAPPDATA%\nvim\init.lua
 How to check health is [:checkhealth]:
 ]]--
 
+-- Default encoding is utf-8
+vim.opt.encoding = "utf-8"
+-- Encoding priority list to open existing file.
+vim.opt.fileencodings = "utf-8,sjis"
 -- disable netrw for NvimTree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
