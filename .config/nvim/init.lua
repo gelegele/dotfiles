@@ -477,6 +477,13 @@ require('lazy').setup({
   { -- CSV Viewer
     'chrisbra/csv.vim',
     ft = { 'csv' },
+    config = function()
+      vim.api.nvim_create_autocmd("BufEnter", {
+        desc = "CSV Table Preview when open csv.",
+        pattern = "*.csv",
+        command = "CSVTabularize",
+      })
+    end,
   },
   { -- vwS' to quote the v-mode selected word.
     -- cs'" to change single quotation to double quotation.
