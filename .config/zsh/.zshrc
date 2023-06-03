@@ -116,9 +116,11 @@ if [ -e /usr/local/bin/ccat ]; then
   alias cat=ccat
 fi
 alias tm=tmux
+alias tma='tmux a'
 alias tmk='tmux kill-server'
-alias nv=nvim
-alias nr='nvim -R'
+alias v=nvim
+alias vr='nvim -R'
+alias f=vifm
 alias g=git
 alias gl=lazygit
 alias docker-start='sudo service docker start'

@@ -1,0 +1,19 @@
+" VIFM Config
+
+" show dotfiles
+set dotfiles
+" show preview
+set quickview
+set vicmd=nvim
+" Automatically resolve symbolic links on l or Enter.
+set nofollowlinks
+
+" viewer
+fileviewer */ tree -L 1 %c
+fileviewer .*/ tree -L 1 %c
+fileviewer *  less %f
+
+noremap Q :q<CR>
+noremap S :sort<CR>
+noremap a :mkdir<Space>
+noremap ZZ :shell<CR>

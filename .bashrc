@@ -45,9 +45,9 @@ darwin*)
 esac
 
 alias tm=tmux
-alias tmk='tmux kill-server'
-alias nv=nvim
-alias nr='nvim -R'
+alias v=nvim
+alias vr='nvim -R'
+alias f=vifm
 alias osv='cat /etc/os-release'
 alias hs=history
 alias gr='grep --color=auto'
