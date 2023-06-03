@@ -65,8 +65,8 @@ vim.opt.termguicolors = true
 local keymapopt = { noremap = true, silent = true }
 -- Ctrl + s to :w
 vim.keymap.set('n', '<Leader><CR>', ':w<CR>', keymapopt)
--- Space + q to :q
-vim.keymap.set('n', '<C-q>', ':q<CR>', keymapopt)
+-- Q to :q
+vim.keymap.set('n', 'Q', ':q<CR>', keymapopt)
 -- !! to :q!
 vim.keymap.set('n', '!!', ':qa!<CR>', keymapopt)
 -- TAB to add new line.

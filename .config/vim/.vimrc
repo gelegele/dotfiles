@@ -12,14 +12,10 @@ set viminfofile=$XDG_CONFIG_HOME/vim/viminfo
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
-"<Space> をLeaderキーに
 let mapleader = "\<Space>"
 
-"Ctrl + s to :w
 nnoremap <Leader><CR> :w<CR>
-"Ctrl + q to :q
-nnoremap <C-q> :q<CR>
-"!! to :q!
+nnoremap Q :q<CR>
 nnoremap !! :q!<CR>
 
 " jj to normal mode
