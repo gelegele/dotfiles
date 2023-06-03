@@ -5,6 +5,8 @@ echo 'Install zsh ... '
 
 sudo apt install -y zsh
 
+$(dirname $0)/sub_mklink_config.sh zsh
+
 git clone https://github.com/zsh-users/zsh-autosuggestions ~/.config/zsh/zsh-autosuggestions
 
 mkdir -p ~/.config/zsh/completion
