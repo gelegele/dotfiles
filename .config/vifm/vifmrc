@@ -12,6 +12,9 @@ set nofollowlinks
 set wildmenu
 " use popup window instead of a single line for completion
 set wildstyle=popup
+" status line
+set timefmt=" %Y/%m/%d %H:%M:%S"
+set statusline="    %A %u:%g %s %d %t %=%{&sort} "
 
 " viewer
 fileviewer */ tree -L 1 %c
@@ -20,15 +23,18 @@ fileviewer * less %f
 
 colorscheme my-nord
 
-noremap Q :q<CR>
-noremap S :sort<CR>
-noremap a :mkdir<Space>
+noremap q :q<CR>
+noremap s :sort<CR>
+noremap a :touch<Space>
+noremap A :mkdir<Space>
+noremap r :rename<Space>
 noremap ZZ :shell<CR>
-" to change the active panel for nomal mode and view mode.
+" to switch the active panel for nomal mode and view mode.
 noremap <Space> <C-w><C-w>
 qnoremap <Space> <C-w><C-w>
-" Memo
-" <C-w><C-w> to move panes.
+qnoremap w <C-w><C-w>
+" toggle view mode
+noremap w :view<CR>
 
 " show icons
 source ~/.config/vifm/favicons.vifm
