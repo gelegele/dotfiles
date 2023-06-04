@@ -527,8 +527,11 @@ require('lazy').setup({
     end,
   },
   { -- Automatically close brackets
-    'jiangmiao/auto-pairs',
+    'windwp/nvim-autopairs',
     event = 'BufRead',
+    config = function ()
+      require('nvim-autopairs').setup({check_ts = true})
+    end,
   },
   { -- gs? with motions or Visual select to convert casing.
     --   gs_ -> snake_case
