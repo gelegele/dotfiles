@@ -2,18 +2,34 @@
 
 " show dotfiles
 set dotfiles
-" show preview
+" show auto preview
 set quickview
+" Editor
 set vicmd=nvim
 " Automatically resolve symbolic links on l or Enter.
 set nofollowlinks
+" show list of matches on tab complition in command-line mode
+set wildmenu
+" use popup window instead of a single line for completion
+set wildstyle=popup
 
 " viewer
 fileviewer */ tree -L 1 %c
 fileviewer .*/ tree -L 1 %c
-fileviewer *  less %f
+fileviewer * less %f
+
+colorscheme my-nord
 
 noremap Q :q<CR>
 noremap S :sort<CR>
 noremap a :mkdir<Space>
 noremap ZZ :shell<CR>
+" to change the active panel for nomal mode and view mode.
+noremap <Space> <C-w><C-w>
+qnoremap <Space> <C-w><C-w>
+" Memo
+" <C-w><C-w> to move panes.
+
+" show icons
+source ~/.config/vifm/favicons.vifm
+
