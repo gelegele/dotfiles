@@ -15,3 +15,17 @@ installer/100_execute-me.sh
 ```.sh
 installer/200_nvm_install.sh
 ```
+
+## Applications
+- zsh
+- tmux
+- vim
+- neovim
+- zoxide
+- vifm
+- lazygit
+- python3-pip
+- docker
+- ccat
+- wsl-open
+- clasp
