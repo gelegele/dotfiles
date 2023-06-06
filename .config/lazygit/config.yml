@@ -3,3 +3,7 @@ gui:
 
 git:
   branchLogCmd: "git log --oneline --all --graph --decorate --color=always"
+
+keybinding:
+    universal:
+      quit: 'Q' # default was q

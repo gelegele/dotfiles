@@ -23,7 +23,7 @@ fileviewer * less %f
 
 colorscheme my-nord
 
-noremap q :q<CR>
+noremap Q :q<CR>
 noremap s :sort<CR>
 noremap a :touch<Space>
 noremap A :mkdir<Space>
