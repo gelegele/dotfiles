@@ -17,8 +17,8 @@ set timefmt=" %Y/%m/%d %H:%M:%S"
 set statusline="    %A %u:%g %s %d %t %=%{&sort} "
 
 " viewer
-fileviewer */ tree -L 1 %c
-fileviewer .*/ tree -L 1 %c
+fileviewer */ ls -AlFhog --time-style=long-iso --color=auto %c
+fileviewer .*/ ls -AlFhog --time-style=long-iso --color=auto %c
 fileviewer * less %f
 
 colorscheme my-nord

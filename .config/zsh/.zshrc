@@ -96,18 +96,7 @@ if [[ -t 0 ]]; then
   stty start undef
 fi
 
-#color ls
-case "${OSTYPE}" in
-darwin*)
-  alias ll='ls -AlFh -G'
-  alias llt='ls -AlFtr -G'
-  ;;
-*)
-  alias ll='ls -AlFh --color=auto'
-  alias llt='ls -AlFtr --color=auto'
-  ;;
-esac
-
+alias ll='ls -AlFh --time-style=long-iso --color=auto'
 alias osv='cat /etc/os-release'
 alias gip='curl https://ifconfig.io'
 alias du='du -h --total'

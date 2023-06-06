@@ -34,16 +34,7 @@ export PS1='\[\e[35m\]\h\[\e[00m\]:\[\e[33m\]\w\[\e[31m\]$(__git_ps1)\[\e[00m\]\
 export LESS='-R'
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 
-#color ls
-case "${OSTYPE}" in
-darwin*)
-  alias ll='ls -alF -G'
-  ;;
-*)
-  alias ll='ls -alF --color=auto'
-  ;;
-esac
-
+alias ll='ls -AlFh --time-style=long-iso --color=auto'
 alias tm=tmux
 alias v=nvim
 alias vr='nvim -R'
