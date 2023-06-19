@@ -11,7 +11,7 @@ How to check health is [:checkhealth]:
 -- Default encoding is utf-8
 vim.opt.encoding = "utf-8"
 -- Encoding priority list to open existing file.
-vim.opt.fileencodings = "utf-8,sjis"
+vim.opt.fileencodings = "utf-8,sjis,cp932"
 -- disable netrw for NvimTree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -63,7 +63,7 @@ vim.opt.termguicolors = true
 
 -- keymap option
 local keymapopt = { noremap = true, silent = true }
--- Ctrl + s to :w
+-- Space + Enter to :w
 vim.keymap.set('n', '<Leader><CR>', ':w<CR>', keymapopt)
 -- Q to :q
 vim.keymap.set('n', 'Q', ':q<CR>', keymapopt)
@@ -240,9 +240,6 @@ require('lazy').setup({
       })
     end
   },
-  { 'jacoborus/tender.vim', },
-  { 'joshdick/onedark.vim', },
-  { 'sainnhe/sonokai', },
   { 'Mofiqul/vscode.nvim',
     priority = 1000,
     config = function()
@@ -474,16 +471,9 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>m', '<Plug>MarkdownPreviewToggle', { desc = 'MarkdownPreviewToggle' })
     end,
   },
-  { -- CSV Viewer
-    'chrisbra/csv.vim',
+  { -- Rainbow CSV
+    'mechatroner/rainbow_csv',
     ft = { 'csv' },
-    config = function()
-      vim.api.nvim_create_autocmd("BufEnter", {
-        desc = "CSV Table Preview when open csv.",
-        pattern = "*.csv",
-        command = "CSVTabularize",
-      })
-    end,
   },
   { -- vwS' to quote the v-mode selected word.
     -- cs'" to change single quotation to double quotation.
