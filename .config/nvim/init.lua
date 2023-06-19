@@ -249,21 +249,6 @@ require('lazy').setup({
       end
     end,
   },
-  { -- show buffer tabs
-    'akinsho/bufferline.nvim',
-    event = 'BufRead',
-    config = function()
-      require('bufferline').setup{
-        options = {
-          right_mouse_command = nil, -- default was bdelete!
-          offsets = {{
-              filetype = 'NvimTree',
-              separator = true,
-          }},
-        }
-      }
-    end,
-  },
   { -- Status Line
     'nvim-lualine/lualine.nvim',
     event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
