@@ -274,6 +274,17 @@ require('lazy').setup({
       }
     end
   },
+  { -- buffer tabs
+    'romgrk/barbar.nvim',
+    config = function ()
+      vim.keymap.set(
+        'n', '<Leader>c', ':BufferCloseAllButCurrent<CR>', { noremap = true })
+      require('barbar').setup {
+        -- offset for NvimTree
+        sidebar_filetypes = { NvimTree = true, }
+      }
+    end
+  },
   { -- Tree-sitter
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
