@@ -240,14 +240,24 @@ require('lazy').setup({
       })
     end
   },
-  { 'Mofiqul/vscode.nvim',
-    priority = 1000,
-    config = function()
-      -- Prevent error on VS Code
-      if not vim.g.vscode then
-        vim.cmd.colorscheme 'vscode'
-      end
-    end,
+  -- colorschemes
+  { 'Mofiqul/vscode.nvim' },
+  { 'Shatur/neovim-ayu' },
+  { 'rebelot/kanagawa.nvim' },
+  { 'folke/tokyonight.nvim' },
+  { 'ellisonleao/gruvbox.nvim' },
+  { 'sainnhe/sonokai' },
+  { 'sainnhe/edge' },
+  { 'EdenEast/nightfox.nvim' },
+  { -- colorscheme switcher
+    'zaldih/themery.nvim',
+    config = function ()
+      require('themery').setup({
+        themes = {'vscode', 'ayu', 'kanagawa', 'tokyonight', 'gruvbox', 'sonokai', 'edge', 'nightfox'},
+        themeConfigFile = '~/.config/nvim/lua/theme.lua',
+      })
+      require('theme')
+    end
   },
   { -- Status Line
     'nvim-lualine/lualine.nvim',
