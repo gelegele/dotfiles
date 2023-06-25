@@ -136,6 +136,11 @@ vim.api.nvim_create_autocmd("BufRead", {
   pattern = "*/SigmaMemo.txt",
   command = "normal G",
 })
+vim.api.nvim_create_autocmd("BufEnter", {
+  -- didn't work vim.opt.formatoptions
+  desc = "Don't auto commenting new lines",
+	command = "set formatoptions-=cro",
+})
 
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
