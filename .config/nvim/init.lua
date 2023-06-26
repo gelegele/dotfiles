@@ -127,19 +127,23 @@ else
 end
 
 -- My autocmds
+vim.api.nvim_create_augroup( 'my-autocmd', {} )
 vim.api.nvim_create_autocmd("BufRead", {
   desc = "Disabled to edit for read-only file.",
+  group = 'my-autocmd',
   command = "let &l:modifiable = !&readonly",
 })
 vim.api.nvim_create_autocmd("BufRead", {
   desc = "Go to EOF when SigmaMemo.txt is opened.",
+  group = 'my-autocmd',
   pattern = "*/SigmaMemo.txt",
   command = "normal G",
 })
 vim.api.nvim_create_autocmd("BufEnter", {
   -- didn't work vim.opt.formatoptions
   desc = "Don't auto commenting new lines",
-	command = "set formatoptions-=cro",
+  group = 'my-autocmd',
+  command = "set formatoptions-=cro",
 })
 
 -- Install package manager
@@ -229,7 +233,13 @@ require('lazy').setup({
           require("nvim-tree.api").tree.open()
         end
       end
-      vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
+      vim.api.nvim_create_autocmd({ "VimEnter" },
+        {
+          desc = 'Open nvim-tree if dir.',
+          group = 'my-autocmd',
+          callback = open_nvim_tree
+        }
+      )
       -- My keymaps
       require("nvim-tree").setup({
         on_attach = function(bufnr)
