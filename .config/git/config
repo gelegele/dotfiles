@@ -9,11 +9,6 @@
 	rebase = true
 [alias]
 	co = checkout
-	cob = checkout -b
-	cot = checkout --track
-	com = checkout master
-  cod = checkout develop
-	cop = checkout @{-1}
 
 	f = fetch --prune
 	p = pull --prune
@@ -62,10 +57,6 @@
 	dw = diff --no-ext-diff --diff-filter=M --color-words
 	dn = diff --no-ext-diff --name-only
 	ds = diff --no-ext-diff --stat
-	dm = diff --no-ext-diff master
-	dsm = diff --no-ext-diff --stat master
-	dom = diff --no-ext-diff origin/master
-	dsom = diff --no-ext-diff --stat origin/master
 	dc = diff --no-ext-diff --cached --diff-filter=M
 	dnc = diff --no-ext-diff --name-only --cached
 	vd = diff --ext-diff --diff-filter=M
