@@ -97,7 +97,6 @@ if [[ -t 0 ]]; then
 fi
 
 alias ll='ls -AlFh --time-style=long-iso --color=auto'
-alias osv='cat /etc/os-release'
 alias gip='curl https://ifconfig.io'
 alias du='du -h --total'
 alias gr='grep --color=auto'

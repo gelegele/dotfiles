@@ -39,7 +39,6 @@ alias tm=tmux
 alias v=nvim
 alias vr='nvim -R'
 alias f=vifm
-alias osv='cat /etc/os-release'
 alias hs=history
 alias gr='grep --color=auto'
 alias g=git
