@@ -108,6 +108,8 @@ vim.keymap.set('n', '<Leader>h', ':tab help ', { noremap = true })
 vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>', keymapopt)
 -- Space + r to :source $MYVIMRC
 vim.keymap.set('n', '<Leader>r', ':source $MYVIMRC<CR>', keymapopt)
+-- Space + c to :colorscheme
+vim.keymap.set('n', '<Leader><Tab>', ':colorscheme ', { noremap = true })
 -- Key command Reminder
 -- <C-]> to go to the section of the word under the cursor in Help. <C-t> is back.
 
@@ -256,22 +258,26 @@ require('lazy').setup({
     end
   },
   -- colorschemes
-  { 'Mofiqul/vscode.nvim' },
-  { 'Shatur/neovim-ayu' },
-  { 'rebelot/kanagawa.nvim' },
-  { 'folke/tokyonight.nvim' },
-  { 'ellisonleao/gruvbox.nvim' },
-  { 'sainnhe/sonokai' },
-  { 'sainnhe/edge' },
-  { 'EdenEast/nightfox.nvim' },
+  { 'Mofiqul/vscode.nvim',    lazy=true },
+  { 'Shatur/neovim-ayu',      lazy=true },
+  { 'folke/tokyonight.nvim',  lazy=true },
+  { 'sainnhe/sonokai',        lazy=true },
+  { 'sainnhe/edge',           lazy=true },
+  { 'EdenEast/nightfox.nvim', lazy=true },
+  { 'catppuccin/nvim',        lazy=true },
+  { 'jacoborus/tender.vim',   lazy=true },
   { -- colorscheme switcher
     'zaldih/themery.nvim',
     config = function ()
       require('themery').setup({
-        themes = {'vscode', 'ayu', 'kanagawa', 'tokyonight', 'gruvbox', 'sonokai', 'edge', 'nightfox'},
+        themes = {
+          'vscode', 'ayu', 'catppuccin','sonokai', 'tender',
+          'tokyonight-night', 'tokyonight-day', 'edge', 'nightfox',
+          'duskfox', 'habamax'},
         themeConfigFile = '~/.config/nvim/lua/theme.lua',
       })
-      require('theme')
+      pcall(require, 'theme')
+      vim.keymap.set('n', '<Leader>T', ':Themery<CR>', { noremap = true })
     end
   },
   { -- Status Line
