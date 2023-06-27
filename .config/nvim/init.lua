@@ -269,12 +269,16 @@ require('lazy').setup({
   { -- colorscheme switcher
     'zaldih/themery.nvim',
     config = function ()
+      local themefilepath = '~/.config/nvim/lua/theme.lua'
+      if vim.fn.has('win64') == 1 then
+        themefilepath = '~\\AppData\\Local\\nvim\\lua\\theme.lua'
+      end
       require('themery').setup({
         themes = {
           'vscode', 'ayu', 'catppuccin','sonokai', 'tender',
           'tokyonight-night', 'tokyonight-day', 'edge', 'nightfox',
           'duskfox', 'habamax'},
-        themeConfigFile = '~/.config/nvim/lua/theme.lua',
+        themeConfigFile = themefilepath,
       })
       pcall(require, 'theme')
       vim.keymap.set('n', '<Leader>T', ':Themery<CR>', { noremap = true })
@@ -580,4 +584,5 @@ require('lazy').setup({
 -- Local setting if ./lua/local-init.lua exists
 pcall(require, 'local-init')
 
-print('Loading init.lua is completed.')
+local colors_name = vim.g.colors_name and vim.g.colors_name or 'not set'
+print('init.lua loaded. Theme is ' .. colors_name .. '.')
