@@ -290,6 +290,7 @@ require('lazy').setup({
     config = function()
       require('lualine').setup {
         options = {
+          theme = 'papercolor_dark',
           component_separators = '',
           path = 1, -- 0:filename(default), 1:relative, 2:absolute
           symbols = { readonly = '[]' },
