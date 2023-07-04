@@ -1,5 +1,7 @@
 " VIFM Config
 
+" column layout
+set viewcolumns=-{name}..,{perms}
 " show dotfiles
 set dotfiles
 " show auto preview
@@ -17,8 +19,8 @@ set timefmt=" %Y/%m/%d %H:%M:%S"
 set statusline="    %A %u:%g %s %d %t %=%{&sort} "
 
 " viewer
-fileviewer */ ls -AlFhog --time-style=long-iso --color=auto %c
-fileviewer .*/ ls -AlFhog --time-style=long-iso --color=auto %c
+fileviewer */ tree -aFLC 1
+fileviewer .*/ tree -aFLC 1
 fileviewer * less %f
 
 colorscheme my-nord
