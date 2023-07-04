@@ -79,7 +79,7 @@ vim.keymap.set('n', '<Leader>P', '"*P', keymapopt)
 vim.keymap.set('n', '<Leader>]', ':bn<CR>', keymapopt)
 vim.keymap.set('n', '<Leader>[', ':bp<CR>', keymapopt)
 -- Space + x to delete buffer
-vim.keymap.set('n', '<Leader>x', ':bd|bn<CR>', keymapopt)
+vim.keymap.set('n', '<Leader>c', ':bd|bn<CR>', keymapopt)
 -- jj to go to NORMAL mode
 vim.keymap.set('i', 'jj', '<ESC>', keymapopt)
 -- j, k replace gj, gk not to slip wrap lines.
@@ -314,7 +314,7 @@ require('lazy').setup({
     'romgrk/barbar.nvim',
     config = function ()
       vim.keymap.set(
-        'n', '<Leader>c', ':BufferCloseAllButCurrent<CR>', { noremap = true })
+        'n', '<Leader>o', ':BufferCloseAllButCurrent<CR>', { noremap = true })
       require('barbar').setup {
         -- offset for NvimTree
         sidebar_filetypes = { NvimTree = true, }
