@@ -183,7 +183,7 @@ require('lazy').setup({
           shortcut = {
             { desc = ' New',        group = 'Label', action = 'enew',                             key = 'n' },
             { desc = ' Tree',       group = 'Label', action = 'e .',                              key = '.' },
-            { desc = ' Config',     group = 'Label', action = 'e ~/.config/nvim/init.lua',        key = 'c' },
+            { desc = ' Config',     group = 'Label', action = 'e $MYVIMRC',                       key = 'c' },
             { desc = ' zshrc',      group = 'Label', action = 'e ~/.config/zsh/.zshrc',           key = 'z' },
             { desc = ' Lazy',       group = 'Label', action = 'Lazy',                             key = 'L' },
             { desc = ' Files',      group = 'Label', action = 'Telescope find_files hidden=true', key = 'f' },
@@ -305,6 +305,8 @@ require('lazy').setup({
               icons_enabled = false,
             },
           },
+          lualine_y = { 'g:colors_name' },
+          lualine_z = { 'location'},
         }
       }
     end
@@ -574,6 +576,4 @@ require('lazy').setup({
 
 -- Local setting if ./lua/local-init.lua exists
 pcall(require, 'local-init')
-
-local colors_name = vim.g.colors_name and vim.g.colors_name or 'not set'
-print('init.lua loaded. Theme is ' .. colors_name .. '.')
+print('init.lua loaded.')
