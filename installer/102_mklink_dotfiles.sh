@@ -8,7 +8,7 @@ for file in `ls -AF $homesrc`; do
     # Skip directories and normal files.
     continue
   fi
-  makeln="ln -sb $homesrc/$file $homedst/$file"
+  makeln="ln -sf $homesrc/$file $homedst/$file"
   echo $makeln
 	$makeln
 done

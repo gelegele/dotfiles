@@ -15,6 +15,6 @@ dstdir=~/.config/$appname
 rm -rf $dstdir 2> /dev/null
 mkdir -p $dstdir
 for file in `ls -A $srcdir`; do
-  ln -sb $srcdir/$file $dstdir/$file
+  ln -sf $srcdir/$file $dstdir/$file
 done
 
