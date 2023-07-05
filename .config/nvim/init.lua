@@ -216,12 +216,12 @@ require('lazy').setup({
         },
       }
       local builtin = require('telescope.builtin')
-      vim.keymap.set('n', '<leader>tf', builtin.find_files, { desc = 'find files' })
-      vim.keymap.set('n', '<leader>tg', builtin.live_grep, { desc = 'live grep' })
-      vim.keymap.set('n', '<leader>tb', builtin.buffers, { desc = 'buffers' })
-      vim.keymap.set('n', '<leader>tr', builtin.registers, { desc = 'registers' })
-      vim.keymap.set('n', '<leader>ts', builtin.git_status, { desc = 'git status' })
-      vim.keymap.set('n', '<leader>th', builtin.help_tags, { desc = 'help tags' })
+      vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'find files' })
+      vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'live grep' })
+      vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'buffers' })
+      vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = 'registers' })
+      vim.keymap.set('n', '<leader>fs', builtin.git_status, { desc = 'git status' })
+      vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'help tags' })
     end
   },
   { -- Filer (Help: ?)
