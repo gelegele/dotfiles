@@ -27,5 +27,6 @@ installer/200_nvm_install.sh
 - python3-pip
 - docker
 - ccat
+- neofetch
 - wsl-open
 - clasp

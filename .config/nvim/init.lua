@@ -275,9 +275,8 @@ require('lazy').setup({
       end
       require('themery').setup({
         themes = {
-          'vscode', 'ayu', 'catppuccin','sonokai', 'tender',
-          'tokyonight-night', 'tokyonight-day', 'edge', 'nightfox',
-          'duskfox', 'habamax'},
+          'vscode', 'ayu', 'catppuccin','sonokai', 'tender', 'tokyonight-night',
+          'tokyonight-day', 'edge', 'nightfox', 'duskfox', 'habamax'},
         themeConfigFile = themefilepath,
       })
       pcall(require, 'theme')
@@ -510,6 +509,7 @@ require('lazy').setup({
   },
   { -- vwS' to quote the v-mode selected word.
     -- cs'" to change single quotation to double quotation.
+    -- ds" to delete quatation.
     'kylechui/nvim-surround',
     event = 'BufRead',
     config = function()
@@ -543,17 +543,6 @@ require('lazy').setup({
       vim.keymap.set("n", "<C-x>", require("dial.map").dec_normal(), {noremap = true})
       vim.keymap.set("n", "g<C-a>", require("dial.map").inc_gnormal(), {noremap = true})
       vim.keymap.set("n", "g<C-x>", require("dial.map").dec_gnormal(), {noremap = true})
-      vim.keymap.set("v", "<C-a>", require("dial.map").inc_visual(), {noremap = true})
-      vim.keymap.set("v", "<C-x>", require("dial.map").dec_visual(), {noremap = true})
-      vim.keymap.set("v", "g<C-a>",require("dial.map").inc_gvisual(), {noremap = true})
-      vim.keymap.set("v", "g<C-x>",require("dial.map").dec_gvisual(), {noremap = true})
-    end,
-  },
-  { -- Automatically close brackets
-    'windwp/nvim-autopairs',
-    event = 'BufRead',
-    config = function ()
-      require('nvim-autopairs').setup({check_ts = true})
     end,
   },
   { -- gs? with motions or Visual select to convert casing.
