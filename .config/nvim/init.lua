@@ -473,9 +473,10 @@ require('lazy').setup({
             end,
             { desc='prev hunk', expr=true})
           map({'n', 'v'}, '<leader>gu', ':Gitsigns stage_hunk<CR>', { desc = 'stage hunk' })
-          map({'n', 'v'}, '<leader>g!', ':Gitsigns reset_hunk<CR>', { desc = 'reset hunk' })
+          map({'n', 'v'}, '<leader>gd', ':Gitsigns reset_hunk<CR>', { desc = 'reset hunk' })
           map('n', '<leader>gU', gs.stage_buffer, { desc = 'stage buffer' })
-          map('n', '<leader>gd', function() gs.diffthis('~') end, { desc = 'diff HEAD' })
+          map('n', '<leader>gD', gs.reset_buffer, { desc = 'reset buffer' })
+          map('n', '<leader>gf', function() gs.diffthis('~') end, { desc = 'diff HEAD' })
           map('n', '<leader>gb', ':Gitsigns blame_line<CR>', { desc = 'blame the line' })
         end
       })
