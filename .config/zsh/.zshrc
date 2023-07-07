@@ -106,6 +106,7 @@ fi
 alias tm=tmux
 alias tma='tmux a'
 alias tmk='tmux kill-server'
+alias vim='vim -Nu $XDG_CONFIG_HOME/vim/.vimrc'
 alias v=nvim
 alias vr='nvim -R'
 alias f=vifm
