@@ -36,10 +36,6 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 -- auto wrap
 vim.opt.wrap = true
--- show cursor horizontal line
-vim.opt.cursorline = true
--- show cursor vertical line
-vim.opt.cursorcolumn = true
 -- Allow keys below that move the cursor to move to the pre/next line.
 vim.opt.whichwrap = "b,[,],<,>"
 -- enable clipboard sync.
@@ -53,13 +49,11 @@ if vim.fn.has("wsl") == 1 then
   }
 end
 vim.opt.clipboard = 'unnamedplus'
-
 -- pseudo-transparency for a floating window and the popup menu.
 vim.opt.winblend = 10
 vim.opt.pumblend = 10
 -- True Color
 vim.opt.termguicolors = true
-
 
 -- keymap option
 local keymapopt = { noremap = true, silent = true }
