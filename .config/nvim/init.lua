@@ -318,6 +318,7 @@ require('lazy').setup({
   },
   { -- Tree-sitter
     'nvim-treesitter/nvim-treesitter',
+    event = 'BufRead',
     build = ':TSUpdate',
     config = function()
       if vim.fn.has('win64') == 1 then
@@ -337,6 +338,7 @@ require('lazy').setup({
   },
   {
     'williamboman/mason.nvim',
+    event = 'BufRead',
     config = function()
       if vim.fn.has('win64') == 1 then
         -- No LSP on Windows
@@ -347,6 +349,7 @@ require('lazy').setup({
   },
   {
     'williamboman/mason-lspconfig.nvim',
+    event = 'BufRead',
     config = function()
       if vim.fn.has('win64') == 1 then
         -- No LSP on Windows
@@ -368,22 +371,22 @@ require('lazy').setup({
     end,
   },
   {
-    'neovim/nvim-lspconfig',
+    'neovim/nvim-lspconfig', event = 'BufRead',
   },
   {
-    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-buffer', event = 'BufRead',
   },
   {
-    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-path', event = 'BufRead',
   },
   {
-    'hrsh7th/cmp-cmdline',
+    'hrsh7th/cmp-cmdline', event = 'BufRead',
   },
   {
-    'L3MON4D3/LuaSnip',
+    'L3MON4D3/LuaSnip', event = 'BufRead',
   },
   {
-    'saadparwaiz1/cmp_luasnip',
+    'saadparwaiz1/cmp_luasnip', event = 'BufRead',
   },
   {
     "hrsh7th/nvim-cmp",
@@ -416,10 +419,11 @@ require('lazy').setup({
     end,
   },
   {
-    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-nvim-lsp", event = 'BufRead',
   },
   { -- Show shortcut keys
     'folke/which-key.nvim',
+    event = 'BufRead',
     config = function()
       vim.o.timeout = true
       vim.o.timeoutlen = 300
