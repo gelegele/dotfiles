@@ -1,4 +1,4 @@
-name: Docker Workflow
+name: My Workflow
 on:
   push:
     branches:
@@ -12,7 +12,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Build and run container
+      - name: Execute installer
         run: |
-          docker build -t my-devenv .
-          docker run my-devenv
+          ./installer/100_execute-me.sh
