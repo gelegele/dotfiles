@@ -1,0 +1,17 @@
+name: My Workflow
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Execute installer
+        run: |
+          ./installer/100_execute-me.sh
