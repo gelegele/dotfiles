@@ -501,7 +501,8 @@ require('lazy').setup({
       vim.fn["mkdp#util#install"]()
     end,
     config = function()
-      vim.keymap.set('n', '<leader>m', '<Plug>MarkdownPreviewToggle', { desc = 'MarkdownPreviewToggle' })
+      vim.g.mkdp_auto_close = 0 -- Don't auto close preview
+      vim.keymap.set('n', '<leader>m', '<Plug>MarkdownPreview', { desc = 'MarkdownPreview' })
     end,
   },
   { -- Rainbow CSV
