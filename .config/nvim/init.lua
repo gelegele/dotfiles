@@ -60,10 +60,8 @@ vim.keymap.set('n', '<Leader><CR>', ':w<CR>', keymapopt)
 vim.keymap.set('n', 'Q', ':q<CR>', keymapopt)
 -- !! to :q!
 vim.keymap.set('n', '!!', ':qa!<CR>', keymapopt)
--- TAB to add new line.
--- Caution! Tab key code is same as C-i.
-vim.keymap.set('n', '<Tab>', 'o<ESC>', keymapopt)
-vim.keymap.set('n', '<S-Tab>', 'O<ESC>', keymapopt)
+-- Shift + TAB to add a new line while remaining in normal mode.
+vim.keymap.set('n', '<S-Tab>', 'o<ESC>', keymapopt)
 -- Space + [ to change buffer
 vim.keymap.set('n', '<Leader>]', ':bn<CR>', keymapopt)
 vim.keymap.set('n', '<Leader>[', ':bp<CR>', keymapopt)
