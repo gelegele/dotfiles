@@ -6,4 +6,5 @@ git:
 
 keybinding:
     universal:
+      return: 'q' # default was esc
       quit: 'Q' # default was q
