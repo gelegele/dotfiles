@@ -421,8 +421,6 @@ require('lazy').setup({
     'folke/which-key.nvim',
     event = 'BufRead',
     config = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
       require("which-key").setup({})
     end,
   },
