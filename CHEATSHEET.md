@@ -44,6 +44,12 @@
 - :%v/{pattern}/d
   - Delete all lines not containing pattern.
 
+### Telescope
+- C-/
+  - Show which-key.
+- C-c
+  - Close
+
 ## TMUX
 - C-<Space> + [
   - Enter Copy mode.
