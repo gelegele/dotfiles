@@ -12,9 +12,6 @@ How to check health is [:checkhealth]:
 vim.opt.encoding = "utf-8"
 -- Encoding priority list to open existing file.
 vim.opt.fileencodings = "utf-8,sjis,cp932"
--- disable netrw for NvimTree
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
 -- Leader key is space.
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
@@ -91,8 +88,6 @@ vim.keymap.set('n', '<Leader>n', ':set nonumber!<CR>', keymapopt)
 vim.keymap.set('n', '<Leader>w', ':set wrap!<CR>', keymapopt)
 -- Space + h to prefix to open help on new tab.
 vim.keymap.set('n', '<Leader>h', ':tab help ', { noremap = true })
--- Space + e to open the tree.
-vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>', keymapopt)
 -- Space + r to :source $MYVIMRC
 vim.keymap.set('n', '<Leader>r', ':source $MYVIMRC<CR>', keymapopt)
 -- Space + c to :colorscheme
@@ -210,6 +205,11 @@ require('lazy').setup({
     'nvim-tree/nvim-tree.lua',
     -- No event mapping is faster than event = "VimEnter"
     config = function()
+      -- disable netrw for NvimTree
+      vim.g.loaded_netrw = 1
+      vim.g.loaded_netrwPlugin = 1
+      -- Space + e to open the tree.
+      vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
       -- If buffer is a dir, change to the dir and open the tree.
       local function open_nvim_tree(data)
         if vim.fn.isdirectory(data.file) == 1 then
