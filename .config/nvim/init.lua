@@ -28,14 +28,10 @@ vim.opt.shiftwidth = 2
 vim.opt.number = true
 -- Show tail spaces.
 vim.opt.list = true
--- High Light Search
-vim.opt.hlsearch = true
 -- ignore case
 vim.opt.ignorecase = true
 -- case-sensitive if capital letters
 vim.opt.smartcase = true
--- auto wrap
-vim.opt.wrap = true
 -- Allow keys below that move the cursor to move to the pre/next line.
 vim.opt.whichwrap = "b,[,],<,>"
 -- enable clipboard sync.
@@ -64,11 +60,9 @@ vim.keymap.set('n', 'Q', ':q<CR>', keymapopt)
 -- !! to :q!
 vim.keymap.set('n', '!!', ':qa!<CR>', keymapopt)
 -- TAB to add new line.
+-- Caution! Tab key code is same as C-i.
 vim.keymap.set('n', '<Tab>', 'o<ESC>', keymapopt)
 vim.keymap.set('n', '<S-Tab>', 'O<ESC>', keymapopt)
--- Space + p to put clipboard text
-vim.keymap.set('n', '<Leader>p', '"*p', keymapopt)
-vim.keymap.set('n', '<Leader>P', '"*P', keymapopt)
 -- Space + [ to change buffer
 vim.keymap.set('n', '<Leader>]', ':bn<CR>', keymapopt)
 vim.keymap.set('n', '<Leader>[', ':bp<CR>', keymapopt)
@@ -104,8 +98,6 @@ vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>', keymapopt)
 vim.keymap.set('n', '<Leader>r', ':source $MYVIMRC<CR>', keymapopt)
 -- Space + c to :colorscheme
 vim.keymap.set('n', '<Leader><Tab>', ':colorscheme ', { noremap = true })
--- Key command Reminder
--- <C-]> to go to the section of the word under the cursor in Help. <C-t> is back.
 
 -- TODO create plugin
 if pcall(require, 'togglehls') then
