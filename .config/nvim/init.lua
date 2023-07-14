@@ -50,6 +50,7 @@ vim.opt.winblend = 10
 vim.opt.pumblend = 10
 -- True Color
 vim.opt.termguicolors = true
+vim.opt.helplang = 'ja,en'
 
 -- keymap option
 local keymapopt = { noremap = true, silent = true }
@@ -132,6 +133,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
   desc = "Don't auto commenting new lines",
   group = 'my-autocmd',
   command = "set formatoptions-=cro",
+})
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight yanked text.",
+  group = 'my-autocmd',
+  command = "lua vim.highlight.on_yank { higroup='IncSearch', timeout=300 }",
 })
 
 -- Install package manager
@@ -430,6 +436,9 @@ require('lazy').setup({
         handlers = { gitsigns = true, },
       })
     end
+  },
+  { -- Japanese Help
+    'vim-jp/vimdoc-ja',
   },
   { -- Show git status
     'lewis6991/gitsigns.nvim',
