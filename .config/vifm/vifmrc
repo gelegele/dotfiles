@@ -1,7 +1,7 @@
 " VIFM Config
 
 " column layout
-set viewcolumns=-{name}..,{perms}
+set viewcolumns=-{name}..,{mtime}
 " show dotfiles
 set dotfiles
 " show auto preview
