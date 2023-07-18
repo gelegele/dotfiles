@@ -51,13 +51,13 @@
   - Close
 
 ## TMUX
-- C-<Space> + [
+- C-Space + [
   - Enter Copy mode.
-- C-<Space> + ]
+- C-Space + ]
   - Paste copied text.
-- C-<Space> + s
+- C-Space + s
   - Split pane horizontally.
-- C-<Space> + v
+- C-Space + v
   - Split pane vertially.
 
 ## Linux
