@@ -59,6 +59,8 @@ vim.keymap.set('n', 'Q', ':q<CR>', keymapopt)
 vim.keymap.set('n', '!!', ':qa!<CR>', keymapopt)
 -- Shift + TAB to add a new line while remaining in normal mode.
 vim.keymap.set('n', '<S-Tab>', 'o<ESC>', keymapopt)
+-- Ctrl + p to paste yanked text
+vim.keymap.set({'n', 'v'}, '<C-p>', '"0p', keymapopt)
 -- Space + [ to change buffer
 vim.keymap.set('n', '<Leader>]', ':bn<CR>', keymapopt)
 vim.keymap.set('n', '<Leader>[', ':bp<CR>', keymapopt)

@@ -24,11 +24,9 @@ inoremap <silent> jj <ESC>
 "Jで空白なし結合
 noremap J gJ
 "ctrl+Enterキーで空行挿入
-if has('gui_running')
-  noremap <C-CR> o<ESC>
-else
-  noremap <NL> o<ESC>
-endif
+" nnoremap <S-Tab> o<ESC>
+"Ctrl + p でヤンクレジスター貼り付け
+noremap <C-p> "0p
 
 noremap j gj
 noremap k gk
