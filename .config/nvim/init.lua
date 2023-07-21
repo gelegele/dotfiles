@@ -95,21 +95,6 @@ vim.keymap.set('n', '<Leader>r', ':source $MYVIMRC<CR>', keymapopt)
 -- Space + c to :colorscheme
 vim.keymap.set('n', '<Leader><Tab>', ':colorscheme ', { noremap = true })
 
--- TODO create plugin
-if pcall(require, 'togglehls') then
-  local ToggleHls = require("togglehls")
-  vim.keymap.set('n', '<C-n>', ToggleHls.toggle)
-else
-  function ToggleHls()
-    if vim.v.hlsearch == 1 then
-      vim.cmd('nohl')
-    else
-      vim.api.nvim_feedkeys("*", "m", true)
-    end
-  end
-  vim.keymap.set('n', '<C-n>', ':lua ToggleHls()<CR>')
-end
-
 -- My autocmds
 vim.api.nvim_create_augroup( 'my-autocmd', {} )
 vim.api.nvim_create_autocmd("BufRead", {
@@ -410,6 +395,12 @@ require('lazy').setup({
   },
   {
     "hrsh7th/cmp-nvim-lsp", event = 'BufRead',
+  },
+  { -- My Plugin to toggle highlight search with <C-n>
+    'gelegele/hls.nvim',
+    config = function ()
+      require('hls.nvim').setup()
+    end,
   },
   { -- Show shortcut keys
     'folke/which-key.nvim',
