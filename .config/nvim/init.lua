@@ -167,7 +167,7 @@ require('lazy').setup({
           footer = { '', 'This is your life.', 'Be yourself.' },
         }
       }
-      vim.keymap.set('n', '<Leader>d', ':Dashboard<CR>', { desc = 'Open Dashboard' } )
+      vim.keymap.set('n', '<Leader>d', ':Dashboard<CR>', { desc = 'Open Dashboard', silent = true } )
     end,
   },
   { -- fuzzy finder

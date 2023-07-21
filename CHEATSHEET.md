@@ -17,6 +17,8 @@
   - Paste and indent.
 - @:
   - Execute the last Ex command.
+- q:
+  - Show Ex command history.
 ### Insert Mode
 - C-u
   - Delete line text before the cursor position.
