@@ -133,13 +133,14 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   { -- Install NERD FONT on your OS.
     'nvim-tree/nvim-web-devicons',
-    lazy = true
   },
   { -- Check startup time
-    'dstein64/vim-startuptime'
+    'dstein64/vim-startuptime',
+    cmd = { 'StartupTime' },
   },
   { -- Dashboard
     'glepnir/dashboard-nvim',
+    event = "VimEnter",
     config = function()
       require('dashboard').setup {
         config ={
@@ -173,6 +174,7 @@ require('lazy').setup({
   { -- fuzzy finder
     'nvim-telescope/telescope.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
+    keys = { { '<Leader>f', mode = 'n' } },
     config = function()
       require('telescope').setup {
         defaults = {
@@ -190,7 +192,7 @@ require('lazy').setup({
   },
   { -- Filer (Help: ?)
     'nvim-tree/nvim-tree.lua',
-    -- No event mapping is faster than event = "VimEnter"
+    event = "VimEnter",
     config = function()
       -- disable netrw for NvimTree
       vim.g.loaded_netrw = 1
@@ -227,16 +229,17 @@ require('lazy').setup({
     end
   },
   -- colorschemes
-  { 'Mofiqul/vscode.nvim',    lazy=true },
-  { 'Shatur/neovim-ayu',      lazy=true },
-  { 'folke/tokyonight.nvim',  lazy=true },
-  { 'sainnhe/sonokai',        lazy=true },
-  { 'sainnhe/edge',           lazy=true },
-  { 'EdenEast/nightfox.nvim', lazy=true },
-  { 'catppuccin/nvim',        lazy=true },
-  { 'jacoborus/tender.vim',   lazy=true },
+  { 'Mofiqul/vscode.nvim' },
+  { 'Shatur/neovim-ayu' },
+  { 'folke/tokyonight.nvim' },
+  { 'sainnhe/sonokai' },
+  { 'sainnhe/edge' },
+  { 'EdenEast/nightfox.nvim' },
+  { 'catppuccin/nvim' },
+  { 'jacoborus/tender.vim' },
   { -- colorscheme switcher
     'zaldih/themery.nvim',
+    lazy = false,
     config = function ()
       local themefilepath = '~/.config/nvim/lua/theme.lua'
       if vim.fn.has('win64') == 1 then
@@ -254,7 +257,7 @@ require('lazy').setup({
   },
   { -- Status Line
     'nvim-lualine/lualine.nvim',
-    event = { "InsertEnter", "CursorHold", "FocusLost", "BufRead", "BufNewFile" },
+    event = { 'BufRead', 'BufNewFile' },
     config = function()
       require('lualine').setup {
         options = {
@@ -282,6 +285,7 @@ require('lazy').setup({
   },
   { -- buffer tabs
     'romgrk/barbar.nvim',
+    event = "VimEnter",
     config = function ()
       vim.keymap.set(
         'n', '<Leader>o', ':BufferCloseAllButCurrent<CR>', { noremap = true })
@@ -293,7 +297,7 @@ require('lazy').setup({
   },
   { -- Tree-sitter
     'nvim-treesitter/nvim-treesitter',
-    event = 'BufRead',
+    event = { 'BufRead', 'BufNewFile' },
     build = ':TSUpdate',
     config = function()
       if vim.fn.has('win64') == 1 then
@@ -309,11 +313,11 @@ require('lazy').setup({
   },
   { -- Show indents
     'lukas-reineke/indent-blankline.nvim',
-    event = 'BufRead',
+    event = { 'BufRead', 'BufNewFile' },
   },
   {
     'williamboman/mason.nvim',
-    event = 'BufRead',
+    event = { 'BufRead', 'BufNewFile' },
     config = function()
       if vim.fn.has('win64') == 1 then
         -- No LSP on Windows
@@ -324,7 +328,7 @@ require('lazy').setup({
   },
   {
     'williamboman/mason-lspconfig.nvim',
-    event = 'BufRead',
+    event = { 'BufRead', 'BufNewFile' },
     config = function()
       if vim.fn.has('win64') == 1 then
         -- No LSP on Windows
@@ -346,22 +350,28 @@ require('lazy').setup({
     end,
   },
   {
-    'neovim/nvim-lspconfig', event = 'BufRead',
+    'neovim/nvim-lspconfig',
+    event = { 'BufRead', 'BufNewFile' },
   },
   {
-    'hrsh7th/cmp-buffer', event = 'BufRead',
+    'hrsh7th/cmp-buffer',
+    event = { 'BufRead', 'BufNewFile' },
   },
   {
-    'hrsh7th/cmp-path', event = 'BufRead',
+    'hrsh7th/cmp-path',
+    event = { 'BufRead', 'BufNewFile' },
   },
   {
-    'hrsh7th/cmp-cmdline', event = 'BufRead',
+    'hrsh7th/cmp-cmdline',
+    event = { 'BufRead', 'BufNewFile' },
   },
   {
-    'L3MON4D3/LuaSnip', event = 'BufRead',
+    'L3MON4D3/LuaSnip',
+    event = { 'BufRead', 'BufNewFile' },
   },
   {
-    'saadparwaiz1/cmp_luasnip', event = 'BufRead',
+    'saadparwaiz1/cmp_luasnip',
+    event = { 'BufRead', 'BufNewFile' },
   },
   {
     "hrsh7th/nvim-cmp",
@@ -394,24 +404,26 @@ require('lazy').setup({
     end,
   },
   {
-    "hrsh7th/cmp-nvim-lsp", event = 'BufRead',
+    "hrsh7th/cmp-nvim-lsp",
+    event = { 'BufRead', 'BufNewFile' },
   },
   { -- My Plugin to toggle highlight search with <C-n>
     'gelegele/hls.nvim',
+    keys = {{ '<C-n>', mode = 'n' }},
     config = function ()
       require('hls.nvim').setup()
     end,
   },
   { -- Show shortcut keys
     'folke/which-key.nvim',
-    event = 'BufRead',
+    event = { 'BufRead', 'BufNewFile' },
     config = function()
       require("which-key").setup({})
     end,
   },
   { -- Scroll Bar
     'petertriho/nvim-scrollbar',
-    event = 'BufRead',
+    event = { 'BufRead', 'BufNewFile' },
     config = function()
       require('scrollbar').setup({
         handlers = { gitsigns = true, },
@@ -420,10 +432,11 @@ require('lazy').setup({
   },
   { -- Japanese Help
     'vim-jp/vimdoc-ja',
+    event = { 'BufRead', 'BufNewFile' },
   },
   { -- Show git status
     'lewis6991/gitsigns.nvim',
-    event = 'BufRead',
+    keys = { { '<Leader>g', mode = 'n' } },
     config = function()
       require('gitsigns').setup({
         signcolumn = false,
@@ -464,17 +477,16 @@ require('lazy').setup({
   },
   { -- Open Lazygit
     'kdheepak/lazygit.nvim',
-    event = 'BufRead',
-    config = function()
-      vim.keymap.set('n', '<Leader>gl', ':LazyGit<CR>')
-    end,
+    keys = { { '<Leader>gl', ':LazyGit<CR>', mode = 'n', desc = 'Open LazyGit' } },
   },
   { -- Seamless window selection with tmux
     'christoomey/vim-tmux-navigator',
+    event = 'VimEnter',
   },
   { -- resize nvim/tmux pane with the same hotkeys
     -- as Alt-h, Alt-j, Alt-k, Alt-l
-    'RyanMillerC/better-vim-tmux-resizer'
+    'RyanMillerC/better-vim-tmux-resizer',
+    event = 'VimEnter',
   },
   { -- Preview markdown with nodejs
     "iamcco/markdown-preview.nvim",
@@ -495,18 +507,18 @@ require('lazy').setup({
     -- cs'" to change single quotation to double quotation.
     -- ds" to delete quatation.
     'kylechui/nvim-surround',
-    event = 'BufRead',
+    event = { 'BufRead', 'BufNewFile' },
     config = function()
       require('nvim-surround').setup()
     end
   },
   { -- gcc to comment in/out
     'tpope/vim-commentary',
-    event = 'BufRead',
+    keys = { { 'gcc', mode = 'n'} },
   },
   { -- Extends C-a, C-x
     'monaqa/dial.nvim',
-    event = 'BufRead',
+    event = { 'BufRead', 'BufNewFile' },
     config = function()
       local augend = require("dial.augend")
       require("dial.config").augends:register_group{
@@ -525,8 +537,6 @@ require('lazy').setup({
       }
       vim.keymap.set("n", "<C-a>", require("dial.map").inc_normal(), {noremap = true})
       vim.keymap.set("n", "<C-x>", require("dial.map").dec_normal(), {noremap = true})
-      vim.keymap.set("n", "g<C-a>", require("dial.map").inc_gnormal(), {noremap = true})
-      vim.keymap.set("n", "g<C-x>", require("dial.map").dec_gnormal(), {noremap = true})
     end,
   },
   { -- gs? with motions or Visual select to convert casing.
@@ -534,27 +544,26 @@ require('lazy').setup({
     --   gsc -> camelCase
     --   gsm -> CamelCase
     'arthurxavierx/vim-caser',
-    event = 'BufRead',
+    keys = { { 'gs', mode = {'n', 'v'}} },
   },
   { -- Space j to split/join blocks of code.
     'Wansmer/treesj',
-    event = 'BufRead',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    keys = {{ "<Leader>j", ':TSJToggle<CR>', mode ='n', desc = 'TSJToggle' }},
     config = function()
-      require('treesj').setup(
-        { use_default_keymaps = false }
-      )
-      vim.keymap.set("n", "<Leader>j", ':TSJToggle<CR>', { desc = 'TSJToggle' })
+      require('treesj').setup({
+        use_default_keymaps = false,
+      })
     end,
   },
   { -- autoclose and autorename html tag.
     'windwp/nvim-ts-autotag',
-    event = 'BufRead',
+    event = { 'BufRead', 'BufNewFile' },
     config = function ()
       require('nvim-ts-autotag').setup()
     end,
   },
-}, {})
+}, { defaults = { lazy = true }})
 
 -- Local setting if ./lua/local-init.lua exists
 pcall(require, 'local-init')
