@@ -514,7 +514,7 @@ require('lazy').setup({
   },
   { -- gcc to comment in/out
     'tpope/vim-commentary',
-    keys = { { 'gcc', mode = 'n'} },
+    keys = {{ 'gcc', mode = { 'n', 'v' }}},
   },
   { -- Extends C-a, C-x
     'monaqa/dial.nvim',
