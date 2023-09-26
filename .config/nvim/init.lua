@@ -11,7 +11,7 @@ How to check health is [:checkhealth]:
 -- Default encoding is utf-8
 vim.opt.encoding = "utf-8"
 -- Encoding priority list to open existing file.
-vim.opt.fileencodings = "utf-8,sjis,cp932"
+vim.opt.fileencodings = "utf-8,sjis,cp932,utf-16le"
 -- Leader key is space.
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
