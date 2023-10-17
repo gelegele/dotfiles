@@ -48,6 +48,9 @@ vim.opt.pumblend = 10
 -- True Color
 vim.opt.termguicolors = true
 vim.opt.helplang = 'ja,en'
+-- Show file name on GUI
+vim.opt.title = true
+vim.opt.titlestring = '%t'
 
 -- keymap option
 local keymapopt = { noremap = true, silent = true }
