@@ -106,9 +106,9 @@ vim.api.nvim_create_autocmd("BufRead", {
   command = "let &l:modifiable = !&readonly",
 })
 vim.api.nvim_create_autocmd("BufRead", {
-  desc = "Go to EOF when SigmaMemo.txt is opened.",
+  desc = "Go to EOF when a pattern file is opened.",
   group = 'my-autocmd',
-  pattern = "*/SigmaMemo.txt",
+  pattern = "*.log,*/SigmaMemo.txt",
   command = "normal G",
 })
 vim.api.nvim_create_autocmd("BufEnter", {
