@@ -240,6 +240,7 @@ require('lazy').setup({
   { 'EdenEast/nightfox.nvim' },
   { 'catppuccin/nvim' },
   { 'jacoborus/tender.vim' },
+  { 'rmehri01/onenord.nvim' },
   { -- colorscheme switcher
     'zaldih/themery.nvim',
     lazy = false,
@@ -251,7 +252,7 @@ require('lazy').setup({
       require('themery').setup({
         themes = {
           'vscode', 'ayu', 'catppuccin','sonokai', 'tender', 'tokyonight-night',
-          'tokyonight-day', 'edge', 'nightfox', 'duskfox', 'habamax'},
+          'tokyonight-day', 'edge', 'nightfox', 'duskfox', 'onenord'},
         themeConfigFile = themefilepath,
       })
       pcall(require, 'theme')
