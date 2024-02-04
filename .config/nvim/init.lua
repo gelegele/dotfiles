@@ -567,6 +567,14 @@ require('lazy').setup({
       require('nvim-ts-autotag').setup()
     end,
   },
+  { -- UI for messages, cmdline and the popupmenu.
+    "folke/noice.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    }
+  },
 }, { defaults = { lazy = true }})
 
 -- Local setting if ./lua/local-init.lua exists
