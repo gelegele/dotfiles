@@ -160,10 +160,9 @@ require('lazy').setup({
             { desc = ' New',        group = 'Label', action = 'enew',                             key = 'n' },
             { desc = ' Tree',       group = 'Label', action = 'e .',                              key = '.' },
             { desc = ' Config',     group = 'Label', action = 'e $MYVIMRC',                       key = 'c' },
-            { desc = ' zshrc',      group = 'Label', action = 'e ~/.config/zsh/.zshrc',           key = 'z' },
             { desc = ' Lazy',       group = 'Label', action = 'Lazy',                             key = 'L' },
-            { desc = ' Files',      group = 'Label', action = 'Telescope find_files hidden=true', key = 'f' },
             { desc = ' StartupTime',group = 'Label', action = 'StartupTime --tries 3',            key = 's' },
+            { desc = ' zshrc',      group = 'Label', action = 'e ~/.config/zsh/.zshrc',           key = 'z' },
           },
           packages = { enable  = false },
           project = { enable  = false },
@@ -570,10 +569,23 @@ require('lazy').setup({
   { -- UI for messages, cmdline and the popupmenu.
     "folke/noice.nvim",
     event = "VeryLazy",
+    opts = {}, -- add any options here
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
-    }
+    },
+    config = function()
+      require("noice").setup({
+        lsp = {
+          -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+          override = {
+            ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+            ["vim.lsp.util.stylize_markdown"] = true,
+            ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+          },
+        },
+      })
+    end,
   },
 }, { defaults = { lazy = true }})
 
