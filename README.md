@@ -29,4 +29,5 @@ installer/200_nvm_install.sh
 - ccat
 - neofetch
 - wsl-open
+- gh
 - clasp

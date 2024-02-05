@@ -8,7 +8,7 @@ fi
 appname=$1
 echo "Making symlinks of $appname config files..."
 
-confdir=$(cd $(dirname $0)/../.config;pwd)
+confdir=$(cd $(dirname $0)/../home/.config;pwd)
 srcdir=$confdir/$appname
 dstdir=~/.config/$appname
 
