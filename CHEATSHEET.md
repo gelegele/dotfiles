@@ -63,6 +63,8 @@
   - Split pane vertially.
 
 ## Linux
+- C-+, C--, C-0
+  - Resize sreen.
 - nvim --clean
   - Start nvim without config.
 - curl -LO https://hoge.com/hoge.txt
