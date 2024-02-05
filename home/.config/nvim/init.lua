@@ -68,7 +68,7 @@ vim.keymap.set({'n', 'v'}, '<C-p>', '"0p', keymapopt)
 vim.keymap.set('n', '<Leader>]', ':bn<CR>', keymapopt)
 vim.keymap.set('n', '<Leader>[', ':bp<CR>', keymapopt)
 -- Space + x to delete buffer
-vim.keymap.set('n', '<Leader>c', ':bd|bn<CR>', keymapopt)
+vim.keymap.set('n', '<Leader>x', ':bd|bn<CR>', keymapopt)
 -- jj to go to NORMAL mode
 vim.keymap.set('i', 'jj', '<ESC>', keymapopt)
 -- j, k replace gj, gk not to slip wrap lines.
@@ -162,6 +162,7 @@ require('lazy').setup({
             { desc = ' Config',     group = 'Label', action = 'e $MYVIMRC',                       key = 'c' },
             { desc = ' Lazy',       group = 'Label', action = 'Lazy',                             key = 'L' },
             { desc = ' StartupTime',group = 'Label', action = 'StartupTime --tries 3',            key = 's' },
+            { desc = '󰋢 checkhealth',group = 'Label', action = 'checkhealth',                      key = 'h' },
             { desc = ' zshrc',      group = 'Label', action = 'e ~/.config/zsh/.zshrc',           key = 'z' },
           },
           packages = { enable  = false },
@@ -200,7 +201,7 @@ require('lazy').setup({
       vim.g.loaded_netrw = 1
       vim.g.loaded_netrwPlugin = 1
       -- Space + e to open the tree.
-      vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+      vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>', keymapopt)
       -- If buffer is a dir, change to the dir and open the tree.
       local function open_nvim_tree(data)
         if vim.fn.isdirectory(data.file) == 1 then
@@ -255,7 +256,7 @@ require('lazy').setup({
         themeConfigFile = themefilepath,
       })
       pcall(require, 'theme')
-      vim.keymap.set('n', '<Leader>T', ':Themery<CR>', { noremap = true })
+      vim.keymap.set('n', '<Leader>T', ':Themery<CR>', keymapopt)
     end
   },
   { -- Status Line
@@ -291,7 +292,7 @@ require('lazy').setup({
     event = "VimEnter",
     config = function ()
       vim.keymap.set(
-        'n', '<Leader>o', ':BufferCloseAllButCurrent<CR>', { noremap = true })
+        'n', '<Leader>o', ':BufferCloseAllButCurrent<CR>', keymapopt)
       require('barbar').setup {
         -- offset for NvimTree
         sidebar_filetypes = { NvimTree = true, }
@@ -343,9 +344,7 @@ require('lazy').setup({
           local opts = {}
           opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
           opts.settings = {
-            Lua = {
-              diagnostics = { globals = { 'vim' } }
-            }
+            Lua = { diagnostics = { globals = { 'vim' } } }
 	        }
           require("lspconfig")[server_name].setup(opts)
         end,
@@ -538,8 +537,8 @@ require('lazy').setup({
           augend.constant.alias.bool,
         },
       }
-      vim.keymap.set("n", "<C-a>", require("dial.map").inc_normal(), {noremap = true})
-      vim.keymap.set("n", "<C-x>", require("dial.map").dec_normal(), {noremap = true})
+      vim.keymap.set("n", "<C-a>", require("dial.map").inc_normal(), keymapopt)
+      vim.keymap.set("n", "<C-x>", require("dial.map").dec_normal(), keymapopt)
     end,
   },
   { -- gs? with motions or Visual select to convert casing.
