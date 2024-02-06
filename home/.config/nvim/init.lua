@@ -91,12 +91,10 @@ vim.keymap.set('n', '<Leader>s', ':%s///gc<Left><Left><Left>', { noremap = true 
 vim.keymap.set('n', '<Leader>n', ':set nonumber!<CR>', keymapopt)
 -- Space + w to toggle auto wrap.
 vim.keymap.set('n', '<Leader>w', ':set wrap!<CR>', keymapopt)
--- Space + h to prefix to open help on new tab.
+-- Space + h to prefix to open help on new tab. To go back with gt.
 vim.keymap.set('n', '<Leader>h', ':tab help ', { noremap = true })
 -- Space + r to :source $MYVIMRC
 vim.keymap.set('n', '<Leader>r', ':source $MYVIMRC<CR>', keymapopt)
--- Space + c to :colorscheme
-vim.keymap.set('n', '<Leader><Tab>', ':colorscheme ', { noremap = true })
 
 -- My autocmds
 vim.api.nvim_create_augroup( 'my-autocmd', {} )
@@ -171,13 +169,13 @@ require('lazy').setup({
           footer = { '', 'This is your life.', 'Be yourself.' },
         }
       }
-      vim.keymap.set('n', '<Leader>d', ':Dashboard<CR>', { desc = 'Open Dashboard', silent = true } )
+      vim.keymap.set('n', '<Leader>d', ':Dashboard<CR>', keymapopt )
     end,
   },
   { -- fuzzy finder
     'nvim-telescope/telescope.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    keys = { { '<Leader>f', mode = 'n' } },
+    keys = { { '<Leader>f', mode = 'n', desc = 'telescope' } },
     config = function()
       require('telescope').setup {
         defaults = {
@@ -445,13 +443,11 @@ require('lazy').setup({
         numhl      = true,
         on_attach = function(bufnr)
           local gs = package.loaded.gitsigns
-
           local function map(mode, l, r, opts)
             opts = opts or {}
             opts.buffer = bufnr
             vim.keymap.set(mode, l, r, opts)
           end
-
           -- keymaps
           map('n', '<leader>g]',
             function()
@@ -469,17 +465,16 @@ require('lazy').setup({
             { desc='prev hunk', expr=true})
           map({'n', 'v'}, '<leader>gu', ':Gitsigns stage_hunk<CR>', { desc = 'stage hunk' })
           map({'n', 'v'}, '<leader>gd', ':Gitsigns reset_hunk<CR>', { desc = 'reset hunk' })
-          map('n', '<leader>gU', gs.stage_buffer, { desc = 'stage buffer' })
-          map('n', '<leader>gD', gs.reset_buffer, { desc = 'reset buffer' })
           map('n', '<leader>gf', function() gs.diffthis('~') end, { desc = 'diff HEAD' })
           map('n', '<leader>gb', ':Gitsigns blame_line<CR>', { desc = 'blame the line' })
+          map('n', '<leader>gp', ':Gitsigns preview_hunk<CR>', { desc = 'preview the hunk' })
         end
       })
     end
   },
   { -- Open Lazygit
     'kdheepak/lazygit.nvim',
-    keys = { { '<Leader>gl', ':LazyGit<CR>', mode = 'n', desc = 'Open LazyGit' } },
+    keys = { { '<Leader>gl', ':LazyGit<CR>', mode = 'n' } },
   },
   { -- Seamless window selection with tmux
     'christoomey/vim-tmux-navigator',
@@ -498,7 +493,7 @@ require('lazy').setup({
     end,
     config = function()
       vim.g.mkdp_auto_close = 0 -- Don't auto close preview
-      vim.keymap.set('n', '<leader>m', '<Plug>MarkdownPreview', { desc = 'MarkdownPreview' })
+      vim.keymap.set('n', '<leader>m', '<Plug>MarkdownPreview', keymapopt)
     end,
   },
   { -- Rainbow CSV
@@ -567,6 +562,7 @@ require('lazy').setup({
   },
   { -- UI for messages, cmdline and the popupmenu.
     "folke/noice.nvim",
+    -- enabled = false, -- If you got many error messages, turn off noice.
     event = "VeryLazy",
     opts = {}, -- add any options here
     dependencies = {
