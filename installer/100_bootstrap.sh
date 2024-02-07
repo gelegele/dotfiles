@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# フォルダ配下のshを順番に実行する
-# 0番台以外は対話形式での任意実行
+# フォルダ配下の1xx_xxx.shを順番に実行する
+# 100番台以外は対話形式での任意実行
 
 dir=$(dirname $0)
 
-echo "Execute sh files in $dir folder."
+echo "Execute 1xx_xxx.sh files in $dir folder."
 for f in $(ls $dir); do
   if [[ "$f" = $(basename $0) ]]; then
     # skip this file.
