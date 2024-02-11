@@ -322,6 +322,8 @@ require('lazy').setup({
   { -- Show indents
     'lukas-reineke/indent-blankline.nvim',
     event = { 'BufRead', 'BufNewFile' },
+    main = "ibl",
+    opts = {},
   },
   { -- LSP
     'williamboman/mason.nvim',
@@ -343,7 +345,7 @@ require('lazy').setup({
           opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
           opts.settings = {
             Lua = { diagnostics = { globals = { 'vim' } } }
-	        }
+          }
           require("lspconfig")[server_name].setup(opts)
         end,
       }
