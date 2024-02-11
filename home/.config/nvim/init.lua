@@ -95,6 +95,8 @@ vim.keymap.set('n', '<Leader>w', ':set wrap!<CR>', keymapopt)
 vim.keymap.set('n', '<Leader>h', ':tab help ', { noremap = true })
 -- Space + r to :source $MYVIMRC
 vim.keymap.set('n', '<Leader>r', ':source $MYVIMRC<CR>', keymapopt)
+-- Space + Tab to :colorscheme                                              
+vim.keymap.set('n', '<Leader><Tab>', ':colorscheme ', { noremap = true })
 
 -- My autocmds
 vim.api.nvim_create_augroup( 'my-autocmd', {} )
@@ -239,6 +241,8 @@ require('lazy').setup({
   { 'catppuccin/nvim' },
   { 'jacoborus/tender.vim' },
   { 'rmehri01/onenord.nvim' },
+  { "savq/melange-nvim" },
+  { 'AlexvZyl/nordic.nvim' },
   { -- colorscheme switcher
     'zaldih/themery.nvim',
     lazy = false,
@@ -249,8 +253,10 @@ require('lazy').setup({
       end
       require('themery').setup({
         themes = {
-          'vscode', 'ayu', 'catppuccin','sonokai', 'tender', 'tokyonight-night',
-          'tokyonight-day', 'edge', 'nightfox', 'duskfox', 'onenord'},
+          'default', 'habamax', 'slate', 'quiet', 'ayu-mirage', 'melange', 'nordic',
+          'vscode', 'sonokai', 'tender', 'tokyonight-night', 'tokyonight-storm', 'edge',
+          'nightfox', 'duskfox', 'onenord', 'catppuccin-mocha', 'catppuccin-macchiato',
+        },
         themeConfigFile = themefilepath,
       })
       pcall(require, 'theme')
