@@ -13,8 +13,9 @@ vim.opt.fileencodings = "utf-8,sjis,cp932,utf-16le"
 -- Leader key is space.
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
--- show cursor line
+-- show cursor line without number.
 vim.opt.cursorline = true
+vim.opt.cursorlineopt = 'line'
 -- I don't need swap files.
 vim.opt.swapfile = false
 -- tab space is 2.
