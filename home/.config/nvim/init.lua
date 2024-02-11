@@ -80,6 +80,9 @@ vim.keymap.set('n', 'k', 'gk', keymapopt)
 -- J to join lines without space.
 vim.keymap.set('n', 'J', 'gJ', keymapopt)
 vim.keymap.set('n', 'gg', 'ggzz', keymapopt)
+-- indent a visual block repeatedly. 
+vim.keymap.set('v', '<', '<gv', keymapopt)
+vim.keymap.set('v', '>', '>gv', keymapopt)
 -- Keep the cursor while moving search words 
 vim.keymap.set('n', 'n', 'nzz', keymapopt)
 vim.keymap.set('n', 'N', 'Nzz', keymapopt)
