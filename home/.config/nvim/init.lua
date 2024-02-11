@@ -323,25 +323,19 @@ require('lazy').setup({
     'lukas-reineke/indent-blankline.nvim',
     event = { 'BufRead', 'BufNewFile' },
   },
-  {
+  { -- LSP
     'williamboman/mason.nvim',
     event = { 'BufRead', 'BufNewFile' },
+    dependencies = {
+      'williamboman/mason-lspconfig.nvim',
+      'neovim/nvim-lspconfig',
+    },
     config = function()
       if vim.fn.has('win64') == 1 then
         -- No LSP on Windows
         return
       end
       require('mason').setup()
-    end,
-  },
-  {
-    'williamboman/mason-lspconfig.nvim',
-    event = { 'BufRead', 'BufNewFile' },
-    config = function()
-      if vim.fn.has('win64') == 1 then
-        -- No LSP on Windows
-        return
-      end
       require('mason-lspconfig').setup {}
       require("mason-lspconfig").setup_handlers {
         function (server_name) -- default handler (optional)
@@ -355,33 +349,17 @@ require('lazy').setup({
       }
     end,
   },
-  {
-    'neovim/nvim-lspconfig',
-    event = { 'BufRead', 'BufNewFile' },
-  },
-  {
-    'hrsh7th/cmp-buffer',
-    event = { 'BufRead', 'BufNewFile' },
-  },
-  {
-    'hrsh7th/cmp-path',
-    event = { 'BufRead', 'BufNewFile' },
-  },
-  {
-    'hrsh7th/cmp-cmdline',
-    event = { 'BufRead', 'BufNewFile' },
-  },
-  {
-    'L3MON4D3/LuaSnip',
-    event = { 'BufRead', 'BufNewFile' },
-  },
-  {
-    'saadparwaiz1/cmp_luasnip',
-    event = { 'BufRead', 'BufNewFile' },
-  },
-  {
+  { -- completion
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
+    event = { 'BufRead', 'BufNewFile' },
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+    },
     config = function()
       local cmp = require("cmp")
       cmp.setup({
@@ -393,8 +371,8 @@ require('lazy').setup({
         sources = {
           { name = "nvim_lsp" },
           { name = 'luasnip' },
-          -- { name = "buffer" },
-          -- { name = "path" },
+          { name = "buffer" },
+          { name = "path" },
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -408,10 +386,6 @@ require('lazy').setup({
         },
       })
     end,
-  },
-  {
-    "hrsh7th/cmp-nvim-lsp",
-    event = { 'BufRead', 'BufNewFile' },
   },
   { -- My Plugin to toggle highlight search with <C-n>
     'gelegele/hls.nvim',
@@ -547,7 +521,7 @@ require('lazy').setup({
     --   gsc -> camelCase
     --   gsm -> CamelCase
     'arthurxavierx/vim-caser',
-    keys = { { 'gs', mode = {'n', 'v'}} },
+    keys = { { 'gs', mode = {'n', 'v'}, desc = 'caser'} },
   },
   { -- Space j to split/join blocks of code.
     'Wansmer/treesj',
@@ -558,6 +532,11 @@ require('lazy').setup({
         use_default_keymaps = false,
       })
     end,
+  },
+  { -- autopair
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    opts = {},
   },
   { -- autoclose and autorename html tag.
     'windwp/nvim-ts-autotag',
