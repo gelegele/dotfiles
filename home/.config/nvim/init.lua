@@ -22,6 +22,8 @@ vim.opt.swapfile = false
 vim.opt.expandtab = true
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
+-- how many lines are shown around the cursor when scrolling vertically.
+vim.opt.scrolloff = 5
 -- Show line numbers.
 vim.opt.number = true
 -- Show tail spaces.
