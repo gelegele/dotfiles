@@ -4,8 +4,6 @@ My init.lua for NEOVIM
 This file path is
 Linux: ~/.config/nvim/init.lua
 Windows: %LOCALAPPDATA%\nvim\init.lua
-
-How to check health is [:checkhealth]:
 ]]--
 
 -- Default encoding is utf-8
@@ -15,6 +13,8 @@ vim.opt.fileencodings = "utf-8,sjis,cp932,utf-16le"
 -- Leader key is space.
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
+-- show cursor line
+vim.opt.cursorline = true
 -- I don't need swap files.
 vim.opt.swapfile = false
 -- tab space is 2.
