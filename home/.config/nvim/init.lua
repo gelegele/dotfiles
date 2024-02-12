@@ -240,14 +240,11 @@ require('lazy').setup({
   { 'Mofiqul/vscode.nvim' },
   { 'Shatur/neovim-ayu' },
   { 'folke/tokyonight.nvim' },
-  { 'sainnhe/sonokai' },
   { 'sainnhe/edge' },
   { 'EdenEast/nightfox.nvim' },
   { 'catppuccin/nvim' },
   { 'jacoborus/tender.vim' },
-  { 'rmehri01/onenord.nvim' },
   { "savq/melange-nvim" },
-  { 'AlexvZyl/nordic.nvim' },
   { -- colorscheme switcher
     'zaldih/themery.nvim',
     lazy = false,
@@ -258,9 +255,9 @@ require('lazy').setup({
       end
       require('themery').setup({
         themes = {
-          'default', 'habamax', 'slate', 'quiet', 'ayu-mirage', 'melange', 'nordic',
-          'vscode', 'sonokai', 'tender', 'tokyonight-night', 'tokyonight-storm', 'edge',
-          'nightfox', 'duskfox', 'onenord', 'catppuccin-mocha', 'catppuccin-macchiato',
+          'default', 'habamax', 'slate', 'quiet', 'ayu-mirage', 'melange',
+          'vscode', 'tender', 'tokyonight-night', 'tokyonight-storm', 'edge',
+          'nightfox', 'duskfox', 'catppuccin-mocha', 'catppuccin-macchiato',
         },
         themeConfigFile = themefilepath,
       })
