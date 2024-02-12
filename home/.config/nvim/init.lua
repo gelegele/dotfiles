@@ -140,15 +140,13 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
-  { -- Install NERD FONT on your OS.
-    'nvim-tree/nvim-web-devicons',
-  },
   { -- Check startup time
     'dstein64/vim-startuptime',
     cmd = { 'StartupTime' },
   },
   { -- Dashboard
     'nvimdev/dashboard-nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     event = "VimEnter",
     config = function()
       require('dashboard').setup {
@@ -182,8 +180,8 @@ require('lazy').setup({
   },
   { -- fuzzy finder
     'nvim-telescope/telescope.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    keys = { { '<Leader>f', mode = 'n', desc = 'telescope' } },
+    dependencies = { 'nvim-tree/nvim-web-devicons', 'nvim-lua/plenary.nvim' },
+    keys = {{ '<Leader>f', mode = 'n', desc = 'telescope' }},
     config = function()
       require('telescope').setup {
         defaults = {
@@ -201,6 +199,7 @@ require('lazy').setup({
   },
   { -- Filer (Help: ?)
     'nvim-tree/nvim-tree.lua',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     event = "VimEnter",
     config = function()
       -- disable netrw for NvimTree
@@ -271,6 +270,7 @@ require('lazy').setup({
   },
   { -- Status Line
     'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     event = { 'BufRead', 'BufNewFile' },
     config = function()
       require('lualine').setup {
@@ -299,6 +299,7 @@ require('lazy').setup({
   },
   { -- buffer tabs
     'romgrk/barbar.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     event = "VimEnter",
     config = function ()
       vim.keymap.set(
@@ -424,7 +425,6 @@ require('lazy').setup({
   },
   { -- Show git status
     'lewis6991/gitsigns.nvim',
-    keys = { { '<Leader>g', mode = 'n' } },
     config = function()
       require('gitsigns').setup({
         signcolumn = false,
@@ -462,7 +462,7 @@ require('lazy').setup({
   },
   { -- Open Lazygit
     'kdheepak/lazygit.nvim',
-    keys = { { '<Leader>gl', ':LazyGit<CR>', mode = 'n' } },
+    keys = {{ '<Leader>gl', ':LazyGit<CR>', mode = 'n', desc = 'LazyGit' }},
   },
   { -- Seamless window selection with tmux
     'christoomey/vim-tmux-navigator',
