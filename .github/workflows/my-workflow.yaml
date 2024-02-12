@@ -14,4 +14,4 @@ jobs:
 
       - name: Execute installer
         run: |
-          ./installer/100_execute-me.sh
+          ./installer/100_bootstrap.sh
