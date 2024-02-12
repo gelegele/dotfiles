@@ -4,6 +4,10 @@
 ### Normal Mode
 - gf
   - Go to the file. 
+- gt, gT
+  - Go to the next/previous tab page.
+- C-]
+  - Jump to the definition of the word under the cursor.
 - C-o C-i
   - Jump to the previous/next cursor position.
   - Control Out, Control In
