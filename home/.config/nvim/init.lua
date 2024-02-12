@@ -1,9 +1,9 @@
 --[[
 My init.lua for NEOVIM
 
-This file path is
-Linux: ~/.config/nvim/init.lua
-Windows: %LOCALAPPDATA%\nvim\init.lua
+  This file path is
+  - Linux: ~/.config/nvim/init.lua
+  - Windows: ~\AppData\Local\nvim\init.lua
 ]]--
 
 -- Default encoding is utf-8
@@ -299,7 +299,7 @@ require('lazy').setup({
   },
   { -- buffer tabs
     'romgrk/barbar.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    dependencies = { 'nvim-tree/nvim-web-devicons', 'lewis6991/gitsigns.nvim' },
     event = "VimEnter",
     config = function ()
       vim.keymap.set(
@@ -412,6 +412,7 @@ require('lazy').setup({
   },
   { -- Scroll Bar
     'petertriho/nvim-scrollbar',
+    dependencies = { 'lewis6991/gitsigns.nvim' },
     event = { 'BufRead', 'BufNewFile' },
     config = function()
       require('scrollbar').setup({
