@@ -333,7 +333,7 @@ require('lazy').setup({
   },
   { -- LSP
     'williamboman/mason.nvim',
-    event = { 'BufRead', 'BufNewFile' },
+    event = "VeryLazy",
     dependencies = {
       'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig',
@@ -404,7 +404,7 @@ require('lazy').setup({
   },
   { -- Show shortcut keys
     'folke/which-key.nvim',
-    event = { 'BufRead', 'BufNewFile' },
+    event = 'VeryLazy',
     config = function()
       require("which-key").setup({})
     end,
@@ -420,7 +420,7 @@ require('lazy').setup({
   },
   { -- Japanese Help
     'vim-jp/vimdoc-ja',
-    event = { 'BufRead', 'BufNewFile' },
+    event = 'VeryLazy',
   },
   { -- Show git status
     'lewis6991/gitsigns.nvim',
@@ -579,4 +579,3 @@ require('lazy').setup({
 
 -- Local setting if ./lua/local-init.lua exists
 pcall(require, 'local-init')
-print('init.lua loaded.')
