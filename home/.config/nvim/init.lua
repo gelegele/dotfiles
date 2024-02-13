@@ -161,10 +161,9 @@ require('lazy').setup({
             [[                                                        ]],
           },
           shortcut = {
-            { desc = ' New',        group = 'Label', action = 'enew',                             key = 'n' },
-            { desc = ' Tree',       group = 'Label', action = 'e .',                              key = '.' },
             { desc = ' Config',     group = 'Label', action = 'e $MYVIMRC',                       key = 'c' },
             { desc = ' Lazy',       group = 'Label', action = 'Lazy',                             key = 'L' },
+            { desc = '󰚰 MasonUpdate',group = 'Label', action = 'MasonUpdate',                      key = 'm' },
             { desc = ' StartupTime',group = 'Label', action = 'StartupTime --tries 3',            key = 's' },
             { desc = '󰋢 checkhealth',group = 'Label', action = 'checkhealth',                      key = 'h' },
             { desc = ' zshrc',      group = 'Label', action = 'e ~/.config/zsh/.zshrc',           key = 'z' },
