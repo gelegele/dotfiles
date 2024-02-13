@@ -560,6 +560,10 @@ require('lazy').setup({
       "rcarriga/nvim-notify",
     },
     config = function()
+      if vim.fn.has('win64') == 1 then
+        -- Disabled to prevent flicker on Windows.
+        return
+      end
       require("noice").setup({
         lsp = {
           -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
