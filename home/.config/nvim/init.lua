@@ -495,9 +495,13 @@ require('lazy').setup({
       require('nvim-surround').setup()
     end
   },
-  { -- gcc to comment in/out
-    'tpope/vim-commentary',
-    keys = {{ 'gcc', mode = { 'n', 'v' }}},
+  { -- gcc to toggle linewise comment. gbc to toggle blockwise comment.
+    'numToStr/Comment.nvim',
+    opts = {},
+    keys = { -- setting for lazy loading
+      { 'gc', mode = { 'n', 'v' }},
+      { 'gb', mode = { 'n', 'v' }},
+    },
   },
   { -- Extends C-a, C-x
     'monaqa/dial.nvim',
