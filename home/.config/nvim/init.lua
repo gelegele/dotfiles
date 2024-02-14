@@ -161,12 +161,13 @@ require('lazy').setup({
             [[                                                        ]],
           },
           shortcut = {
-            { desc = ' Config',     group = 'Label', action = 'e $MYVIMRC',                       key = 'c' },
-            { desc = ' Lazy',       group = 'Label', action = 'Lazy',                             key = 'L' },
-            { desc = '󰚰 MasonUpdate',group = 'Label', action = 'MasonUpdate',                      key = 'm' },
-            { desc = ' StartupTime',group = 'Label', action = 'StartupTime --tries 3',            key = 's' },
-            { desc = '󰋢 checkhealth',group = 'Label', action = 'checkhealth',                      key = 'h' },
-            { desc = ' zshrc',      group = 'Label', action = 'e ~/.config/zsh/.zshrc',           key = 'z' },
+            { desc = ' New',        group = 'Label', action = 'enew',                   key = 'n' },
+            { desc = ' Config',     group = 'Label', action = 'e $MYVIMRC',             key = 'c' },
+            { desc = ' Lazy',       group = 'Label', action = 'Lazy',                   key = 'L' },
+            { desc = '󰚰 Mason',      group = 'Label', action = 'Mason',                  key = 'M' },
+            { desc = ' StartupTime',group = 'Label', action = 'StartupTime --tries 3',  key = 's' },
+            { desc = '󰋢 checkhealth',group = 'Label', action = 'checkhealth',            key = 'h' },
+            { desc = ' zshrc',      group = 'Label', action = 'e ~/.config/zsh/.zshrc', key = 'z' },
           },
           packages = { enable  = false },
           project = { enable  = false },
@@ -328,7 +329,7 @@ require('lazy').setup({
     main = "ibl",
     opts = {},
   },
-  { -- LSP
+  { -- Langage Server manager
     'williamboman/mason.nvim',
     event = "VeryLazy",
     dependencies = {
