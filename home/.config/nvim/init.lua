@@ -365,10 +365,14 @@ require('lazy').setup({
       'hrsh7th/cmp-cmdline',
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
+      'onsails/lspkind.nvim',      -- adds vscode-like pictograms
     },
     config = function()
       local cmp = require("cmp")
       cmp.setup({
+        formatting = {
+          format = require('lspkind').cmp_format({ mode = 'symbol' }),
+        },
         snippet = {
           expand = function(args)
             require('luasnip').lsp_expand(args.body)
@@ -390,6 +394,27 @@ require('lazy').setup({
         experimental = {
           ghost_text = true,
         },
+      })
+      -- Use buffer source for `/` and `?`
+      cmp.setup.cmdline({ '/', '?' }, {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = {
+          { name = 'buffer' }
+        }
+      })
+      -- Use cmdline & path source for ':'
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' }
+        }, {
+            {
+              name = 'cmdline',
+              option = {
+                ignore_cmds = { 'Man', '!' }
+              }
+            }
+          })
       })
     end,
   },
