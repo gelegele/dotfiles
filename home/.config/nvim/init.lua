@@ -54,6 +54,9 @@ vim.opt.helplang = 'ja,en'
 -- Show file name on GUI
 vim.opt.title = true
 vim.opt.titlestring = '%t'
+-- disable netrw for NvimTree and gx.nvim
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
 
 -- keymap option
 local keymapopt = { noremap = true, silent = true }
@@ -202,9 +205,6 @@ require('lazy').setup({
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     event = "VimEnter",
     config = function()
-      -- disable netrw for NvimTree
-      vim.g.loaded_netrw = 1
-      vim.g.loaded_netrwPlugin = 1
       -- Space + e to open the tree.
       vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>', keymapopt)
       -- If buffer is a dir, change to the dir and open the tree.
@@ -606,6 +606,13 @@ require('lazy').setup({
       })
     end,
   },
+  { -- open links without netrw
+    'chrishrb/gx.nvim',
+    dependencies = { "nvim-lua/plenary.nvim" },
+    keys = {{ "gx", "<cmd>Browse<cr>", mode = { "n", "x" } }},
+    cmd = { "Browse" },
+    opts = {},
+  }
 }, { defaults = { lazy = true }})
 
 -- Local setting if ./lua/local-init.lua exists
