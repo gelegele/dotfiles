@@ -107,6 +107,12 @@ vim.keymap.set('n', '<Leader>r', ':source $MYVIMRC<CR>', keymapopt)
 -- Space + Tab to :colorscheme                                              
 vim.keymap.set('n', '<Leader><Tab>', ':colorscheme ', { noremap = true })
 
+-- to prevent plugin errors in vscode-nvim
+if vim.g.vscode then
+  print('init.lua was loaded without plugins in vscode.')
+  return
+end
+
 -- My autocmds
 vim.api.nvim_create_augroup( 'my-autocmd', {} )
 vim.api.nvim_create_autocmd("BufRead", {
