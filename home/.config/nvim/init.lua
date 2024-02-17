@@ -273,38 +273,35 @@ require('lazy').setup({
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     event = { 'BufRead', 'BufNewFile' },
-    config = function()
-      require('lualine').setup {
-        options = {
-          theme = 'papercolor_dark',
-          component_separators = '',
-          path = 1, -- 0:filename(default), 1:relative, 2:absolute
-          symbols = { readonly = '[]' },
-          disabled_filetypes = {'NvimTree'}, -- Hide in nvim-tree
-        },
-        sections = {
-          lualine_b = {
-            { 'branch',},
-            { 'diff', },
-            {
-              'diagnostics',
-              -- Don't use icons to prevent ui corruption by lualine line-breaking
-              icons_enabled = false,
-            },
+    opts = {
+      options = {
+        theme = 'papercolor_dark',
+        component_separators = '',
+        path = 1, -- 0:filename(default), 1:relative, 2:absolute
+        symbols = { readonly = '[]' },
+        disabled_filetypes = {'NvimTree'}, -- Hide in nvim-tree
+      },
+      sections = {
+        lualine_b = {
+          { 'branch',},
+          { 'diff', },
+          {
+            'diagnostics',
+            -- Don't use icons to prevent ui corruption by lualine line-breaking
+            icons_enabled = false,
           },
-          lualine_y = { 'g:colors_name' },
-          lualine_z = { 'location'},
-        }
-      }
-    end
+        },
+        lualine_y = { 'g:colors_name' },
+        lualine_z = { 'location'},
+      },
+    },
   },
   { -- buffer tabs
     'romgrk/barbar.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons', 'lewis6991/gitsigns.nvim' },
     event = "VimEnter",
     config = function ()
-      vim.keymap.set(
-        'n', '<Leader>o', ':BufferCloseAllButCurrent<CR>', keymapopt)
+      vim.keymap.set('n', '<Leader>o', ':BufferCloseAllButCurrent<CR>', keymapopt)
       require('barbar').setup {
         -- offset for NvimTree
         sidebar_filetypes = { NvimTree = true, }
@@ -425,26 +422,20 @@ require('lazy').setup({
     'gelegele/hls.nvim',
     cond = true, -- enabled in vscode
     keys = {{ '<C-n>', mode = 'n' }},
-    config = function ()
+    config = function () -- TODO opts
       require('hls.nvim').setup()
     end,
   },
   { -- Show shortcut keys
     'folke/which-key.nvim',
     event = 'VeryLazy',
-    config = function()
-      require("which-key").setup({})
-    end,
+    opts = {},
   },
   { -- Scroll Bar
     'petertriho/nvim-scrollbar',
     dependencies = { 'lewis6991/gitsigns.nvim' },
     event = { 'BufRead', 'BufNewFile' },
-    config = function()
-      require('scrollbar').setup({
-        handlers = { gitsigns = true, },
-      })
-    end
+    opts = { handlers = { gitsigns = true } }
   },
   { -- Japanese Help
     'vim-jp/vimdoc-ja',
@@ -452,40 +443,38 @@ require('lazy').setup({
   },
   { -- Show git status
     'lewis6991/gitsigns.nvim',
-    config = function()
-      require('gitsigns').setup({
-        signcolumn = false,
-        numhl      = true,
-        on_attach = function(bufnr)
-          local gs = package.loaded.gitsigns
-          local function map(mode, l, r, opts)
-            opts = opts or {}
-            opts.buffer = bufnr
-            vim.keymap.set(mode, l, r, opts)
-          end
-          -- keymaps
-          map('n', '<leader>g]',
-            function()
-              if vim.wo.diff then return ']c' end
-              vim.schedule(function() gs.next_hunk() end)
-              return '<Ignore>'
-            end,
-            { desc='next hunk', expr=true})
-          map('n', '<leader>g[',
-            function()
-              if vim.wo.diff then return '[c' end
-              vim.schedule(function() gs.prev_hunk() end)
-              return '<Ignore>'
-            end,
-            { desc='prev hunk', expr=true})
-          map({'n', 'v'}, '<leader>gs', ':Gitsigns stage_hunk<CR>', { desc = 'stage hunk' })
-          map({'n', 'v'}, '<leader>gr', ':Gitsigns reset_hunk<CR>', { desc = 'reset hunk' })
-          map('n', '<leader>gd', function() gs.diffthis('~') end, { desc = 'diff HEAD' })
-          map('n', '<leader>gb', ':Gitsigns blame_line<CR>', { desc = 'blame the line' })
-          map('n', '<leader>gp', ':Gitsigns preview_hunk<CR>', { desc = 'preview the hunk' })
+    opts = {
+      signcolumn = false,
+      numhl      = true,
+      on_attach = function(bufnr)
+        local gs = package.loaded.gitsigns
+        local function map(mode, l, r, opts)
+          opts = opts or {}
+          opts.buffer = bufnr
+          vim.keymap.set(mode, l, r, opts)
         end
-      })
-    end
+        -- keymaps
+        map('n', '<leader>g]',
+        function()
+          if vim.wo.diff then return ']c' end
+          vim.schedule(function() gs.next_hunk() end)
+          return '<Ignore>'
+        end,
+        { desc='next hunk', expr=true})
+        map('n', '<leader>g[',
+        function()
+          if vim.wo.diff then return '[c' end
+          vim.schedule(function() gs.prev_hunk() end)
+          return '<Ignore>'
+        end,
+        { desc='prev hunk', expr=true})
+        map({'n', 'v'}, '<leader>gs', ':Gitsigns stage_hunk<CR>', { desc = 'stage hunk' })
+        map({'n', 'v'}, '<leader>gr', ':Gitsigns reset_hunk<CR>', { desc = 'reset hunk' })
+        map('n', '<leader>gd', function() gs.diffthis('~') end, { desc = 'diff HEAD' })
+        map('n', '<leader>gb', ':Gitsigns blame_line<CR>', { desc = 'blame the line' })
+        map('n', '<leader>gp', ':Gitsigns preview_hunk<CR>', { desc = 'preview the hunk' })
+      end,
+    },
   },
   { -- Open Lazygit
     'kdheepak/lazygit.nvim',
@@ -521,17 +510,15 @@ require('lazy').setup({
     'kylechui/nvim-surround',
     cond = true, -- enabled in vscode
     event = { 'BufRead', 'BufNewFile' },
-    config = function()
-      require('nvim-surround').setup()
-    end
+    opts = {},
   },
   { -- gcc to toggle linewise comment. gbc to toggle blockwise comment.
     'numToStr/Comment.nvim',
-    opts = {},
     keys = { -- setting for lazy loading
       { 'gc', mode = { 'n', 'v' }},
       { 'gb', mode = { 'n', 'v' }},
     },
+    opts = {},
   },
   { -- Extends C-a, C-x
     'monaqa/dial.nvim',
@@ -568,11 +555,7 @@ require('lazy').setup({
     'Wansmer/treesj',
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     keys = {{ "<Leader>j", ':TSJToggle<CR>', mode ='n', desc = 'TSJToggle' }},
-    config = function()
-      require('treesj').setup({
-        use_default_keymaps = false,
-      })
-    end,
+    opts = { use_default_keymaps = false },
   },
   { -- autopair
     'windwp/nvim-autopairs',
@@ -582,15 +565,12 @@ require('lazy').setup({
   { -- autoclose and autorename html tag.
     'windwp/nvim-ts-autotag',
     event = { 'BufRead', 'BufNewFile' },
-    config = function ()
-      require('nvim-ts-autotag').setup()
-    end,
+    opts= {},
   },
   { -- UI for messages, cmdline and the popupmenu.
     "folke/noice.nvim",
     -- enabled = false, -- If you got many error messages, turn off noice.
     event = "VeryLazy",
-    opts = {}, -- add any options here
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
