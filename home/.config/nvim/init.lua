@@ -357,7 +357,6 @@ require('lazy').setup({
   },
   { -- completion
     "hrsh7th/nvim-cmp",
-    event = { 'BufRead', 'BufNewFile' },
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       'hrsh7th/cmp-buffer',
@@ -367,6 +366,7 @@ require('lazy').setup({
       'saadparwaiz1/cmp_luasnip',
       'onsails/lspkind.nvim',      -- adds vscode-like pictograms
     },
+    event = { 'BufRead', 'BufNewFile' },
     config = function()
       local cmp = require("cmp")
       cmp.setup({
@@ -416,6 +416,19 @@ require('lazy').setup({
             }
           })
       })
+      -- Toggle autocomplete
+      local function toggle_autocomplete()
+        local current_setting = cmp.get_config().completion.autocomplete
+        if current_setting and #current_setting > 0 then
+          cmp.setup({ completion = { autocomplete = false } })
+          vim.notify('Autocomplete disabled')
+        else
+          cmp.setup({ completion = { autocomplete = { cmp.TriggerEvent.TextChanged } } })
+          vim.notify('Autocomplete enabled')
+        end
+      end
+      vim.api.nvim_create_user_command('NvimCmpToggle', toggle_autocomplete, {})
+      vim.keymap.set('n', '<leader>C', ':NvimCmpToggle<CR>', keymapopt)
     end,
   },
   { -- My Plugin to toggle highlight search with <C-n>
