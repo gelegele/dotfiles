@@ -61,7 +61,11 @@ vim.g.loaded_netrwPlugin = 1
 -- keymap option
 local keymapopt = { noremap = true, silent = true }
 -- Space + Enter to :w
-vim.keymap.set('n', '<Leader><CR>', ':w<CR>', keymapopt)
+if vim.g.vscode then
+  vim.keymap.set('n', '<Leader><CR>', ':call VSCodeCall("workbench.action.files.save")<CR>', { noremap = true })
+else
+  vim.keymap.set('n', '<Leader><CR>', ':w<CR>', keymapopt)
+end
 -- Q to :q
 vim.keymap.set('n', 'Q', ':q<CR>', keymapopt)
 -- !! to :q!
@@ -83,10 +87,10 @@ vim.keymap.set('n', 'k', 'gk', keymapopt)
 -- J to join lines without space.
 vim.keymap.set('n', 'J', 'gJ', keymapopt)
 vim.keymap.set('n', 'gg', 'ggzz', keymapopt)
--- indent a visual block repeatedly. 
+-- indent a visual block repeatedly.
 vim.keymap.set('v', '<', '<gv', keymapopt)
 vim.keymap.set('v', '>', '>gv', keymapopt)
--- Keep the cursor while moving search words 
+-- Keep the cursor while moving search words.
 vim.keymap.set('n', 'n', 'nzz', keymapopt)
 vim.keymap.set('n', 'N', 'Nzz', keymapopt)
 -- Don't move the cursor when starting a word search.
@@ -104,14 +108,8 @@ vim.keymap.set('n', '<Leader>w', ':set wrap!<CR>', keymapopt)
 vim.keymap.set('n', '<Leader>h', ':tab help ', { noremap = true })
 -- Space + r to :source $MYVIMRC
 vim.keymap.set('n', '<Leader>r', ':source $MYVIMRC<CR>', keymapopt)
--- Space + Tab to :colorscheme                                              
+-- Space + Tab to :colorscheme
 vim.keymap.set('n', '<Leader><Tab>', ':colorscheme ', { noremap = true })
-
--- to prevent plugin errors in vscode-nvim
-if vim.g.vscode then
-  print('init.lua was loaded without plugins in vscode.')
-  return
-end
 
 -- My autocmds
 vim.api.nvim_create_augroup( 'my-autocmd', {} )
@@ -318,9 +316,8 @@ require('lazy').setup({
     event = { 'BufRead', 'BufNewFile' },
     build = ':TSUpdate',
     config = function()
-      if vim.fn.has('win64') == 1 then
-        -- Disabled to prevent errors on Windows.
-        return
+      if vim.fn.has('win64') then
+        return -- Disabled to prevent errors on Windows.
       end
       require('nvim-treesitter.configs').setup {
         auto_install = true,
@@ -354,7 +351,7 @@ require('lazy').setup({
           local opts = {}
           opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
           opts.settings = {
-            Lua = { diagnostics = { globals = { 'vim' } } }
+            Lua = { diagnostics = { globals = { 'vim', 'cond' } } }
           }
           require("lspconfig")[server_name].setup(opts)
         end,
@@ -426,6 +423,7 @@ require('lazy').setup({
   },
   { -- My Plugin to toggle highlight search with <C-n>
     'gelegele/hls.nvim',
+    cond = true, -- enabled in vscode
     keys = {{ '<C-n>', mode = 'n' }},
     config = function ()
       require('hls.nvim').setup()
@@ -521,6 +519,7 @@ require('lazy').setup({
     -- cs'" to change single quotation to double quotation.
     -- ds" to delete quatation.
     'kylechui/nvim-surround',
+    cond = true, -- enabled in vscode
     event = { 'BufRead', 'BufNewFile' },
     config = function()
       require('nvim-surround').setup()
@@ -536,6 +535,7 @@ require('lazy').setup({
   },
   { -- Extends C-a, C-x
     'monaqa/dial.nvim',
+    cond = true, -- enabled in vscode
     event = { 'BufRead', 'BufNewFile' },
     config = function()
       local augend = require("dial.augend")
@@ -615,11 +615,18 @@ require('lazy').setup({
   { -- open links without netrw
     'chrishrb/gx.nvim',
     dependencies = { "nvim-lua/plenary.nvim" },
+    cond = true, -- enabled in vscode
     keys = {{ "gx", "<cmd>Browse<cr>", mode = { "n", "x" } }},
     cmd = { "Browse" },
     opts = {},
   }
-}, { defaults = { lazy = true }})
+},
+{
+  defaults = {
+      cond ~= vim.g.vscode, -- most plugins are disabled in vscode
+      lazy = true,
+    }
+})
 
 -- Local setting if ./lua/local-init.lua exists
 pcall(require, 'local-init')
