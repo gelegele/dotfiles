@@ -49,6 +49,8 @@
   - Delete all lines containing pattern.
 - :%v/{pattern}/d
   - Delete all lines not containing pattern.
+- :retab
+  - Replace tabs with spaces.
 
 ### Telescope
 - C-/
