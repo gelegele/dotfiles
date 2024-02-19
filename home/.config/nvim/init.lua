@@ -344,6 +344,8 @@ require('lazy').setup({
     dependencies = {
       'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig',
+      { 'folke/neodev.nvim', opts = {} },
+      { 'j-hui/fidget.nvim', opts = {} },
     },
     config = function()
       if vim.fn.has('win64') == 1 then
