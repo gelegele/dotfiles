@@ -60,7 +60,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_matchit = 1
 vim.g.loaded_gzip = 1
 vim.g.loaded_zipPlugin = 1
--- vim.g.loaded_matchparen = 1
+vim.g.loaded_matchparen = 1
 
 -- keymap option
 local keymapopt = { noremap = true, silent = true }
@@ -331,6 +331,11 @@ require('lazy').setup({
     'lukas-reineke/indent-blankline.nvim',
     event = { 'BufRead', 'BufNewFile' },
     main = "ibl",
+    opts = {},
+  },
+  { -- Enhanced matchparen
+    "utilyre/sentiment.nvim",
+    event = "VeryLazy",
     opts = {},
   },
   { -- Langage Server manager
