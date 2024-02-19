@@ -4,7 +4,7 @@ sudo apt install make
 
 temp=~/temp-git-secrets
 
-git clone https://github.com/awslabs/git-secrets.git $temp
+git clone --depth 1 https://github.com/awslabs/git-secrets.git $temp
 cd $temp
 sudo make install
 

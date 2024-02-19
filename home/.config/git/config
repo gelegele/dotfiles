@@ -10,6 +10,7 @@
 [alias]
   co = checkout
 
+  c1 = clone --depth 1
   f = fetch --prune
   p = pull --prune
 
