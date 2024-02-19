@@ -472,26 +472,23 @@ require('lazy').setup({
       numhl      = true,
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
+        local function next_hunk()
+          if vim.wo.diff then return ']c' end
+          vim.schedule(function() gs.next_hunk() end)
+          return '<Ignore>'
+        end
+        local function prev_hunk()
+          if vim.wo.diff then return '[c' end
+          vim.schedule(function() gs.prev_hunk() end)
+          return '<Ignore>'
+        end
         local function map(mode, l, r, opts)
           opts = opts or {}
           opts.buffer = bufnr
           vim.keymap.set(mode, l, r, opts)
         end
-        -- keymaps
-        map('n', '<leader>g]',
-        function()
-          if vim.wo.diff then return ']c' end
-          vim.schedule(function() gs.next_hunk() end)
-          return '<Ignore>'
-        end,
-        { desc='next hunk', expr=true})
-        map('n', '<leader>g[',
-        function()
-          if vim.wo.diff then return '[c' end
-          vim.schedule(function() gs.prev_hunk() end)
-          return '<Ignore>'
-        end,
-        { desc='prev hunk', expr=true})
+        map('n', '<leader>g]', next_hunk, { desc='next hunk', expr=true })
+        map('n', '<leader>g[', prev_hunk, { desc='prev hunk', expr=true })
         map({'n', 'v'}, '<leader>gs', ':Gitsigns stage_hunk<CR>', { desc = 'stage hunk' })
         map({'n', 'v'}, '<leader>gr', ':Gitsigns reset_hunk<CR>', { desc = 'reset hunk' })
         map('n', '<leader>gd', function() gs.diffthis('~') end, { desc = 'diff HEAD' })
