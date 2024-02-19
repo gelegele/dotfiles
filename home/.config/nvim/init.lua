@@ -54,9 +54,13 @@ vim.opt.helplang = 'ja,en'
 -- Show file name on GUI
 vim.opt.title = true
 vim.opt.titlestring = '%t'
--- disable netrw for NvimTree and gx.nvim
+-- disable plugins
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_matchit = 1
+vim.g.loaded_gzip = 1
+vim.g.loaded_zipPlugin = 1
+-- vim.g.loaded_matchparen = 1
 
 -- keymap option
 local keymapopt = { noremap = true, silent = true }
