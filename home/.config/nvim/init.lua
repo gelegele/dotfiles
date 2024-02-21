@@ -615,7 +615,23 @@ require('lazy').setup({
     keys = {{ "gx", "<cmd>Browse<cr>", mode = { "n", "x" } }},
     cmd = { "Browse" },
     opts = {},
-  }
+  },
+  { -- Rest Client.
+    --  How to use
+    --  1. cat GET https://reqres.in/api/users?page=5 > basic_get.http
+    --  2. nvim basic_get.http
+    --  3. <Leader>R on the line.
+    "rest-nvim/rest.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    ft  = { 'http' },
+    config = function()
+      require("rest-nvim").setup({
+        result_split_horizontal = true,
+        result_split_in_place = true,
+      })
+      vim.keymap.set('n', '<leader>R', '<Plug>RestNvim', keymapopt)
+    end
+  },
 },
 {
   defaults = {
