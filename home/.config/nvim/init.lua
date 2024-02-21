@@ -194,18 +194,13 @@ require('lazy').setup({
     dependencies = { 'nvim-tree/nvim-web-devicons', 'nvim-lua/plenary.nvim' },
     keys = {{ '<Leader>f', mode = 'n', desc = 'telescope' }},
     config = function()
-      require('telescope').setup {
-        defaults = {
-          hidden = true,
-        },
-      }
+      require('telescope').setup({ defaults = { hidden = true } })
       local builtin = require('telescope.builtin')
       vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'find files' })
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'live grep' })
-      vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'buffers' })
-      vim.keymap.set('n', '<leader>fr', builtin.registers, { desc = 'registers' })
-      vim.keymap.set('n', '<leader>fs', builtin.git_status, { desc = 'git status' })
-      vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'help tags' })
+      vim.keymap.set('n', '<leader>fg', builtin.live_grep,  { desc = 'live grep'  })
+      vim.keymap.set('n', '<leader>fb', builtin.buffers,    { desc = 'buffers'    })
+      vim.keymap.set('n', '<leader>fr', builtin.registers,  { desc = 'registers'  })
+      vim.keymap.set('n', '<leader>fh', builtin.help_tags,  { desc = 'help tags'  })
     end
   },
   { -- Filer (Help: ?)
