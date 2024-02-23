@@ -18,8 +18,9 @@ nnoremap <Leader><CR> :w<CR>
 nnoremap Q :q<CR>
 nnoremap !! :q!<CR>
 
-" jj to normal mode
+" jj and kk to normal mode
 inoremap <silent> jj <ESC>
+inoremap <silent> kk <ESC>
 
 "Jで空白なし結合
 noremap J gJ

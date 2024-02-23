@@ -83,8 +83,9 @@ vim.keymap.set('n', '<Leader>]', ':bn<CR>', keymapopt)
 vim.keymap.set('n', '<Leader>[', ':bp<CR>', keymapopt)
 -- Space + x to delete buffer
 vim.keymap.set('n', '<Leader>x', ':bd|bn<CR>', keymapopt)
--- jj to go to NORMAL mode
+-- jj and kk to go to NORMAL mode
 vim.keymap.set('i', 'jj', '<ESC>', keymapopt)
+vim.keymap.set('i', 'kk', '<ESC>', keymapopt)
 -- j, k replace gj, gk not to slip wrap lines.
 vim.keymap.set('n', 'j', 'gj', keymapopt)
 vim.keymap.set('n', 'k', 'gk', keymapopt)
