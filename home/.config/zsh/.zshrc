@@ -28,6 +28,14 @@ export LANG=`locale -a | grep -i c.utf | grep 8`
 autoload -U promptinit
 promptinit
 
+# Change Windows folder ls color for WSL.
+if [[ "$(uname -r)" == *microsoft* ]]; then
+  if [ ! -f $ZDOTDIR/.dircolors ]; then
+    dircolors -p | sed 's/^OTHER_WRITABLE 34;42/OTHER_WRITABLE 01;34/' > $ZDOTDIR/.dircolors
+  fi
+  eval "$(dircolors -b $ZDOTDIR/.dircolors)"
+fi
+
 # コマンド補完
 fpath=($ZDOTDIR/completion $fpath)
 
