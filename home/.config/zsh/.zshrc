@@ -137,6 +137,8 @@ fi
 # Plugin Manager
 source $ZDOTDIR/antigen/antigen.zsh
 # <-- My plugins --
+# Syntax highlighting bundle.
+antigen bundle zsh-users/zsh-syntax-highlighting
 # auto complete
 antigen bundle zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#008080'
