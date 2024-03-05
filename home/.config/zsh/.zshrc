@@ -65,15 +65,6 @@ setopt PROMPT_SUBST ; PS1='%F{cyan}%n@%m%f %F{green}%~%f%F{red}$(__git_ps1 " (%s
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 
-# 履歴からの補完
-source $ZDOTDIR/zsh-autosuggestions/zsh-autosuggestions.zsh
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=6'
-
-# aws補完
-export PATH=/usr/local/bin:$PATH
-autoload bashcompinit && bashcompinit
-complete -C '/usr/local/bin/aws_completer' aws
-
 # z dot
 eval "$(zoxide init zsh)"
 
@@ -142,6 +133,20 @@ if [[ "$(uname -r)" == *microsoft* ]]; then
   alias cdwin='cd /mnt/c/Users/'
   alias adlist='w32tm.exe /monitor'
 fi
+
+# Plugin Manager
+source $ZDOTDIR/antigen/antigen.zsh
+# <-- My plugins --
+# auto complete
+antigen bundle zsh-users/zsh-autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#008080'
+# - for aws
+export PATH=/usr/local/bin:$PATH
+autoload bashcompinit && bashcompinit
+complete -C '/usr/local/bin/aws_completer' aws
+# Tell Antigen that you're done.
+antigen apply
+# -- My plugins -->
 
 # Added by nvm installer
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
