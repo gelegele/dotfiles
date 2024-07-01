@@ -124,6 +124,12 @@ vim.api.nvim_create_autocmd("BufRead", {
   command = "let &l:modifiable = !&readonly",
 })
 vim.api.nvim_create_autocmd("BufRead", {
+  desc = "Disabled auto completion in txt buffer.",
+  group = 'my-autocmd',
+  pattern = "*.txt",
+  command = "lua require('cmp').setup({ completion = { autocomplete = false } })",
+})
+vim.api.nvim_create_autocmd("BufRead", {
   desc = "Go to EOF when a pattern file is opened.",
   group = 'my-autocmd',
   pattern = "*.log,*/SigmaMemo.txt",
