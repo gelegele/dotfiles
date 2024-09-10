@@ -259,17 +259,14 @@ require('lazy').setup({
     'zaldih/themery.nvim',
     lazy = false,
     config = function ()
-      local themefilepath = '~/.config/nvim/lua/theme.lua'
-      if vim.fn.has('win64') == 1 then
-        themefilepath = '~\\AppData\\Local\\nvim\\lua\\theme.lua'
-      end
+      -- ~/.config/nvim/lua/theme.lua
+      -- ~\\AppData\\Local\\nvim\\lua\\theme.lua
       require('themery').setup({
         themes = {
           'default', 'habamax', 'slate', 'quiet', 'ayu-mirage', 'melange',
           'vscode', 'tender', 'tokyonight-night', 'tokyonight-storm', 'edge',
           'nightfox', 'duskfox', 'catppuccin-mocha', 'catppuccin-macchiato',
         },
-        themeConfigFile = themefilepath,
       })
       pcall(require, 'theme')
       vim.keymap.set('n', '<Leader>T', ':Themery<CR>', keymapopt)
