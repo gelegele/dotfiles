@@ -627,6 +627,10 @@ require('lazy').setup({
     cmd = { "Browse" },
     opts = {},
   },
+  { -- github copilot
+    'github/copilot.vim',
+    lazy = false,
+  },
 },
 {
   defaults = {
