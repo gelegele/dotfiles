@@ -95,6 +95,12 @@ if [[ -t 0 ]]; then
   stty start undef
 fi
 
+# Add PATH for GO LANG if go command exists.
+if command -v go &> /dev/null; then
+  export PATH=$PATH:$(go env GOPATH)/bin
+fi
+
+# alias
 alias ll='ls -AlFh --time-style=long-iso --color=auto'
 alias gip='curl https://ifconfig.io'
 alias du='du -h --total'

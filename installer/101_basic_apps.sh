@@ -9,7 +9,7 @@ defaultpackages=(less curl wget ssh source-highlight tree unzip fzf zoxide pytho
 echo "apt install $defaultpackages"
 sudo apt install -y ${defaultpackages[@]}
 
-packages=(language-pack-ja build-essential ipython3 neofetch)
+packages=(language-pack-ja build-essential ipython3 neofetch golang-go)
 for p in "${packages[@]}"
 do
   read -p "Do you install ${p}? [y/n]: " yn
