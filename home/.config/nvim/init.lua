@@ -511,10 +511,9 @@ require('lazy').setup({
   },
   { -- Preview markdown with nodejs
     "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
     ft = { "markdown" },
-    build = function()
-      vim.fn["mkdp#util#install"]()
-    end,
+    build = ":call mkdp#util#install()",
     config = function()
       vim.g.mkdp_auto_close = 0 -- Don't auto close preview
       vim.keymap.set('n', '<leader>m', '<Plug>MarkdownPreview', keymapopt)
