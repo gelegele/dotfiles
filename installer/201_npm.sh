@@ -9,4 +9,4 @@ npm update -g npm
 $(dirname $0)/sub_mklink_config.sh npm
 
 echo 'npm was installed.'
-echo 'Logout your terminal and execute 21x_xxx.sh'
+echo 'Logout your terminal and execute 300_bootstrap.sh'

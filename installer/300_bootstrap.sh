@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# フォルダ配下の21x_xxx.shを順番に実行する
+# フォルダ配下の3xx_xxx.shを順番に実行する
 
 dir=$(dirname $0)
 
-echo "Execute 21x_xxx.sh files in $dir folder."
+echo "Execute 3xx_xxx.sh files in $dir folder."
 for f in $(ls $dir); do
   if [[ "$f" = $(basename $0) ]]; then
     # skip this file.
     continue
   fi
-  if [[ "$f" != 21?_*.sh ]]; then
+  if [[ "$f" != 3??_*.sh ]]; then
     continue
   fi
 
