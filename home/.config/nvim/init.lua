@@ -638,7 +638,17 @@ require('lazy').setup({
   },
   { -- github copilot
     'github/copilot.vim',
-    lazy = false,
+    event = { 'BufRead', 'BufNewFile' },
+  },
+  { -- github copilot chat
+    "CopilotC-Nvim/CopilotChat.nvim",
+    dependencies = {
+      { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
+    },
+    build = "make tiktoken", -- Only on MacOS or Linux
+    keys = {{ "<Leader>c", ':CopilotChat<CR>', mode ='n', desc = 'CopilotChat' }},
+    opts = {},
   },
 },
 {
