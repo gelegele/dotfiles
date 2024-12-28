@@ -600,13 +600,14 @@ require('lazy').setup({
     keys = {{ 'ga', '<Plug>(EasyAlign)=', mode = 'v' }},
   },
   { -- UI for messages, cmdline and the popupmenu.
+    -- If you get many error messages, :NoiceDisable to clear them.
     "folke/noice.nvim",
-    -- enabled = false, -- If you got many error messages, turn off noice.
     event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
       "rcarriga/nvim-notify",
     },
+    keys = {{ "<Leader>m", ":Noice<CR>", mode = "n", desc = "messages by Noice" }},
     config = function()
       if vim.fn.has('win64') == 1 then
         return -- Disabled to prevent flicker on Windows.
@@ -615,7 +616,6 @@ require('lazy').setup({
         messages = {
           view      = "mini",
           view_warn = "mini",
-          -- call :messages to see the message history
         },
         lsp = {
           -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
