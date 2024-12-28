@@ -586,6 +586,11 @@ require('lazy').setup({
     event = { 'BufRead', 'BufNewFile' },
     opts= {},
   },
+  {
+    -- align
+    'junegunn/vim-easy-align',
+    keys = {{ "ga", "<Plug>(EasyAlign)", mode = { "n", "x" } }},
+  },
   { -- UI for messages, cmdline and the popupmenu.
     "folke/noice.nvim",
     -- enabled = false, -- If you got many error messages, turn off noice.
