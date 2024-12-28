@@ -509,6 +509,15 @@ require('lazy').setup({
     'RyanMillerC/better-vim-tmux-resizer',
     event = 'VimEnter',
   },
+  { -- <Leader>\ to toggle terminal
+    'akinsho/toggleterm.nvim',
+    config = true,
+    keys = {
+      { '<Leader>\\', ':ToggleTerm<CR>', mode = 'n', desc = 'ToggleTerm', },
+      { '<Leader>\\', '<C-\\><C-n>:ToggleTerm<CR>', mode = 't', desc = 'ToggleTerm', },
+      { '<ESC>', '<C-\\><C-n>', mode = 't', desc = 'exit from terminal insert mode', },
+    },
+  },
   { -- Preview markdown with nodejs
     "iamcco/markdown-preview.nvim",
     cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
