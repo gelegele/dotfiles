@@ -119,31 +119,31 @@ vim.keymap.set('n', '<Leader><Tab>', ':colorscheme ', { noremap = true })
 -- My autocmds
 vim.api.nvim_create_augroup( 'my-autocmd', {} )
 vim.api.nvim_create_autocmd("BufRead", {
-  desc = "Disabled to edit for read-only file.",
-  group = 'my-autocmd',
+  desc    = "Disabled to edit for read-only file.",
+  group   = 'my-autocmd',
   command = "let &l:modifiable = !&readonly",
 })
 vim.api.nvim_create_autocmd("BufRead", {
-  desc = "Disabled auto completion in txt buffer.",
-  group = 'my-autocmd',
+  desc    = "Disabled auto completion in txt buffer.",
+  group   = 'my-autocmd',
   pattern = "*.txt",
   command = "lua require('cmp').setup({ completion = { autocomplete = false } })",
 })
 vim.api.nvim_create_autocmd("BufRead", {
-  desc = "Go to EOF when a pattern file is opened.",
-  group = 'my-autocmd',
+  desc    = "Go to EOF when a pattern file is opened.",
+  group   = 'my-autocmd',
   pattern = "*.log,*/SigmaMemo.txt",
   command = "normal G",
 })
 vim.api.nvim_create_autocmd("BufEnter", {
   -- didn't work vim.opt.formatoptions
-  desc = "Don't auto commenting new lines",
-  group = 'my-autocmd',
+  desc    = "Don't auto commenting new lines",
+  group   = 'my-autocmd',
   command = "set formatoptions-=cro",
 })
 vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight yanked text.",
-  group = 'my-autocmd',
+  desc    = "Highlight yanked text.",
+  group   = 'my-autocmd',
   command = "lua vim.highlight.on_yank { higroup='IncSearch', timeout=300 }",
 })
 
@@ -187,10 +187,10 @@ require('lazy').setup({
             { desc = '󰋢 checkhealth',group = 'Label', action = 'checkhealth',            key = 'h' },
             { desc = ' zshrc',      group = 'Label', action = 'e ~/.config/zsh/.zshrc', key = 'z' },
           },
-          packages = { enable  = false },
-          project = { enable  = false },
-          mru = { limit = 8 },
-          footer = { '', 'This is your life.', 'Be yourself.' },
+          packages = { enable = true },
+          project  = { enable = false },
+          mru      = { limit = 8 },
+          footer   = { '', 'This is your life.', 'Be yourself.' },
         }
       }
       vim.keymap.set('n', '<Leader>d', ':Dashboard<CR>', keymapopt )
@@ -399,7 +399,7 @@ require('lazy').setup({
           ["<C-n>"] = cmp.mapping.select_next_item(),
           ['<C-l>'] = cmp.mapping.complete(),
           ['<C-e>'] = cmp.mapping.abort(),
-          ["<CR>"] = cmp.mapping.confirm { select = true },
+          ["<CR>"]  = cmp.mapping.confirm { select = true },
         }),
         experimental = {
           ghost_text = true,
@@ -468,7 +468,7 @@ require('lazy').setup({
     'lewis6991/gitsigns.nvim',
     opts = {
       signcolumn = false,
-      numhl      = true,
+      numhl = true,
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
         local function next_hunk()
@@ -584,12 +584,11 @@ require('lazy').setup({
   { -- autoclose and autorename html tag.
     'windwp/nvim-ts-autotag',
     event = { 'BufRead', 'BufNewFile' },
-    opts= {},
+    opts = {},
   },
-  {
-    -- align
+  { -- align rows with key ga in visual mode.
     'junegunn/vim-easy-align',
-    keys = {{ "ga", "<Plug>(EasyAlign)", mode = { "n", "x" } }},
+    keys = {{ 'ga', '<Plug>(EasyAlign)=', mode = 'v' }},
   },
   { -- UI for messages, cmdline and the popupmenu.
     "folke/noice.nvim",
@@ -601,16 +600,15 @@ require('lazy').setup({
     },
     config = function()
       if vim.fn.has('win64') == 1 then
-        -- Disabled to prevent flicker on Windows.
-        return
+        return -- Disabled to prevent flicker on Windows.
       end
       require("noice").setup({
         messages = {
-          view = "mini",
-          view_error = "mini", -- view for errors
-          view_warn = "mini", -- view for warnings
+          view         = "mini",
+          view_error   = "mini", -- view for errors
+          view_warn    = "mini", -- view for warnings
           view_history = "mini", -- view for :messages
-          view_search = "mini", -- view for search count messages. Set to `false` to disable
+          view_search  = "mini", -- view for search count messages. Set to `false` to disable
         },
         lsp = {
           -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
