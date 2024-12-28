@@ -368,12 +368,9 @@ require('lazy').setup({
   { -- completion
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
+      "hrsh7th/cmp-nvim-lsp", 'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path', 'hrsh7th/cmp-cmdline',
+      'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip',
       'onsails/lspkind.nvim',      -- adds vscode-like pictograms
     },
     event = { 'BufRead', 'BufNewFile' },
@@ -603,10 +600,7 @@ require('lazy').setup({
     -- If you get many error messages, :NoiceDisable to clear them.
     "folke/noice.nvim",
     event = "VeryLazy",
-    dependencies = {
-      "MunifTanjim/nui.nvim",
-      "rcarriga/nvim-notify",
-    },
+    dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
     keys = {{ "<Leader>m", ":Noice<CR>", mode = "n", desc = "messages by Noice" }},
     config = function()
       if vim.fn.has('win64') == 1 then
@@ -642,11 +636,8 @@ require('lazy').setup({
   },
   { -- github copilot chat
     "CopilotC-Nvim/CopilotChat.nvim",
-    dependencies = {
-      { "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
-      { "nvim-lua/plenary.nvim" }, -- for curl, log wrapper
-    },
-    build = "make tiktoken", -- Only on MacOS or Linux
+    dependencies = { "github/copilot.vim", "nvim-lua/plenary.nvim" },
+    build = "make tiktoken",
     keys = {{ "<Leader>c", ':CopilotChat<CR>', mode ='n', desc = 'CopilotChat' }},
     opts = {},
   },
