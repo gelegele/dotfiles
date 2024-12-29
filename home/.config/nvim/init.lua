@@ -167,6 +167,7 @@ require('lazy').setup({
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     event = "VimEnter",
     config = function()
+      local version = vim.version()
       require('dashboard').setup {
         config ={
           header = {
@@ -176,6 +177,7 @@ require('lazy').setup({
             [[ ██║╚██╗██║ ██╔══╝  ██║   ██║ ╚██╗ ██╔╝ ██║ ██║╚██╔╝██║ ]],
             [[ ██║ ╚████║ ███████╗╚██████╔╝  ╚████╔╝  ██║ ██║ ╚═╝ ██║ ]],
             [[ ╚═╝  ╚═══╝ ╚══════╝ ╚═════╝    ╚═══╝   ╚═╝ ╚═╝     ╚═╝ ]],
+            'v'..version.major..'.'..version.minor..'.'..version.patch,
             [[                                                        ]],
           },
           shortcut = {
@@ -190,7 +192,7 @@ require('lazy').setup({
           packages = { enable = true },
           project  = { enable = false },
           mru      = { limit = 8 },
-          footer   = { '', 'This is your life.', 'Be yourself.' },
+          footer   = { '', 'This is your life. Be yourself.' },
         }
       }
       vim.keymap.set('n', '<Leader>d', ':Dashboard<CR>', keymapopt )
