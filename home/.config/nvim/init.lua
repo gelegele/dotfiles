@@ -450,6 +450,11 @@ require('lazy').setup({
     'folke/which-key.nvim',
     event = 'VeryLazy',
     opts = {},
+    keys = {{
+        "<leader>?",
+        function() require("which-key").show({ global = false }) end,
+        desc = "Show Local Keymaps",
+    }},
   },
   { -- Scroll Bar
     'petertriho/nvim-scrollbar',
@@ -633,6 +638,7 @@ require('lazy').setup({
   { -- github copilot
     'github/copilot.vim',
     event = { 'BufRead', 'BufNewFile' },
+    -- If you get stuck in setup, wsl --shutdown.
   },
   { -- github copilot chat
     "CopilotC-Nvim/CopilotChat.nvim",
