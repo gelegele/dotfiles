@@ -3,6 +3,13 @@
   safecrlf = false
   editor = nvim
   filemode = false
+  pager = delta
+[interactive]
+  diffFilter = delta --color-only
+[delta]
+  navigate = true  # use n and N to move between diff sections
+  side-by-side = true
+  hunk-header-style = omit
 [color]
   ui = auto
 [pull]
