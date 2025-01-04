@@ -5,11 +5,11 @@ echo ''
 sudo apt update -y
 sudo apt upgrade -y
 
-defaultpackages=(less curl wget ssh source-highlight tree unzip fzf zoxide bat python3-pip)
+defaultpackages=(less curl wget ssh source-highlight tree unzip fzf zoxide bat python3-pip neofetch golang-go)
 echo "apt install $defaultpackages"
 sudo apt install -y ${defaultpackages[@]}
 
-packages=(language-pack-ja build-essential ipython3 neofetch golang-go)
+packages=(language-pack-ja build-essential ipython3)
 for p in "${packages[@]}"
 do
   read -p "Do you install ${p}? [y/n]: " yn

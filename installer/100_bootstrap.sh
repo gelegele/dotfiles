@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# フォルダ配下の1xx_xxx.shを順番に実行する
+# Execute 1xx_xxx.sh
 # 100番台以外は対話形式での任意実行
 
 dir=$(dirname $0)
@@ -28,4 +28,5 @@ for f in $(ls $dir); do
   $dir/$f
 done
 echo ""
-echo "Done. Log out your terminal and execute installer/200_nvm_install.sh"
+echo "Done. Log out your terminal and execute installer/300_bootstrap.sh"
+

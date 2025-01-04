@@ -149,6 +149,10 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 # auto complete
 antigen bundle zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#008080'
+# to reduse startup time by lazy loading nvm
+export NVM_DIR=$XDG_CONFIG_HOME/nvm
+export NVM_COMPLETION=true
+antigen bundle lukechilds/zsh-nvm
 # - for aws
 export PATH=/usr/local/bin:$PATH
 autoload bashcompinit && bashcompinit
@@ -157,10 +161,11 @@ complete -C '/usr/local/bin/aws_completer' aws
 antigen apply
 # -- My plugins -->
 
-# Added by nvm installer
-export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Install the latest Node.js if not exists
+if ! command -v node &> /dev/null; then
+  source $XDG_CONFIG_HOME/nvm/nvm.sh
+  nvm install node
+fi
 
 # load .zshrc.local if it exists.
 [ -f $ZDOTDIR/.zshrc.local ] && source $ZDOTDIR/.zshrc.local
