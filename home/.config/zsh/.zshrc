@@ -130,6 +130,10 @@ if [[ "$(uname -r)" == *microsoft* ]]; then
   alias adlist='w32tm.exe /monitor'
 fi
 
+# aws cli completion
+autoload bashcompinit && bashcompinit
+complete -C '/usr/local/bin/aws_completer' aws
+
 # Plugin Manager
 source $ZDOTDIR/antigen/antigen.zsh
 # <-- My plugins --
@@ -143,10 +147,6 @@ export NVM_DIR=$XDG_CONFIG_HOME/nvm
 export NVM_COMPLETION=true
 export NVM_LAZY_LOAD=true
 antigen bundle lukechilds/zsh-nvm
-# - for aws
-export PATH=/usr/local/bin:$PATH
-autoload bashcompinit && bashcompinit
-complete -C '/usr/local/bin/aws_completer' aws
 # Tell Antigen that you're done.
 antigen apply
 # -- My plugins -->
