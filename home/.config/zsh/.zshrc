@@ -14,11 +14,12 @@ setopt extended_history
 setopt autocd
 unsetopt beep
 # End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
-zstyle :compinstall filename '$ZDOTDIR/.zshrc'
+
+# zstyle :compinstall filename '$ZDOTDIR/.zshrc'
+# Select a completion by TAB key
+zstyle ':completion:*:default' menu select=1
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
 
 # LANGはutf8またはUTF-8にしたい（ll表示順に影響）。日本語にするなら ja_JP.UTF8
 # Linuxのバージョンによってどっちが入ってるかわからないのでどっちも対応できるよう
@@ -28,23 +29,17 @@ export LANG=`locale -a | grep -i c.utf | grep 8`
 autoload -U promptinit
 promptinit
 
-# Change Windows folder ls color for WSL.
+# for WSL.
 if [[ "$(uname -r)" == *microsoft* ]]; then
+  # Change Windows folder ls color
   if [ ! -f $ZDOTDIR/.dircolors ]; then
     dircolors -p | sed 's/^OTHER_WRITABLE 34;42/OTHER_WRITABLE 01;34/' > $ZDOTDIR/.dircolors
   fi
   eval "$(dircolors -b $ZDOTDIR/.dircolors)"
-fi
-
-# コマンド補完
-fpath=($ZDOTDIR/completion $fpath)
-
-# TABキーで補完候補から選択
-zstyle ':completion:*:default' menu select=1
-# 補完候補からWindows系の不要なファイルを除外
-if [[ "$(uname -r)" == *microsoft* ]]; then
+  # Exclude unnecessary windows files from completions
   zstyle ':completion:*' ignored-patterns '*.dll' '*.sys' '*.exe' '*.mof' '*.msc' '*.cmd' '*.vbs' '*.efi'
 fi
+
 # select comp list
 zmodload zsh/complist
 bindkey -M menuselect '^n' down-line-or-history               # 補完候補1つ下へ
@@ -102,12 +97,10 @@ fi
 
 # alias
 alias ll='ls -AlFh --time-style=long-iso --color=auto'
+alias cat=batcat
 alias gip='curl https://ifconfig.io'
 alias du='du -h --total'
 alias gr='grep --color=auto'
-if [ -e /usr/local/bin/ccat ]; then
-  alias cat=ccat
-fi
 alias tm=tmux
 alias tma='tmux a'
 alias tmk='tmux kill-server'
@@ -115,7 +108,6 @@ alias vim='vim -Nu $XDG_CONFIG_HOME/vim/.vimrc'
 alias v=nvim
 alias vr='nvim -R'
 alias f=vifm
-alias cat=batcat
 alias g=git
 alias gl=lazygit
 alias docker-start='sudo service docker start'
@@ -133,7 +125,6 @@ alias gcloud-config-list='gcloud config configurations list'
 alias gcloud-config-activate='gcloud config configurations activate'
 # for wsl2
 if [[ "$(uname -r)" == *microsoft* ]]; then
-  alias vs='code .'
   alias e='explorer.exe .'
   alias wslshutdown='/mnt/c/WINDOWS/system32/wsl.exe --shutdown'
   alias fixdate='sudo hwclock -s|date'
@@ -144,9 +135,9 @@ fi
 # Plugin Manager
 source $ZDOTDIR/antigen/antigen.zsh
 # <-- My plugins --
-# Syntax highlighting bundle.
+# Syntax highlighting, completions, suggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
-# auto complete
+antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#008080'
 # to reduse startup time by lazy loading nvm
