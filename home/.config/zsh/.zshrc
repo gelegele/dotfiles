@@ -15,11 +15,9 @@ setopt autocd
 unsetopt beep
 # End of lines configured by zsh-newuser-install
 
-# zstyle :compinstall filename '$ZDOTDIR/.zshrc'
 # Select a completion by TAB key
 zstyle ':completion:*:default' menu select=1
-autoload -Uz compinit
-compinit
+autoload -Uz compinit && compinit
 
 # LANGはutf8またはUTF-8にしたい（ll表示順に影響）。日本語にするなら ja_JP.UTF8
 # Linuxのバージョンによってどっちが入ってるかわからないのでどっちも対応できるよう
@@ -140,9 +138,10 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#008080'
-# to reduse startup time by lazy loading nvm
+# Install nvm.
 export NVM_DIR=$XDG_CONFIG_HOME/nvm
 export NVM_COMPLETION=true
+export NVM_LAZY_LOAD=true
 antigen bundle lukechilds/zsh-nvm
 # - for aws
 export PATH=/usr/local/bin:$PATH
