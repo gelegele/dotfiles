@@ -8,3 +8,6 @@ export XDG_CACHE_HOME=$HOME/.cache
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 # XDG npm
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
+
+# If the system wrote something here, it's better to move it to .zshenv.local.
+[ -s ~/.zshenv.local ] && source ~/.zshenv.local

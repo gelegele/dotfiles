@@ -42,7 +42,6 @@ alias f=vifm
 alias hs=history
 alias gr='grep --color=auto'
 alias g=git
-alias vs='code .'
 
 # z dot
 eval "$(zoxide init bash)"
