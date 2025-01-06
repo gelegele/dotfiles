@@ -515,7 +515,10 @@ require('lazy').setup({
   },
   { -- <Leader>\ to toggle terminal
     'akinsho/toggleterm.nvim',
-    config = true,
+    config = {
+      direction = 'float',
+      float_opts = { width = 100, height = 18 },
+    },
     keys = {
       { '<Leader>\\', ':ToggleTerm<CR>', mode = 'n', desc = 'ToggleTerm', },
       { '<Leader>\\', '<C-\\><C-n>:ToggleTerm<CR>', mode = 't', desc = 'ToggleTerm', },
