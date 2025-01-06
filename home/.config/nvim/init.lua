@@ -111,8 +111,6 @@ vim.keymap.set('n', '<Leader>n', ':set nonumber!<CR>', keymapopt)
 vim.keymap.set('n', '<Leader>w', ':set wrap!<CR>', keymapopt)
 -- Space + h to prefix to open help on new tab. To go back with gt.
 vim.keymap.set('n', '<Leader>h', ':tab help ', { noremap = true })
--- Space + r to :source $MYVIMRC
-vim.keymap.set('n', '<Leader>r', ':source $MYVIMRC<CR>', keymapopt)
 -- Space + Tab to :colorscheme
 vim.keymap.set('n', '<Leader><Tab>', ':colorscheme ', { noremap = true })
 
