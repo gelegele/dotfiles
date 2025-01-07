@@ -1,9 +1,10 @@
 --[[
 My init.lua for NEOVIM
 
-  This file path is
-  - Linux: ~/.config/nvim/init.lua
-  - Windows: ~\AppData\Local\nvim\init.lua
+  If you want to refer this file from Windows Neovim,
+  Execute the following command on MS-DOS as Administrator.
+  > mklink [Home Dir]\AppData\Local\nvim\init.lua [Drive]:[Path to this file]\init.lua 
+
 ]]--
 
 -- Default encoding is utf-8
