@@ -22,4 +22,4 @@ for f in $(ls $dir); do
   $dir/$f
 done
 echo ""
-echo "Done."
+echo "Done. Don't forget to install NerdFonts in your OS."

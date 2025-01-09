@@ -28,5 +28,5 @@ for f in $(ls $dir); do
   $dir/$f
 done
 echo ""
-echo "Done. Log out your terminal and execute installer/300_bootstrap.sh"
+echo "Done. Log out your terminal and execute installer/200_bootstrap.sh"
 
