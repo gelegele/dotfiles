@@ -295,6 +295,10 @@ require('lazy').setup({
             icons_enabled = false,
           },
         },
+        lualine_x = {
+          'encoding', 'fileformat', 'filetype',
+          { 'copilot', show_colors = true, }, -- copilot-lualine
+        },
         lualine_y = { 'g:colors_name' },
         lualine_z = { 'location'},
       },
@@ -640,9 +644,27 @@ require('lazy').setup({
     opts = {},
   },
   { -- github copilot
-    'github/copilot.vim',
-    event = { 'BufRead', 'BufNewFile' },
-    -- If you get stuck in setup, wsl --shutdown.
+    "zbirenbaum/copilot.lua",
+    enabled = true,
+    cmd = { "Copilot" },
+    event = { "InsertEnter" },
+    opts = {
+      filetypes = { gitcommit = true }, -- enabled in gitcommit
+      suggestion = {
+        auto_trigger = true,
+        keymap = {
+          accept = "<Tab>", -- Default was "<M-l>"
+          -- accept_word = false,
+          -- accept_line = false,
+          -- next = "<M-]>",
+          -- prev = "<M-[>",
+          -- dismiss = "<C-]>",
+        },
+      },
+    },
+  },
+  { -- github copilot status icon in lualine
+    'AndreM222/copilot-lualine',
   },
   { -- github copilot chat
     "CopilotC-Nvim/CopilotChat.nvim",
