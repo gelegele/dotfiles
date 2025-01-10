@@ -114,6 +114,10 @@ vim.keymap.set('n', '<Leader>w', ':set wrap!<CR>', keymapopt)
 vim.keymap.set('n', '<Leader>h', ':tab help ', { noremap = true })
 -- Space + Tab to :colorscheme
 vim.keymap.set('n', '<Leader><Tab>', ':colorscheme ', { noremap = true })
+-- GUI font setting
+if vim.fn.has('win64') then
+  vim.keymap.set('n', '<Leader>F', ':set guifont=*<CR>', keymapopt)
+end
 
 -- My autocmds
 vim.api.nvim_create_augroup( 'my-autocmd', {} )
