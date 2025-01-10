@@ -647,9 +647,19 @@ require('lazy').setup({
     "zbirenbaum/copilot.lua",
     enabled = true,
     cmd = { "Copilot" },
-    event = { "InsertEnter" },
+    keys = {
+      { "<Leader>ca", "<cmd>Copilot auth<cr>", mode = { "n" }, desc = "Copilot auth" },
+      { "<Leader>cs", "<cmd>Copilot status<cr>", mode = { "n" }, desc = "Copilot status" },
+      { "<Leader>ce", "<cmd>Copilot enable<cr>", mode = { "n", "i" }, desc = "Copilot enable" },
+      { "<Leader>cd", "<cmd>Copilot disable<cr>", mode = { "n", "i" }, desc = "Copilot disable" },
+    },
     opts = {
-      filetypes = { gitcommit = true }, -- enabled in gitcommit
+      filetypes = {
+        yaml = true,
+        markdown = true,
+        gitcommit = true,
+        cvs = false,
+      },
       suggestion = {
         auto_trigger = true,
         keymap = {
@@ -670,7 +680,7 @@ require('lazy').setup({
     "CopilotC-Nvim/CopilotChat.nvim",
     dependencies = { "github/copilot.vim", "nvim-lua/plenary.nvim" },
     build = "make tiktoken",
-    keys = {{ "<Leader>c", ':CopilotChat<CR>', mode ='n', desc = 'CopilotChat' }},
+    keys = {{ "<Leader>cc", ':CopilotChat<CR>', mode ='n', desc = 'CopilotChat' }},
     opts = {},
   },
 },
