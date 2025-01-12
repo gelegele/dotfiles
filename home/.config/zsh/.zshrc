@@ -94,7 +94,7 @@ if command -v go &> /dev/null; then
 fi
 
 # alias
-alias ll='ls -AlFh --time-style=long-iso --color=auto'
+alias ll='eza -al --time-style=long-iso'
 alias cat=batcat
 alias gip='curl https://ifconfig.io'
 alias du='du -h --total'
