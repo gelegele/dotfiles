@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo ''
 echo 'Install zsh ... '
 
-sudo apt install -y zsh
+brew install zsh
 
 $(dirname $0)/sub_mklink_config.sh zsh
 
@@ -15,3 +15,4 @@ curl -L https://raw.githubusercontent.com/docker/cli/master/contrib/completion/z
 
 echo 'Change default shell zsh.'
 chsh -s $(which zsh)
+

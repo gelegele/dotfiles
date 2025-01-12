@@ -1,15 +1,9 @@
 #!/bin/bash
 
-sudo apt install make
+echo ''
+echo 'Installing git-secrets'
 
-temp=~/temp-git-secrets
-
-git clone --depth 1 https://github.com/awslabs/git-secrets.git $temp
-cd $temp
-sudo make install
-
-cd ~
-rm -rf $temp
+brew install git-secrets
 
 echo ''
 echo 'You MUST install as bellow.'

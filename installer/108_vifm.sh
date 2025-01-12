@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo ''
 echo 'Install vifm ... '
 
-sudo apt install -y vifm
+brew install vifm
 
 $(dirname $0)/sub_mklink_config.sh vifm
 
