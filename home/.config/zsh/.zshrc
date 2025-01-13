@@ -94,7 +94,12 @@ if command -v go &> /dev/null; then
 fi
 
 # alias
-alias ll='eza -al --time-style=long-iso'
+if command -v eza &> /dev/null; then
+  export EZA_CONFIG_DIR=$XDG_CONFIG_HOME/eza
+  alias ll='eza -al --time-style=long-iso'
+else
+  alias ll='ls -alFh --time-style=long-iso --color=auto'
+fi
 alias cat=batcat
 alias gip='curl https://ifconfig.io'
 alias du='du -h --total'
