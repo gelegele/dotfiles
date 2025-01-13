@@ -134,6 +134,15 @@ fi
 autoload bashcompinit && bashcompinit
 complete -C '/usr/local/bin/aws_completer' aws
 
+# Add brew PATH if Linux
+case $OSTYPE in
+  darwin*)  #Mac
+    ;;
+  linux*)   #Linux
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    ;;
+esac
+
 # Plugin Manager
 source $ZDOTDIR/antigen/antigen.zsh
 # <-- My plugins --
