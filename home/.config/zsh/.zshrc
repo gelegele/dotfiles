@@ -58,6 +58,15 @@ setopt PROMPT_SUBST ; PS1='%F{cyan}%n@%m%f %F{green}%~%f%F{red}$(__git_ps1 " (%s
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 
+# Add brew PATH if Linux
+case $OSTYPE in
+  darwin*)  #Mac
+    ;;
+  linux*)   #Linux
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    ;;
+esac
+
 # z dot
 eval "$(zoxide init zsh)"
 
@@ -138,15 +147,6 @@ fi
 # aws cli completion
 autoload bashcompinit && bashcompinit
 complete -C '/usr/local/bin/aws_completer' aws
-
-# Add brew PATH if Linux
-case $OSTYPE in
-  darwin*)  #Mac
-    ;;
-  linux*)   #Linux
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    ;;
-esac
 
 # Plugin Manager
 source $ZDOTDIR/antigen/antigen.zsh
