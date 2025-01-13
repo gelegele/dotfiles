@@ -1,4 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+# Check curl command.
+if ! command -v curl 2>&1 >/dev/null; then
+    echo "curl command is not found. Install curl before this installer."
+    exit 1
+fi
 
 # Execute 1xx_xxx.sh
 # 100番台以外は対話形式での任意実行
