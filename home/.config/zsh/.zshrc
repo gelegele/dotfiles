@@ -103,6 +103,7 @@ if command -v go &> /dev/null; then
 fi
 
 # alias
+alias relogin='exec $SHELL -l'
 if command -v eza &> /dev/null; then
   export EZA_CONFIG_DIR=$XDG_CONFIG_HOME/eza
   alias ll='eza -al --time-style=long-iso'

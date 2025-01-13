@@ -42,6 +42,7 @@ alias f=vifm
 alias hs=history
 alias gr='grep --color=auto'
 alias g=git
+alias relogin='exec $SHELL -l'
 
 # z dot
 eval "$(zoxide init bash)"
