@@ -157,15 +157,22 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#008080'
-# Install nvm.
-export NVM_DIR=$XDG_CONFIG_HOME/nvm
-export NVM_COMPLETION=true
-export NVM_LAZY_LOAD=true
-antigen bundle lukechilds/zsh-nvm
 # Tell Antigen that you're done.
 antigen apply
 # -- My plugins -->
 
+# for nvm
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+case $OSTYPE in
+  darwin*)  #Mac
+    [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm 
+    ;;
+  linux*)   #Linux
+    [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
+    [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+    ;;
+esac
 # Install the latest Node.js if not exists
 if ! command -v node &> /dev/null; then
   source $XDG_CONFIG_HOME/nvm/nvm.sh
