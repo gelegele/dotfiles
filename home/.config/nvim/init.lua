@@ -618,7 +618,7 @@ require('lazy').setup({
     "folke/noice.nvim",
     event = "VeryLazy",
     dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
-    keys = {{ "<Leader>m", ":Noice<CR>", mode = "n", desc = "messages by Noice" }},
+    keys = {{ "<Leader>N", ":Noice<CR>", mode = "n", desc = "messages by Noice" }},
     config = function()
       if vim.fn.has('win64') == 1 then
         return -- Disabled to prevent flicker on Windows.
