@@ -25,16 +25,11 @@ if [[ -t 0 ]]; then
   stty start undef
 fi
 
-# Prompt style
-source $XDG_CONFIG_HOME/git/prompt.sh
-GIT_PS1_SHOWDIRTYSTATE=true
-export PS1='\[\e[35m\]\h\[\e[00m\]:\[\e[33m\]\w\[\e[31m\]$(__git_ps1)\[\e[00m\]\$ '
-
 #Source-hilight with less
 export LESS='-R'
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 
-alias ll='ls -AlFh --time-style=long-iso --color=auto'
+alias ll='ls -AlFh --color=auto'
 alias tm=tmux
 alias v=nvim
 alias vr='nvim -R'
@@ -67,3 +62,8 @@ export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 if [ -f '~/google-cloud-sdk/path.bash.inc' ]; then . '~/google-cloud-sdk/path.bash.inc'; fi
 # The next line enables shell command completion for gcloud.
 if [ -f '~/google-cloud-sdk/completion.bash.inc' ]; then . '~/google-cloud-sdk/completion.bash.inc'; fi
+
+# customize prompt by starship
+export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
+eval "$(starship init bash)"
+

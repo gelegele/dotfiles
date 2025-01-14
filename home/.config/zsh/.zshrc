@@ -48,12 +48,6 @@ function _ssh {
   compadd `fgrep 'Host ' ~/.ssh/config | awk '{print $2}' | sort`;
 }
 
-# git settings
-source $XDG_CONFIG_HOME/git/prompt.sh
-GIT_PS1_SHOWDIRTYSTATE=true
-GIT_PS1_SHOWUPSTREAM="auto"
-setopt PROMPT_SUBST ; PS1='%F{cyan}%n@%m%f %F{green}%~%f%F{red}$(__git_ps1 " (%s)")%f\$ '
-
 # history
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
@@ -178,6 +172,10 @@ if ! command -v node &> /dev/null; then
   source $XDG_CONFIG_HOME/nvm/nvm.sh
   nvm install node
 fi
+
+# customize prompt by starship
+export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
+eval "$(starship init zsh)"
 
 # load .zshrc.local if it exists.
 [ -f $ZDOTDIR/.zshrc.local ] && source $ZDOTDIR/.zshrc.local
