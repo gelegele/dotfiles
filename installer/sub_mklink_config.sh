@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ $# -ne 1 ]; then
   echo "Set 1 argument as the name of a config directory." 1>&2
