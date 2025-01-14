@@ -110,7 +110,7 @@ if command -v eza &> /dev/null; then
 else
   alias ll='ls -alFh --time-style=long-iso --color=auto'
 fi
-alias cat=batcat
+alias cat=bat
 alias gip='curl https://ifconfig.io'
 alias du='du -h --total'
 alias gr='grep --color=auto'
