@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # make symlinks of dotfiles in HOME
 homesrc=$(cd $(dirname $0)/../home;pwd)
@@ -8,7 +8,14 @@ for file in `ls -Ap $homesrc`; do
     # Skip directories and normal files.
     continue
   fi
-  makeln="ln -sf $homesrc/$file $homedst/$file"
+  src=${homesrc}/${file}
+  dst=${homedst}/${file}
+  if [[ -f $dst ]]; then
+    # Backup if the file exists.
+    mv -f ${src} ${dst}.bak
+  fi
+  makeln="ln -sf $src $dst"
   echo $makeln
 	$makeln
 done
+
