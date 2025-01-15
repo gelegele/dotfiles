@@ -143,17 +143,11 @@ fi
 autoload bashcompinit && bashcompinit
 complete -C '/usr/local/bin/aws_completer' aws
 
-# Plugin Manager
-source $ZDOTDIR/antigen/antigen.zsh
-# <-- My plugins --
-# Syntax highlighting, completions, suggestions
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-autosuggestions
+# Plugin Manager Sheldon. The config file is ~/.config/sheldon/plugins.toml
+eval "$(sheldon source)"
+
+# color for zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#008080'
-# Tell Antigen that you're done.
-antigen apply
-# -- My plugins -->
 
 # for nvm
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
