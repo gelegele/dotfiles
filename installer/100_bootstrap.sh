@@ -12,9 +12,15 @@ if command -v apt-get > /dev/null 2>&1; then
   fi 
 fi
 
-# Install Homebrew and set PATH temporary
+# Install Homebrew and set PATH temporary if Linux
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+case $OSTYPE in
+  darwin*)  #Mac
+    ;;
+  linux*)   #Linux
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    ;;
+esac
 
 # Execute 1xx_xxx.sh
 dir=$(dirname $0)

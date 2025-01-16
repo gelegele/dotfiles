@@ -11,8 +11,8 @@ for file in `ls -Ap $homesrc`; do
   src=${homesrc}/${file}
   dst=${homedst}/${file}
   if [[ -f $dst ]]; then
-    # Backup if the file exists.
-    mv -f ${src} ${dst}.bak
+    # Backup if dst file exists.
+    mv -f ${dst} ${dst}.bak
   fi
   makeln="ln -sf $src $dst"
   echo $makeln
