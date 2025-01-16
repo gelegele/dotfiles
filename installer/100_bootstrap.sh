@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
 # For Debian and Ubuntu
-if command -v apt-get > /dev/null 2>&1; then
+if command -v apt-get &> /dev/null; then
   sudo apt update -y
   sudo apt upgrade -y
-  sudo apt install -y curl build-essential
+  sudo apt install -y build-essential procps curl file git
   if  [ -e /etc/lsb-release ]; then
     sudo apt install -y language-pack-ja
   else
