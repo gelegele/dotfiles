@@ -3,12 +3,11 @@
 echo ''
 echo 'Install zsh ... '
 
-
 if command -v apt-get > /dev/null 2>&1; then
   # Coudn't Change default shell to zsh installed by Homebrew on Debian
-  sudo apt install -y zsh
+  sudo apt install -y zsh source-highlight
 else
-  brew install zsh
+  brew install zsh source-highlight
 fi
 
 $(dirname $0)/sub_mklink_config.sh zsh

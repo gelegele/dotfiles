@@ -65,6 +65,7 @@ esac
 eval "$(zoxide init zsh)"
 
 #Source-hilight with less
+# TODO: add path for Mac
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS='-R'
 # edit function color to yellow from black in /usr/share/source-highlight/esc.style
