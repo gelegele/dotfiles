@@ -2,19 +2,22 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
-$username$shell \
+$hostname$shell \
 $directory \
 $git_branch$git_status\
 $character\
 """
-right_format = "$all$time $os $hostname"
+right_format = """
+$all$time \
+$username $os
+"""
 
 add_newline = true  # default is true
 
-[username]
-format = '[$user](blue)'
+[hostname]
+format = '[$ssh_symbol](bold green)[$hostname](blue)'
 disabled = false
-show_always = true
+ssh_only = false
 
 [shell]
 format = "[#!](cyan)[$indicator](blue)"
@@ -44,6 +47,7 @@ style = "dimmed green"
 
 [aws]
 format = '[$symbol](dimmed green)'
+symbol = " "
 
 [time]
 time_format = '%T'
@@ -51,14 +55,14 @@ format = "[$time]($style)"
 style = "dimmed green"
 disabled = false
 
+[username]
+format = '[$user]($style)'
+style_user = "dimmed green"
+disabled = false
+show_always = true
+
  [os]
 format = "[$name]($style)"
 style = "dimmed green"
 disabled = false
-
-[hostname]
-format = '[$ssh_symbol](bold green)[$hostname]($style)'
-style = "dimmed green"
-disabled = false
-ssh_only = false
 
