@@ -121,6 +121,7 @@ alias gl=lazygit
 alias docker-start='sudo service docker start'
 alias check-true-color='curl -s https://gist.githubusercontent.com/lifepillar/09a44b8cf0f9397465614e622979107f/raw/24-bit-color.sh | bash'
 alias show-256colors='/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/gawin/bash-colors-256/master/colors)"'
+alias rgh='rg --hidden'
 alias aptfzf="dpkg -l | sed -e '1,5d' | fzf"
 alias py=python3
 alias python=python3
