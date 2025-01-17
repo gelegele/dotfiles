@@ -52,12 +52,17 @@ function _ssh {
 bindkey '^P' history-beginning-search-backward
 bindkey '^N' history-beginning-search-forward
 
-# Add brew PATH if Linux
 case $OSTYPE in
   darwin*)  #Mac
+    # aws cli completion
+    autoload bashcompinit && bashcompinit
+    complete -C '/usr/local/bin/aws_completer' aws
     ;;
   linux*)   #Linux
+    # Add brew PATH if Linux
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    # aws cli completion
+    source $HOMEBREW_PREFIX/share/zsh/site-functions/aws_zsh_completer.sh
     ;;
 esac
 
@@ -140,10 +145,6 @@ if [[ "$(uname -r)" == *microsoft* ]]; then
   alias cdwin='cd /mnt/c/Users/'
   alias adlist='w32tm.exe /monitor'
 fi
-
-# aws cli completion
-source $HOMEBREW_PREFIX/share/zsh/site-functions/aws_zsh_completer.sh
-# TODO This is for Linux. Write for Mac.
 
 # Plugin Manager Sheldon. The config file is ~/.config/sheldon/plugins.toml
 eval "$(sheldon source)"
