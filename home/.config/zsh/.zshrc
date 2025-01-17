@@ -140,8 +140,8 @@ if [[ "$(uname -r)" == *microsoft* ]]; then
 fi
 
 # aws cli completion
-autoload bashcompinit && bashcompinit
-complete -C '/usr/local/bin/aws_completer' aws
+source $HOMEBREW_PREFIX/share/zsh/site-functions/aws_zsh_completer.sh
+# TODO This is for Linux. Write for Mac.
 
 # Plugin Manager Sheldon. The config file is ~/.config/sheldon/plugins.toml
 eval "$(sheldon source)"
