@@ -42,6 +42,9 @@ success_symbol = "[❯❯](green)"
 format = "[took $duration]($style) "
 style = "dimmed green"
 
+[aws]
+format = '[$symbol](dimmed green)'
+
 [time]
 time_format = '%T'
 format = "[$time]($style)"
