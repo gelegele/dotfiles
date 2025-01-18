@@ -6,8 +6,8 @@ local config = wezterm.config_builder()
 
 -- This is where you actually apply your config choices
 
-config.font = wezterm.font 'Cica'
-config.font_size = 15
+config.font = wezterm.font 'HackGen35 Console NF'
+config.font_size = 13
 -- https://wezfurlong.org/wezterm/colorschemes/index.html
 -- config.color_scheme = 'Espresso'
 -- config.color_scheme = 'Catppuccin Mocha'
