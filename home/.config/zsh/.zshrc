@@ -21,7 +21,14 @@ autoload -Uz compinit && compinit
 
 # LANGはutf8またはUTF-8にしたい（ll表示順に影響）。日本語にするなら ja_JP.UTF8
 # Linuxのバージョンによってどっちが入ってるかわからないのでどっちも対応できるよう
-export LANG=`locale -a | grep -i c.utf | grep 8`
+case $OSTYPE in
+  darwin*)  #Mac
+    export LANG='UTF-8'
+    ;;
+  linux*)   #Linux
+    export LANG=`locale -a | grep -i c.utf | grep 8`
+    ;;
+esac
 
 # promptコマンド有効化
 autoload -U promptinit
