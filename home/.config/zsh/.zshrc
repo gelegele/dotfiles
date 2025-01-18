@@ -61,6 +61,9 @@ bindkey '^N' history-beginning-search-forward
 
 case $OSTYPE in
   darwin*)  #Mac
+    #Source-hilight with less
+    export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
+    export LESS='-R'
     # aws cli completion
     autoload bashcompinit && bashcompinit
     complete -C '/usr/local/bin/aws_completer' aws
@@ -68,6 +71,9 @@ case $OSTYPE in
   linux*)   #Linux
     # Add brew PATH if Linux
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+    #Source-hilight with less
+    export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+    export LESS='-R'
     # aws cli completion
     source $HOMEBREW_PREFIX/share/zsh/site-functions/aws_zsh_completer.sh
     ;;
@@ -75,12 +81,6 @@ esac
 
 # z dot
 eval "$(zoxide init zsh)"
-
-#Source-hilight with less
-# TODO: add path for Mac
-export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
-export LESS='-R'
-# edit function color to yellow from black in /usr/share/source-highlight/esc.style
 
 # fzf default options
 export FZF_DEFAULT_OPTS="--layout=reverse --border --height 50% --inline-info"
