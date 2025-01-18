@@ -30,10 +30,6 @@ case $OSTYPE in
     ;;
 esac
 
-# promptコマンド有効化
-autoload -U promptinit
-promptinit
-
 # for WSL.
 if [[ "$(uname -r)" == *microsoft* ]]; then
   # Change Windows folder ls color
