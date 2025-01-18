@@ -12,7 +12,7 @@ for file in `ls -Ap $homesrc`; do
   dst=${homedst}/${file}
   if [[ -f $dst ]]; then
     # Backup if dst file exists.
-    mv -f ${dst} ${dst}.bak
+    mv --no-clobber ${dst} ${dst}.bak
   fi
   makeln="ln -sf $src $dst"
   echo $makeln

@@ -146,11 +146,9 @@ alias gcloud-config-list='gcloud config configurations list'
 alias gcloud-config-activate='gcloud config configurations activate'
 # for wsl2
 if [[ "$(uname -r)" == *microsoft* ]]; then
-  alias e='explorer.exe .'
+  alias open='wsl-open'
   alias wslshutdown='/mnt/c/WINDOWS/system32/wsl.exe --shutdown'
-  alias fixdate='sudo hwclock -s|date'
   alias cdwin='cd /mnt/c/Users/'
-  alias adlist='w32tm.exe /monitor'
 fi
 
 # Plugin Manager Sheldon. The config file is ~/.config/sheldon/plugins.toml
