@@ -15,10 +15,6 @@ setopt autocd
 unsetopt beep
 # End of lines configured by zsh-newuser-install
 
-# Select a completion by TAB key
-zstyle ':completion:*:default' menu select=1
-autoload -Uz compinit && compinit
-
 # LANGはutf8またはUTF-8にしたい（ll表示順に影響）。日本語にするなら ja_JP.UTF8
 # Linuxのバージョンによってどっちが入ってるかわからないのでどっちも対応できるよう
 case $OSTYPE in
@@ -41,15 +37,28 @@ if [[ "$(uname -r)" == *microsoft* ]]; then
   zstyle ':completion:*' ignored-patterns '*.dll' '*.sys' '*.exe' '*.mof' '*.msc' '*.cmd' '*.vbs' '*.efi'
 fi
 
-# select comp list
+# Select a completion with TAB key or C-n/p
+zstyle ':completion:*:default' menu select=1
 zmodload zsh/complist
-bindkey -M menuselect '^n' down-line-or-history               # 補完候補1つ下へ
-bindkey -M menuselect '^p' up-line-or-history                 # 補完候補1つ上へ
+bindkey -M menuselect '^n' down-line-or-history
+bindkey -M menuselect '^p' up-line-or-history
+# aws cli completion
+case $OSTYPE in
+  darwin*)  #Mac
+    autoload bashcompinit && bashcompinit
+    complete -C '/usr/local/bin/aws_completer' aws
+    ;;
+  linux*)   #Linux
+    source $HOMEBREW_PREFIX/share/zsh/site-functions/aws_zsh_completer.sh
+    ;;
+esac
 
 # to comp ssh config name
-function _ssh {
-  compadd `fgrep 'Host ' ~/.ssh/config | awk '{print $2}' | sort`;
-}
+if [ -f ~/.ssh/config ]; then
+  function _ssh {
+    compadd `fgrep 'Host ' ~/.ssh/config | awk '{print $2}' | sort`;
+  }
+fi
 
 # history
 bindkey '^P' history-beginning-search-backward
@@ -60,9 +69,6 @@ case $OSTYPE in
     #Source-hilight with less
     export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
     export LESS='-R'
-    # aws cli completion
-    autoload bashcompinit && bashcompinit
-    complete -C '/usr/local/bin/aws_completer' aws
     ;;
   linux*)   #Linux
     # Add brew PATH if Linux
@@ -70,8 +76,6 @@ case $OSTYPE in
     #Source-hilight with less
     export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
     export LESS='-R'
-    # aws cli completion
-    source $HOMEBREW_PREFIX/share/zsh/site-functions/aws_zsh_completer.sh
     ;;
 esac
 
@@ -83,10 +87,6 @@ export FZF_DEFAULT_OPTS="--layout=reverse --border --height 50% --inline-info"
 # fzf preview with less
 function fzp() {
   fzf --preview 'less {}'
-}
-# fzf and vim
-function fzv() {
-  vim $(ls -ap1| grep -v / | fzp)
 }
 
 # mkdir and cd
