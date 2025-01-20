@@ -36,6 +36,10 @@ if [[ "$(uname -r)" == *microsoft* ]]; then
   # Exclude unnecessary windows files from completions
   zstyle ':completion:*' ignored-patterns '*.dll' '*.sys' '*.exe' '*.mof' '*.msc' '*.cmd' '*.vbs' '*.efi'
 fi
+# Add brew PATH if Linux
+if [[ $OSTYPE == "linux"* ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
 # Select a completion with TAB key or C-n/p
 zstyle ':completion:*:default' menu select=1
@@ -71,8 +75,6 @@ case $OSTYPE in
     export LESS='-R'
     ;;
   linux*)   #Linux
-    # Add brew PATH if Linux
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     #Source-hilight with less
     export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
     export LESS='-R'
