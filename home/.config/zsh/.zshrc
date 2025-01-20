@@ -26,6 +26,14 @@ case $OSTYPE in
     ;;
 esac
 
+# Add brew PATH if Linux
+if [[ $OSTYPE == "linux"* ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+# Enabled completions after brew shellenv
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+autoload -Uz compinit && compinit
+
 # for WSL.
 if [[ "$(uname -r)" == *microsoft* ]]; then
   # Change Windows folder ls color
@@ -35,10 +43,6 @@ if [[ "$(uname -r)" == *microsoft* ]]; then
   eval "$(dircolors -b $ZDOTDIR/.dircolors)"
   # Exclude unnecessary windows files from completions
   zstyle ':completion:*' ignored-patterns '*.dll' '*.sys' '*.exe' '*.mof' '*.msc' '*.cmd' '*.vbs' '*.efi'
-fi
-# Add brew PATH if Linux
-if [[ $OSTYPE == "linux"* ]]; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 # Select a completion with TAB key or C-n/p
