@@ -15,6 +15,9 @@ setopt autocd
 unsetopt beep
 # End of lines configured by zsh-newuser-install
 
+# Prevent duplicated PATH
+typeset -U path PATH
+
 # LANGはutf8またはUTF-8にしたい（ll表示順に影響）。日本語にするなら ja_JP.UTF8
 # Linuxのバージョンによってどっちが入ってるかわからないのでどっちも対応できるよう
 case $OSTYPE in
