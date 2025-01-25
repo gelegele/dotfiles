@@ -3,6 +3,9 @@ gui:
 
 git:
   branchLogCmd: "git log --oneline --all --graph --decorate --color=always"
+  paging:
+    colorArg: always
+    pager: delta --dark --paging=never
 
 keybinding:
     universal:
