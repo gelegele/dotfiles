@@ -122,7 +122,7 @@ fi
 alias relogin='exec $SHELL -l'
 if command -v eza &> /dev/null; then
   export EZA_CONFIG_DIR=$XDG_CONFIG_HOME/eza
-  alias ll='eza -al --time-style=long-iso'
+  alias ll='eza -alF --time-style=long-iso'
 else
   alias ll='ls -alFh --time-style=long-iso --color=auto'
 fi
