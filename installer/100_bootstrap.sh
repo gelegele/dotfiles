@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # For Debian and Ubuntu
-if command -v apt-get &> /dev/null; then
+if type apt-get &> /dev/null; then
   sudo apt update -y
   sudo apt upgrade -y
   sudo apt install -y build-essential procps curl file git

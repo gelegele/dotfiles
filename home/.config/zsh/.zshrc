@@ -114,13 +114,13 @@ if [[ -t 0 ]]; then
 fi
 
 # Add PATH for GO LANG if go command exists.
-if command -v go &> /dev/null; then
+if type go &> /dev/null; then
   export PATH=$PATH:$(go env GOPATH)/bin
 fi
 
 # alias
 alias relogin='exec $SHELL -l'
-if command -v eza &> /dev/null; then
+if type eza &> /dev/null; then
   export EZA_CONFIG_DIR=$XDG_CONFIG_HOME/eza
   alias ll='eza -alF --time-style=long-iso'
 else
@@ -186,7 +186,7 @@ case $OSTYPE in
     ;;
 esac
 # Install the latest Node.js if not exists
-if ! command -v node &> /dev/null; then
+if ! type node &> /dev/null; then
   source $XDG_CONFIG_HOME/nvm/nvm.sh
   nvm install node
 fi
