@@ -160,6 +160,13 @@ if [[ "$(uname -r)" == *microsoft* ]]; then
   alias cdwin='cd /mnt/c/Users/'
 fi
 
+# Google search
+function ggl() {
+    local search_query="$@"
+    local encoded_query=$(echo "$search_query" | sed 's/ /+/g')
+    open "https://www.google.com/search?q=$encoded_query"
+}
+
 # Plugin Manager Sheldon. The config file is ~/.config/sheldon/plugins.toml
 eval "$(sheldon source)"
 
