@@ -9,7 +9,7 @@ $character\
 """
 right_format = """
 $all$time \
-$username $os
+$username
 """
 
 add_newline = true  # default is true
@@ -20,7 +20,7 @@ disabled = false
 ssh_only = false
 
 [shell]
-format = "[#!](cyan)[$indicator](blue)"
+format = "[](cyan)[$indicator](blue)"
 bash_indicator = "bash"
 disabled = false
 
@@ -34,7 +34,7 @@ truncation_length = 5
 truncation_symbol = '…/'
 truncate_to_repo = false
 format = "[$path](white)"
-home_symbol = " ~"
+home_symbol = " "
 
 [git_branch]
 format = '[ $branch(:$remote_branch)](yellow) '
@@ -47,8 +47,7 @@ error_symbol = "[❯❯](green)" # for git status
 success_symbol = "[❯❯](green)"
 
 [cmd_duration]
-format = "[took $duration]($style) "
-style = "dimmed green"
+disabled = true
 
 [aws]
 format = '[$symbol](dimmed green)'
@@ -65,9 +64,4 @@ format = '[$user]($style)'
 style_user = "dimmed green"
 disabled = false
 show_always = true
-
- [os]
-format = "[$name]($style)"
-style = "dimmed green"
-disabled = false
 
