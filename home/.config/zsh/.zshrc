@@ -1,5 +1,8 @@
 # .zshrc is loaded after ~/.zshenv loading.
 
+# Comment in for zsh profiling
+# zmodload zsh/zprof
+
 # Lines configured by zsh-newuser-install
 HISTFILE=$ZDOTDIR/zsh_history
 HISTSIZE=1000
@@ -197,3 +200,9 @@ eval "$(starship init zsh)"
 
 # load .zshrc.local if it exists.
 [ -f $ZDOTDIR/.zshrc.local ] && source $ZDOTDIR/.zshrc.local
+
+# profile if zprof was loaded
+if ( which zprof &> /dev/null ); then
+  zprof
+fi
+
