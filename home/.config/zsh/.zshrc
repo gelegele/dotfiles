@@ -111,7 +111,7 @@ function mkcd() {
 }
 
 # Release ctrl + S and ctrl +q to be enabled to map.
-if [[ -t 0 ]]; then
+if [ -t 0 ]; then
   stty stop undef
   stty start undef
 fi
@@ -180,17 +180,20 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#008080'
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 case $OSTYPE in
   darwin*)  #Mac
-    [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm 
+    nvm_path="/usr/local/opt/nvm/nvm.sh"
+    nvm_comp_path="/usr/local/opt/nvm/etc/bash_completion.d/nvm"
     ;;
   linux*)   #Linux
-    [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
-    [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+    nvm_path="/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"
+    nvm_comp_path="/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"
     ;;
 esac
+if [ -e $nvm_path ] && [ -e $nvm_comp_path ]; then
+  alias nvm='unalias nvm && . "$nvm_path" && . "$nvm_comp_path" && nvm'
+fi
 # Install the latest Node.js if not exists
-if ! type node &> /dev/null; then
-  source $XDG_CONFIG_HOME/nvm/nvm.sh
+if [ ! type node &> /dev/null ]; then
+  source $NVM_DIR/nvm.sh
   nvm install node
 fi
 
