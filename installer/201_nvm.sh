@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+echo "Installing nvm..."
+brew install nvm
+
+echo "Configure nvm..."
 export NVM_DIR=~/.config/nvm
 case $OSTYPE in
   darwin*)  #Mac
