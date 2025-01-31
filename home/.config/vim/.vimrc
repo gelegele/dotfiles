@@ -24,8 +24,8 @@ inoremap <silent> kk <ESC>
 
 "Jで空白なし結合
 noremap J gJ
-"ctrl+Enterキーで空行挿入
-" nnoremap <S-Tab> o<ESC>
+"空行挿入
+nnoremap <S-Tab> o<ESC>
 "Ctrl + p でヤンクレジスター貼り付け
 noremap <C-p> "0p
 

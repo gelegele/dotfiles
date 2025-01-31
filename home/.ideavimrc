@@ -1,0 +1,81 @@
+" .ideavimrc is a configuration file for IdeaVim plugin. It uses
+"   the same commands as the original .vimrc configuration.
+" You can find a list of commands here: https://jb.gg/h38q75
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+
+"" -- Suggested options --
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" Do incremental searching.
+set incsearch
+
+set hlsearch
+
+" Set yanked text to clipboard
+set clipboard+=unnamed
+
+" 行末のスペースを可視化
+set listchars=tab:^\ ,trail:~
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+" --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
+
+" Highlight copied text
+Plug 'machakann/vim-highlightedyank'
+" Commentary plugin
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+
+let mapleader = ' '
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
+
+nnoremap <Leader><CR> :w<CR>
+nnoremap Q :q<CR>
+nnoremap !! :q!<CR>
+
+" jj and kk to normal mode
+inoremap <silent> jj <ESC>
+inoremap <silent> kk <ESC>
+
+"Jで空白なし結合
+noremap J gJ
+"行移動先を中央表示
+noremap gg ggzz
+
+noremap <S-Tab> o<ESC>
+
+noremap <C-n> *N
+"検索開始時に次の単語に移動させない
+noremap * *N
+noremap # #N
+"検索単語移動＋スクロール
+noremap n nzz
+noremap N Nzz
+"ESCハイライト消去
+noremap <silent> <ESC> :nohl<CR><ESC>
+"Space + s to replace search highlighted words.
+noremap <Leader>s :%s///gc<Left><Left><Left>
+
+noremap <Leader>n :set nonumber!<CR>
+noremap <Leader>w :set wrap!<CR>
+
+noremap <Leader>[ :bn<CR>
+noremap <Leader>] :bp<CR>
+noremap <Leader>x :bd<CR>
+
+noremap <Leader>g] <Action>(VcsShowNextChangeMarker)
+noremap <Leader>g[ <Action>(VcsShowPrevChangeMarker)
