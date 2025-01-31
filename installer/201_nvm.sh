@@ -16,3 +16,5 @@ case $OSTYPE in
     ;;
 esac
 
+nvm install node
+
