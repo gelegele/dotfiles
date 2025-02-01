@@ -206,3 +206,7 @@ if ( which zprof &> /dev/null ); then
   zprof
 fi
 
+# Java SDK Manager
+export SDKMAN_DIR="$XDG_CONFIG_HOME/sdkman"
+[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+

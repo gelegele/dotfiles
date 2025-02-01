@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-defaultpackages=(gcc wget tree unzip ripgrep fzf zoxide bat nvm gh awscli)
+defaultpackages=(gcc wget tree zip unzip ripgrep fzf zoxide bat nvm gh awscli)
 if [[ "$(uname -r)" != *microsoft* ]]; then
   # not WSL
   defaultpackages+=(font-hackgen font-hackgen-nerd)
