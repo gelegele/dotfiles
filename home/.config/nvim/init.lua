@@ -3,7 +3,7 @@ My init.lua for NEOVIM
 
   If you want to refer this file from Windows Neovim,
   Execute the following command on MS-DOS as Administrator.
-  > mklink [Home Dir]\AppData\Local\nvim\init.lua [Drive]:[Path to this file]\init.lua 
+  > mklink [Home Dir]\AppData\Local\nvim\init.lua [Drive]:[Path to this file]\init.lua
 
 ]]--
 
@@ -36,7 +36,7 @@ vim.opt.smartcase = true
 -- Allow keys below that move the cursor to move to the pre/next line.
 vim.opt.whichwrap = "b,[,],<,>"
 -- enable clipboard sync.
-if vim.fn.has("wsl") == 1 then
+if vim.fn.has("wsl") == 1 and vim.g.vscode == nil then
   -- The path to win32yank is passed if Windows Neovim is installed with winget.
   vim.g.clipboard = {
     name  = 'WslClipboard',
@@ -566,6 +566,7 @@ require('lazy').setup({
   },
   { -- gcc to toggle linewise comment. gbc to toggle blockwise comment.
     'numToStr/Comment.nvim',
+    cond = true, -- enabled in vscode
     keys = { -- setting for lazy loading
       { 'gc', mode = { 'n', 'v' }},
       { 'gb', mode = { 'n', 'v' }},
@@ -601,10 +602,12 @@ require('lazy').setup({
     --   gsc -> camelCase
     --   gsm -> CamelCase
     'arthurxavierx/vim-caser',
-    keys = { { 'gs', mode = {'n', 'v'}, desc = 'caser'} },
+    cond = true, -- enabled in vscode
+    keys = {{ 'gs', mode = {'n', 'v'}, desc = 'caser'}},
   },
   { -- Space j to split/join blocks of code.
     'Wansmer/treesj',
+    cond = true, -- enabled in vscode
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
     keys = {{ "<Leader>j", ':TSJToggle<CR>', mode ='n', desc = 'TSJToggle' }},
     opts = { use_default_keymaps = false },
@@ -621,6 +624,7 @@ require('lazy').setup({
   },
   { -- align rows with key ga in visual mode.
     'junegunn/vim-easy-align',
+    cond = true, -- enabled in vscode
     keys = {{ 'ga', '<Plug>(EasyAlign)=', mode = 'v' }},
   },
   { -- UI for messages, cmdline and the popupmenu.
@@ -700,7 +704,7 @@ require('lazy').setup({
 },
 {
   defaults = {
-      cond ~= vim.g.vscode, -- most plugins are disabled in vscode
+      cond = vim.g.vscode == nil, -- most plugins are disabled in vscode
       lazy = true,
     }
 })
