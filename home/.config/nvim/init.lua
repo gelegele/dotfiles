@@ -105,7 +105,11 @@ vim.keymap.set('n', '#', '#N', keymapopt)
 -- ESC to clear search highlight.
 vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR>', keymapopt)
 -- Space + s to replace search highlighted words.
-vim.keymap.set('n', '<Leader>s', ':%s///gc<Left><Left><Left>', { noremap = true })
+if vim.g.vscode then
+  vim.keymap.set('n', '<Leader>s', ':call VSCodeCall("editor.action.rename")<CR>', keymapopt)
+else
+  vim.keymap.set('n', '<Leader>s', ':%s///gc<Left><Left><Left>', { noremap = true })
+end
 -- Space + n to toggle line numbers.
 vim.keymap.set('n', '<Leader>n', ':set nonumber!<CR>', keymapopt)
 -- Space + w to toggle auto wrap.
