@@ -4,7 +4,7 @@
 if type apt-get &> /dev/null; then
   sudo apt update -y
   sudo apt upgrade -y
-  sudo apt install -y build-essential procps curl file git
+  sudo apt install -y build-essential procps curl file git dnsutils
   if  [ -e /etc/lsb-release ]; then
     sudo apt install -y language-pack-ja
   else
