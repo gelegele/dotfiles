@@ -139,7 +139,6 @@ alias tmk='tmux kill-server'
 alias vim='vim -Nu $XDG_CONFIG_HOME/vim/.vimrc'
 alias v=nvim
 alias vr='nvim -R'
-alias f=vifm
 alias g=git
 alias gl=lazygit
 alias docker-start='sudo service docker start'
@@ -168,6 +167,16 @@ function ggl() {
     local search_query="$@"
     local encoded_query=$(echo "$search_query" | sed 's/ /+/g')
     open "https://www.google.com/search?q=$encoded_query"
+}
+
+# yazi - File Manager
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(command cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }
 
 # Plugin Manager Sheldon. The config file is ~/.config/sheldon/plugins.toml
