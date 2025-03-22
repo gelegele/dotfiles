@@ -8,8 +8,9 @@ $git_branch$git_status\
 $character\
 """
 right_format = """
-$all$time \
-$username
+$all\
+$java $gradle \
+$time\
 """
 
 add_newline = true  # default is true
@@ -53,6 +54,14 @@ disabled = true
 format = '[$symbol](dimmed green)'
 symbol = " "
 
+[java]
+format = '[${symbol}(${version} )]($style)'
+version_format = '${raw}'
+
+[gradle]
+format = '[${symbol}(${version} )](dimmed bright-cyan)'
+version_format = '${raw}'
+
 [time]
 time_format = '%T'
 format = "[$time]($style)"
@@ -60,8 +69,5 @@ style = "dimmed green"
 disabled = false
 
 [username]
-format = '[$user]($style)'
-style_user = "dimmed green"
-disabled = false
-show_always = true
+disabled = true
 
