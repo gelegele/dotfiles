@@ -53,13 +53,16 @@ disabled = true
 [aws]
 format = '[$symbol](dimmed green)'
 symbol = " "
+disabled = true
 
 [java]
-format = '[${symbol}(${version} )]($style)'
+format = '[${symbol}(${version} )](dimmed bright-cyan)'
+symbol = " "
 version_format = '${raw}'
 
 [gradle]
 format = '[${symbol}(${version} )](dimmed bright-cyan)'
+symbol = ' '
 version_format = '${raw}'
 
 [time]
