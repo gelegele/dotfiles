@@ -130,6 +130,17 @@ vim.api.nvim_create_autocmd("BufRead", {
   group   = 'my-autocmd',
   command = "let &l:modifiable = !&readonly",
 })
+vim.api.nvim_create_autocmd("FileType", {
+  desc     = 'set tabstop 4',
+  group    = 'my-autocmd',
+  callback = function (args)
+    ft = args.match
+    if ft == 'java' or ft == 'gradle' or ft == 'fxml' then
+      vim.bo.tabstop = 4
+      vim.bo.shiftwidth = 4
+    end
+  end
+})
 vim.api.nvim_create_autocmd("BufRead", {
   desc    = "Disabled auto completion in txt buffer.",
   group   = 'my-autocmd',
