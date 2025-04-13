@@ -716,6 +716,21 @@ require('lazy').setup({
     keys = {{ "<Leader>cc", ':CopilotChat<CR>', mode ='n', desc = 'CopilotChat' }},
     opts = {},
   },
+  { -- Show selectable regster list by pressing "
+    "tversteeg/registers.nvim",
+    cmd = "Registers",
+    keys = {
+      { "\"",    mode = { "n", "v" } },
+      { "<C-R>", mode = "i" }
+    },
+    name = "registers",
+    config = function()
+        local registers = require("registers")
+        registers.setup({
+          window = { border = "rounded", },
+        })
+    end,
+  },
 },
 {
   defaults = {
