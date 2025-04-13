@@ -716,7 +716,7 @@ require('lazy').setup({
     keys = {{ "<Leader>cc", ':CopilotChat<CR>', mode ='n', desc = 'CopilotChat' }},
     opts = {},
   },
-  { -- Show selectable regster list by pressing "
+  { -- Show selectable registers with "
     "tversteeg/registers.nvim",
     cmd = "Registers",
     keys = {
