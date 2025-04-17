@@ -588,6 +588,15 @@ require('lazy').setup({
     },
     opts = {},
   },
+  { -- Exchange two words with X.
+    "gbprod/substitute.nvim",
+    cond = true, -- enabled in vscode
+    config = function () require('substitute').setup() end,
+    keys = {
+      { "X", function() require('substitute.exchange').operator() end,
+       desc = 'exchange operator', mode = { 'n', 'x' }, noremap = true, silent = true },
+    },
+  },
   { -- Extends C-a, C-x
     'monaqa/dial.nvim',
     cond = true, -- enabled in vscode
