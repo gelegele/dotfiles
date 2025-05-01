@@ -46,6 +46,7 @@ if [[ "$(uname -r)" == *microsoft* ]]; then
   export PATH=$PATH:$XDG_CONFIG_HOME/win32yank
   # To use VS Code
   export PATH=$PATH:"/mnt/c/Users/${USERNAME}/AppData/Local/Programs/Microsoft VS Code/bin"
+  export PATH=$PATH:"/mnt/c/Program Files/Microsoft VS Code/bin"
   # Change Windows folder ls color
   if [ ! -f $ZDOTDIR/.dircolors ]; then
     dircolors -p | sed 's/^OTHER_WRITABLE 34;42/OTHER_WRITABLE 01;34/' > $ZDOTDIR/.dircolors
