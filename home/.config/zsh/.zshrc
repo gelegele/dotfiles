@@ -140,6 +140,7 @@ alias tmk='tmux kill-server'
 alias vim='vim -Nu $XDG_CONFIG_HOME/vim/.vimrc'
 alias v=nvim
 alias vr='nvim -R'
+alias cpinitlua='cp -f ~/.config/nvim/init.lua /mnt/c/Users/${USERNAME}/AppData/Local/nvim/init.lua'
 alias g=git
 alias gl=lazygit
 alias docker-start='sudo service docker start'
