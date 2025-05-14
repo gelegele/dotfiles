@@ -15,6 +15,15 @@ appendWindowsPath = false # To exclude Windows PATH
 EOF
 "
 
+# Add /etc/fonts/local.conf to activate Windows fonts for GUI.
+cat << 'EOS' | sudo tee /etc/fonts/local.conf
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+    <dir>/mnt/c/Windows/Fonts</dir>
+</fontconfig>
+EOS
+
 # System clipboard
 $(dirname $0)/sub_mklink_config.sh win32yank
 
