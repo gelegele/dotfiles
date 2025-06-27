@@ -30,7 +30,7 @@ vim.opt.number = true
 -- Show tail spaces.
 vim.opt.list = true
 -- ignore case
-vim.opt.ignorecase = true
+vim.opt.ignorecase = false
 -- case-sensitive if capital letters
 vim.opt.smartcase = true
 -- Allow keys below that move the cursor to move to the pre/next line.
