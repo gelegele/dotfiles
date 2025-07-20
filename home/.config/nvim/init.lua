@@ -362,9 +362,10 @@ require('lazy').setup({
   },
   { -- Langage Server manager
     'williamboman/mason.nvim',
+    version = "^1.0.0",
     event = "VeryLazy",
     dependencies = {
-      'williamboman/mason-lspconfig.nvim',
+      { 'williamboman/mason-lspconfig.nvim', version = "^1.0.0" },
       'neovim/nvim-lspconfig',
       { 'folke/neodev.nvim', opts = {} },
       { 'j-hui/fidget.nvim', opts = {} },
