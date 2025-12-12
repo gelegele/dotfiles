@@ -143,6 +143,7 @@ alias vr='nvim -R'
 alias cpinitlua='cp -f ~/.config/nvim/init.lua /mnt/c/Users/${USERNAME}/AppData/Local/nvim/init.lua'
 alias g=git
 alias gl=lazygit
+alias apt-update='sudo apt update -y && sudo apt upgrade -y'
 alias docker-start='sudo service docker start'
 alias check-true-color='curl -s https://gist.githubusercontent.com/lifepillar/09a44b8cf0f9397465614e622979107f/raw/24-bit-color.sh | bash'
 alias show-256colors='/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/gawin/bash-colors-256/master/colors)"'
