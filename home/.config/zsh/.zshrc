@@ -117,9 +117,10 @@ if [[ -t 0 ]]; then
   stty start undef
 fi
 
-# Add PATH for GO LANG if go command exists.
-if type go &> /dev/null; then
-  export PATH=$PATH:$(go env GOPATH)/bin
+# Go Settings
+if [[ -d /home/linuxbrew/.linuxbrew/bin/go ]] || type go &> /dev/null; then
+  export GOPATH=$HOME/go
+  export PATH=$PATH:$GOPATH/bin
 fi
 
 # alias
