@@ -135,7 +135,7 @@ vim.api.nvim_create_autocmd("FileType", {
   desc     = 'set tabstop 4',
   group    = 'my-autocmd',
   callback = function (args)
-    ft = args.match
+    local ft = args.match
     if ft == 'java' or ft == 'gradle' or ft == 'fxml' then
       vim.bo.tabstop = 4
       vim.bo.shiftwidth = 4
@@ -151,7 +151,7 @@ vim.api.nvim_create_autocmd("BufRead", {
 vim.api.nvim_create_autocmd("BufRead", {
   desc    = "Go to EOF when a pattern file is opened.",
   group   = 'my-autocmd',
-  pattern = "*.log,*/SigmaMemo.txt",
+  pattern = { "*.log", "*/SigmaMemo.txt" },
   command = "normal G",
 })
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -168,7 +168,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system {
     'git', 'clone', '--filter=blob:none',
     'https://github.com/folke/lazy.nvim.git', '--branch=stable',
