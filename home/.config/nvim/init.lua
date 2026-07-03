@@ -161,9 +161,11 @@ vim.api.nvim_create_autocmd("BufEnter", {
   command = "set formatoptions-=cro",
 })
 vim.api.nvim_create_autocmd("TextYankPost", {
-  desc    = "Highlight yanked text.",
-  group   = 'my-autocmd',
-  command = "lua vim.highlight.on_yank { higroup='IncSearch', timeout=300 }",
+  desc     = "Highlight yanked text.",
+  group    = 'my-autocmd',
+  callback = function()
+    vim.hl.on_yank({ higroup = 'IncSearch', timeout = 300 })
+  end,
 })
 
 -- Install package manager
