@@ -317,7 +317,6 @@ require('lazy').setup({
         },
         lualine_x = {
           'encoding', 'fileformat', 'filetype',
-          { 'copilot', show_colors = true, }, -- copilot-lualine
         },
         lualine_y = { 'g:colors_name' },
         lualine_z = { 'location'},
@@ -685,46 +684,6 @@ require('lazy').setup({
     cond = true, -- enabled in vscode
     keys = {{ "gx", "<cmd>Browse<cr>", mode = { "n", "x" } }},
     cmd = { "Browse" },
-    opts = {},
-  },
-  { -- github copilot
-    "zbirenbaum/copilot.lua",
-    enabled = true,
-    cmd = { "Copilot" },
-    keys = {
-      { "<Leader>ca", "<cmd>Copilot auth<cr>", mode = { "n" }, desc = "Copilot auth" },
-      { "<Leader>cs", "<cmd>Copilot status<cr>", mode = { "n" }, desc = "Copilot status" },
-      { "<Leader>ce", "<cmd>Copilot enable<cr>", mode = { "n", "i" }, desc = "Copilot enable" },
-      { "<Leader>cd", "<cmd>Copilot disable<cr>", mode = { "n", "i" }, desc = "Copilot disable" },
-    },
-    opts = {
-      filetypes = {
-        yaml = true,
-        markdown = true,
-        gitcommit = true,
-        cvs = false,
-      },
-      suggestion = {
-        auto_trigger = true,
-        keymap = {
-          accept = "<Tab>", -- Default was "<M-l>"
-          -- accept_word = false,
-          -- accept_line = false,
-          -- next = "<M-]>",
-          -- prev = "<M-[>",
-          -- dismiss = "<C-]>",
-        },
-      },
-    },
-  },
-  { -- github copilot status icon in lualine
-    'AndreM222/copilot-lualine',
-  },
-  { -- github copilot chat
-    "CopilotC-Nvim/CopilotChat.nvim",
-    dependencies = { "github/copilot.vim", "nvim-lua/plenary.nvim" },
-    build = "make tiktoken",
-    keys = {{ "<Leader>cc", ':CopilotChat<CR>', mode ='n', desc = 'CopilotChat' }},
     opts = {},
   },
   { -- Show selectable registers with "
