@@ -120,7 +120,7 @@ vim.keymap.set('n', '<Leader>h', ':tab help ', { noremap = true })
 -- Space + Tab to :colorscheme
 vim.keymap.set('n', '<Leader><Tab>', ':colorscheme ', { noremap = true })
 -- GUI font setting
-if vim.fn.has('win64') then
+if vim.fn.has('win64') == 1 then
   vim.keymap.set('n', '<Leader>F', ':set guifont=*<CR>', keymapopt)
 end
 
@@ -146,7 +146,12 @@ vim.api.nvim_create_autocmd("BufRead", {
   desc    = "Disabled auto completion in txt buffer.",
   group   = 'my-autocmd',
   pattern = "*.txt",
-  command = "lua require('cmp').setup({ completion = { autocomplete = false } })",
+  callback = function()
+    local ok, cmp = pcall(require, 'cmp')
+    if ok then
+      cmp.setup.buffer({ completion = { autocomplete = false } })
+    end
+  end,
 })
 vim.api.nvim_create_autocmd("BufRead", {
   desc    = "Go to EOF when a pattern file is opened.",
@@ -342,7 +347,7 @@ require('lazy').setup({
     event = { 'BufRead', 'BufNewFile' },
     build = ':TSUpdate',
     config = function()
-      if vim.fn.has('win64') then
+      if vim.fn.has('win64') == 1 then
         return -- Disabled to prevent errors on Windows.
       end
       require('nvim-treesitter.configs').setup {
@@ -369,7 +374,7 @@ require('lazy').setup({
     dependencies = {
       'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig',
-      { 'folke/neodev.nvim', opts = {} },
+      { 'folke/lazydev.nvim', ft = 'lua', opts = {} },
       { 'j-hui/fidget.nvim', opts = {} },
     },
     config = function()
@@ -542,7 +547,7 @@ require('lazy').setup({
   },
   { -- <Leader>\ to toggle terminal
     'akinsho/toggleterm.nvim',
-    config = {
+    opts = {
       direction = 'float',
       float_opts = { width = 100, height = 18 },
     },
