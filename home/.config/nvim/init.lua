@@ -365,10 +365,9 @@ require('lazy').setup({
   },
   { -- Langage Server manager
     'williamboman/mason.nvim',
-    version = "^1.0.0",
     event = "VeryLazy",
     dependencies = {
-      { 'williamboman/mason-lspconfig.nvim', version = "^1.0.0" },
+      'williamboman/mason-lspconfig.nvim',
       'neovim/nvim-lspconfig',
       { 'folke/neodev.nvim', opts = {} },
       { 'j-hui/fidget.nvim', opts = {} },
@@ -378,18 +377,21 @@ require('lazy').setup({
         -- No LSP on Windows
         return
       end
+
+      vim.lsp.config('*', {
+        capabilities = require('cmp_nvim_lsp').default_capabilities(),
+      })
+
+      vim.lsp.config('lua_ls', {
+        settings = {
+          Lua = {
+            diagnostics = { globals = { 'vim', 'cond' } },
+          },
+        },
+      })
+
       require('mason').setup()
-      require('mason-lspconfig').setup {}
-      require("mason-lspconfig").setup_handlers {
-        function (server_name) -- default handler (optional)
-          local opts = {}
-          opts.capabilities = require("cmp_nvim_lsp").default_capabilities()
-          opts.settings = {
-            Lua = { diagnostics = { globals = { 'vim', 'cond' } } }
-          }
-          require("lspconfig")[server_name].setup(opts)
-        end,
-      }
+      require('mason-lspconfig').setup({})
     end,
   },
   { -- completion
