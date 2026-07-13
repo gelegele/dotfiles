@@ -217,7 +217,7 @@ require('lazy').setup({
           },
           packages = { enable = true },
           project  = { enable = false },
-          mru      = { limit = 8 },
+          mru      = { limit = 12 },
           footer   = { '', 'This is your life. Be yourself.' },
         }
       }
