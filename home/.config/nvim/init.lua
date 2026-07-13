@@ -287,8 +287,6 @@ require('lazy').setup({
     'zaldih/themery.nvim',
     lazy = false,
     config = function ()
-      -- ~/.config/nvim/lua/theme.lua
-      -- ~\\AppData\\Local\\nvim\\lua\\theme.lua
       require('themery').setup({
         themes = {
           'default', 'habamax', 'slate', 'quiet', 'ayu-mirage', 'melange',
@@ -296,7 +294,6 @@ require('lazy').setup({
           'nightfox', 'duskfox', 'catppuccin-mocha', 'catppuccin-macchiato',
         },
       })
-      pcall(require, 'theme')
       vim.keymap.set('n', '<Leader>T', ':Themery<CR>', keymapopt)
     end
   },
