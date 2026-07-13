@@ -293,6 +293,9 @@ require('lazy').setup({
           'vscode', 'tender', 'tokyonight-night', 'tokyonight-storm', 'edge',
           'nightfox', 'duskfox', 'catppuccin-mocha', 'catppuccin-macchiato',
         },
+        -- Workaround: Windows Neovim 0.12+ falsely treats unset themeConfigFile as set.
+        -- https://github.com/zaldih/themery.nvim/issues/48
+        themeConfigFile = vim.fn.has('win32') == 1 and [[c:\v:null]] or nil,
       })
       vim.keymap.set('n', '<Leader>T', ':Themery<CR>', keymapopt)
     end
