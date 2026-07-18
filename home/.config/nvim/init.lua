@@ -695,21 +695,6 @@ require('lazy').setup({
     cmd = { "Browse" },
     opts = {},
   },
-  { -- Show selectable registers with "
-    "tversteeg/registers.nvim",
-    cmd = "Registers",
-    keys = {
-      { "\"",    mode = { "n", "v" } },
-      { "<C-R>", mode = "i" }
-    },
-    name = "registers",
-    config = function()
-        local registers = require("registers")
-        registers.setup({
-          window = { border = "rounded", },
-        })
-    end,
-  },
 },
 {
   defaults = {
