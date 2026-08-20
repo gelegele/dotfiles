@@ -589,15 +589,6 @@ require('lazy').setup({
     event = { 'BufRead', 'BufNewFile' },
     opts = {},
   },
-  { -- gcc to toggle linewise comment. gbc to toggle blockwise comment.
-    'numToStr/Comment.nvim',
-    cond = true, -- enabled in vscode
-    keys = { -- setting for lazy loading
-      { 'gc', mode = { 'n', 'v' }},
-      { 'gb', mode = { 'n', 'v' }},
-    },
-    opts = {},
-  },
   { -- Exchange two words with X.
     "gbprod/substitute.nvim",
     cond = true, -- enabled in vscode
