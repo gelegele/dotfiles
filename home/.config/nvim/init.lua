@@ -350,11 +350,11 @@ require('lazy').setup({
       if vim.fn.has('win64') == 1 then
         return -- Disabled to prevent errors on Windows.
       end
-      require('nvim-treesitter.configs').setup {
-        auto_install = true,
-        highlight = { enable = true, },
-        indent = { enable = true, },
-      }
+      vim.api.nvim_create_autocmd('FileType', {
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
+      })
     end
   },
   { -- Show indents
