@@ -66,24 +66,24 @@ vim.g.loaded_zipPlugin = 1
 vim.g.loaded_matchparen = 1
 
 -- keymap option
-local keymapopt = { noremap = true, silent = true }
+local keymapopt = { silent = true }
 -- Space + Enter to :w
 if vim.g.vscode then
-  vim.keymap.set('n', '<Leader><CR>', ':call VSCodeCall("workbench.action.files.save")<CR>', { noremap = true })
+  vim.keymap.set('n', '<Leader><CR>', function() require('vscode').action('workbench.action.files.save') end)
 else
-  vim.keymap.set('n', '<Leader><CR>', ':w<CR>', keymapopt)
+  vim.keymap.set('n', '<Leader><CR>', '<cmd>w<CR>', keymapopt)
 end
 -- Q to :q
-vim.keymap.set('n', 'Q', ':q<CR>', keymapopt)
--- !! to :q!
-vim.keymap.set('n', '!!', ':qa!<CR>', keymapopt)
+vim.keymap.set('n', 'Q', '<cmd>q<CR>', keymapopt)
+-- !! to :qa!
+vim.keymap.set('n', '!!', '<cmd>qa!<CR>', keymapopt)
 -- Shift + TAB to add a new line while remaining in normal mode.
 vim.keymap.set('n', '<S-Tab>', 'o<ESC>', keymapopt)
 -- Space + [ to change buffer
-vim.keymap.set('n', '<Leader>]', ':bn<CR>', keymapopt)
-vim.keymap.set('n', '<Leader>[', ':bp<CR>', keymapopt)
+vim.keymap.set('n', '<Leader>]', '<cmd>bn<CR>', keymapopt)
+vim.keymap.set('n', '<Leader>[', '<cmd>bp<CR>', keymapopt)
 -- Space + x to delete buffer
-vim.keymap.set('n', '<Leader>x', ':bd|bn<CR>', keymapopt)
+vim.keymap.set('n', '<Leader>x', '<cmd>bd|bn<CR>', keymapopt)
 -- jj and kk to go to NORMAL mode
 vim.keymap.set('i', 'jj', '<ESC>', keymapopt)
 vim.keymap.set('i', 'kk', '<ESC>', keymapopt)
@@ -104,24 +104,24 @@ vim.keymap.set('n', 'N', 'Nzz', keymapopt)
 vim.keymap.set('n', '*', '*N', keymapopt)
 vim.keymap.set('n', '#', '#N', keymapopt)
 -- ESC to clear search highlight.
-vim.keymap.set('n', '<ESC><ESC>', ':nohl<CR>', keymapopt)
+vim.keymap.set('n', '<ESC><ESC>', '<cmd>nohl<CR>', keymapopt)
 -- Space + s to replace search highlighted words.
 if vim.g.vscode then
-  vim.keymap.set('n', '<Leader>s', ':call VSCodeCall("editor.action.rename")<CR>', keymapopt)
+  vim.keymap.set('n', '<Leader>s', function() require('vscode').action('editor.action.rename') end)
 else
-  vim.keymap.set('n', '<Leader>s', ':%s///gc<Left><Left><Left>', { noremap = true })
+  vim.keymap.set('n', '<Leader>s', ':%s///gc<Left><Left><Left>')
 end
 -- Space + n to toggle line numbers.
-vim.keymap.set('n', '<Leader>n', ':set nonumber!<CR>', keymapopt)
+vim.keymap.set('n', '<Leader>n', '<cmd>set nonumber!<CR>', keymapopt)
 -- Space + w to toggle auto wrap.
-vim.keymap.set('n', '<Leader>w', ':set wrap!<CR>', keymapopt)
+vim.keymap.set('n', '<Leader>w', '<cmd>set wrap!<CR>', keymapopt)
 -- Space + h to prefix to open help on new tab. To go back with gt.
-vim.keymap.set('n', '<Leader>h', ':tab help ', { noremap = true })
+vim.keymap.set('n', '<Leader>h', ':tab help ')
 -- Space + Tab to :colorscheme
-vim.keymap.set('n', '<Leader><Tab>', ':colorscheme ', { noremap = true })
+vim.keymap.set('n', '<Leader><Tab>', ':colorscheme ')
 -- GUI font setting
 if vim.fn.has('win64') == 1 then
-  vim.keymap.set('n', '<Leader>F', ':set guifont=*<CR>', keymapopt)
+  vim.keymap.set('n', '<Leader>F', '<cmd>set guifont=*<CR>', keymapopt)
 end
 
 -- My autocmds
@@ -129,7 +129,9 @@ vim.api.nvim_create_augroup( 'my-autocmd', {} )
 vim.api.nvim_create_autocmd("BufRead", {
   desc    = "Disabled to edit for read-only file.",
   group   = 'my-autocmd',
-  command = "let &l:modifiable = !&readonly",
+  callback = function()
+    vim.opt_local.modifiable = not vim.opt_local.readonly:get()
+  end,
 })
 vim.api.nvim_create_autocmd("FileType", {
   desc     = 'set tabstop 4',
@@ -163,7 +165,9 @@ vim.api.nvim_create_autocmd("BufEnter", {
   -- didn't work vim.opt.formatoptions
   desc    = "Don't auto commenting new lines",
   group   = 'my-autocmd',
-  command = "set formatoptions-=cro",
+  callback = function()
+    vim.opt_local.formatoptions:remove({ 'c', 'r', 'o' })
+  end,
 })
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc     = "Highlight yanked text.",
@@ -221,7 +225,7 @@ require('lazy').setup({
           footer   = { '', 'This is your life. Be yourself.' },
         }
       }
-      vim.keymap.set('n', '<Leader>d', ':Dashboard<CR>', keymapopt )
+      vim.keymap.set('n', '<Leader>d', '<cmd>Dashboard<CR>', keymapopt )
     end,
   },
   { -- fuzzy finder
@@ -244,7 +248,7 @@ require('lazy').setup({
     event = "VimEnter",
     config = function()
       -- Space + e to open the tree.
-      vim.keymap.set('n', '<Leader>e', ':NvimTreeToggle<CR>', keymapopt)
+      vim.keymap.set('n', '<Leader>e', '<cmd>NvimTreeToggle<CR>', keymapopt)
       -- If buffer is a dir, change to the dir and open the tree.
       local function open_nvim_tree(data)
         if vim.fn.isdirectory(data.file) == 1 then
@@ -297,7 +301,7 @@ require('lazy').setup({
         -- https://github.com/zaldih/themery.nvim/issues/48
         themeConfigFile = vim.fn.has('win32') == 1 and [[c:\v:null]] or nil,
       })
-      vim.keymap.set('n', '<Leader>T', ':Themery<CR>', keymapopt)
+      vim.keymap.set('n', '<Leader>T', '<cmd>Themery<CR>', keymapopt)
     end
   },
   { -- Status Line
@@ -335,7 +339,7 @@ require('lazy').setup({
     dependencies = { 'nvim-tree/nvim-web-devicons', 'lewis6991/gitsigns.nvim' },
     event = "VimEnter",
     config = function ()
-      vim.keymap.set('n', '<Leader>o', ':BufferCloseAllButCurrent<CR>', keymapopt)
+      vim.keymap.set('n', '<Leader>o', '<cmd>BufferCloseAllButCurrent<CR>', keymapopt)
       require('barbar').setup {
         -- offset for NvimTree
         sidebar_filetypes = { NvimTree = true, }
@@ -469,7 +473,7 @@ require('lazy').setup({
         end
       end
       vim.api.nvim_create_user_command('NvimCmpToggle', toggle_autocomplete, {})
-      vim.keymap.set('n', '<leader>C', ':NvimCmpToggle<CR>', keymapopt)
+      vim.keymap.set('n', '<leader>C', '<cmd>NvimCmpToggle<CR>', keymapopt)
     end,
   },
   { -- My Plugin to toggle highlight search with <C-n>
@@ -524,17 +528,17 @@ require('lazy').setup({
         end
         map('n', '<leader>g]', next_hunk, { desc='next hunk', expr=true })
         map('n', '<leader>g[', prev_hunk, { desc='prev hunk', expr=true })
-        map({'n', 'v'}, '<leader>gs', ':Gitsigns stage_hunk<CR>', { desc = 'stage hunk' })
-        map({'n', 'v'}, '<leader>gr', ':Gitsigns reset_hunk<CR>', { desc = 'reset hunk' })
+        map({'n', 'v'}, '<leader>gs', '<cmd>Gitsigns stage_hunk<CR>', { desc = 'stage hunk' })
+        map({'n', 'v'}, '<leader>gr', '<cmd>Gitsigns reset_hunk<CR>', { desc = 'reset hunk' })
         map('n', '<leader>gd', function() gs.diffthis('~') end, { desc = 'diff HEAD' })
-        map('n', '<leader>gb', ':Gitsigns blame_line<CR>', { desc = 'blame the line' })
-        map('n', '<leader>gp', ':Gitsigns preview_hunk<CR>', { desc = 'preview the hunk' })
+        map('n', '<leader>gb', '<cmd>Gitsigns blame_line<CR>', { desc = 'blame the line' })
+        map('n', '<leader>gp', '<cmd>Gitsigns preview_hunk<CR>', { desc = 'preview the hunk' })
       end,
     },
   },
   { -- Open Lazygit
     'kdheepak/lazygit.nvim',
-    keys = {{ '<Leader>gl', ':LazyGit<CR>', mode = 'n', desc = 'LazyGit' }},
+    keys = {{ '<Leader>gl', '<cmd>LazyGit<CR>', mode = 'n', desc = 'LazyGit' }},
   },
   { -- Seamless window selection with tmux
     'christoomey/vim-tmux-navigator',
@@ -552,8 +556,8 @@ require('lazy').setup({
       float_opts = { width = 100, height = 18 },
     },
     keys = {
-      { '<Leader>\\', ':ToggleTerm<CR>', mode = 'n', desc = 'ToggleTerm', },
-      { '<Leader>\\', '<C-\\><C-n>:ToggleTerm<CR>', mode = 't', desc = 'ToggleTerm', },
+      { '<Leader>\\', '<cmd>ToggleTerm<CR>', mode = 'n', desc = 'ToggleTerm', },
+      { '<Leader>\\', '<C-\\><C-n><cmd>ToggleTerm<CR>', mode = 't', desc = 'ToggleTerm', },
       { '<ESC>', '<C-\\><C-n>', mode = 't', desc = 'exit from terminal insert mode', },
     },
   },
@@ -634,7 +638,7 @@ require('lazy').setup({
     'Wansmer/treesj',
     cond = true, -- enabled in vscode
     dependencies = { 'nvim-treesitter/nvim-treesitter' },
-    keys = {{ "<Leader>j", ':TSJToggle<CR>', mode ='n', desc = 'TSJToggle' }},
+    keys = {{ "<Leader>j", '<cmd>TSJToggle<CR>', mode ='n', desc = 'TSJToggle' }},
     opts = { use_default_keymaps = false },
   },
   { -- autopair
@@ -657,7 +661,7 @@ require('lazy').setup({
     "folke/noice.nvim",
     event = "VeryLazy",
     dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
-    keys = {{ "<Leader>N", ":Noice<CR>", mode = "n", desc = "messages by Noice" }},
+    keys = {{ "<Leader>N", "<cmd>Noice<CR>", mode = "n", desc = "messages by Noice" }},
     config = function()
       if vim.fn.has('win64') == 1 then
         return -- Disabled to prevent flicker on Windows.
