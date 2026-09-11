@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 # for nvim tree-sitter
-npm install -g tree-sitter-cli
 
+. "$(dirname "$0")/sub_load_nvm.sh"
+npm install -g tree-sitter-cli

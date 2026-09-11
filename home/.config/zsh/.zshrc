@@ -199,23 +199,42 @@ eval "$(sheldon source)"
 # color for zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#008080'
 
-# for nvm
+# nvm — lazy-load on first use
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 case $OSTYPE in
-  darwin*)  #Mac
-    [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-    [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm 
+  darwin*)
+    _NVM_SH="/usr/local/opt/nvm/nvm.sh"
+    _NVM_COMPLETION="/usr/local/opt/nvm/etc/bash_completion.d/nvm"
     ;;
-  linux*)   #Linux
-    [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"  # This loads nvm
-    [ -s "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+  linux*)
+    _NVM_SH="/home/linuxbrew/.linuxbrew/opt/nvm/nvm.sh"
+    _NVM_COMPLETION="/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"
     ;;
 esac
-# Install the latest Node.js if not exists
-if ! type node &> /dev/null; then
-  source $XDG_CONFIG_HOME/nvm/nvm.sh
-  nvm install node
+_load_nvm() {
+  unset -f nvm node npm npx _load_nvm
+  [ -s "$_NVM_SH" ] && . "$_NVM_SH"
+  [ -s "$_NVM_COMPLETION" ] && . "$_NVM_COMPLETION"
+  unset _NVM_SH _NVM_COMPLETION
+}
+nvm()  { _load_nvm; nvm "$@"; }
+node() { _load_nvm; node "$@"; }
+npm()  { _load_nvm; npm "$@"; }
+npx()  { _load_nvm; npx "$@"; }
+
+# sdkman — expose current candidates via PATH; full init only on `sdk`
+export SDKMAN_DIR="$XDG_CONFIG_HOME/sdkman"
+if [[ -d $SDKMAN_DIR/candidates ]]; then
+  for _sdk_bin in $SDKMAN_DIR/candidates/*/current/bin; do
+    [[ -d $_sdk_bin ]] && path=("$_sdk_bin" $path)
+  done
+  unset _sdk_bin
 fi
+sdk() {
+  unset -f sdk
+  [[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+  sdk "$@"
+}
 
 # customize prompt by starship
 export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
@@ -228,8 +247,4 @@ eval "$(starship init zsh)"
 if ( which zprof &> /dev/null ); then
   zprof
 fi
-
-# Java SDK Manager
-export SDKMAN_DIR="$XDG_CONFIG_HOME/sdkman"
-[[ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ]] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
 
