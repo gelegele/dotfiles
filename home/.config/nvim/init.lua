@@ -7,8 +7,6 @@ My init.lua for NEOVIM
 
 ]]--
 
--- Default encoding is utf-8
-vim.opt.encoding = "utf-8"
 -- Encoding priority list to open existing file.
 vim.opt.fileencodings = "utf-8,sjis,cp932,utf-16le"
 -- Leader key is space.
@@ -32,7 +30,7 @@ vim.opt.number = true
 -- Show tail spaces.
 vim.opt.list = true
 -- ignore case
-vim.opt.ignorecase = false
+vim.opt.ignorecase = true
 -- case-sensitive if capital letters
 vim.opt.smartcase = true
 -- Allow keys below that move the cursor to move to the pre/next line.
@@ -144,10 +142,10 @@ vim.api.nvim_create_autocmd("FileType", {
     end
   end
 })
-vim.api.nvim_create_autocmd("BufRead", {
+vim.api.nvim_create_autocmd("FileType", {
   desc    = "Disabled auto completion in txt buffer.",
   group   = 'my-autocmd',
-  pattern = "*.txt",
+  pattern = "text",
   callback = function()
     local ok, cmp = pcall(require, 'cmp')
     if ok then
@@ -480,9 +478,7 @@ require('lazy').setup({
     'gelegele/hls.nvim',
     cond = true, -- enabled in vscode
     keys = {{ '<C-n>', mode = 'n' }},
-    config = function () -- TODO opts
-      require('hls.nvim').setup()
-    end,
+    opts = {},
   },
   { -- Show shortcut keys
     'folke/which-key.nvim',
