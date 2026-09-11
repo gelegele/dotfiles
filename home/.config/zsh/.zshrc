@@ -228,7 +228,7 @@ npx()  { _load_nvm; npx "$@"; }
 # sdkman — expose current candidates via PATH; full init only on `sdk`
 export SDKMAN_DIR="$XDG_CONFIG_HOME/sdkman"
 if [[ -d $SDKMAN_DIR/candidates ]]; then
-  for _sdk_bin in $SDKMAN_DIR/candidates/*/current/bin; do
+  for _sdk_bin in $SDKMAN_DIR/candidates/*/current/bin(N); do
     [[ -d $_sdk_bin ]] && path=("$_sdk_bin" $path)
   done
   unset _sdk_bin
