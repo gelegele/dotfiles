@@ -38,7 +38,17 @@ if [[ $OSTYPE == "linux"* ]]; then
 fi
 # Enabled completions after brew shellenv
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
-autoload -Uz compinit && compinit
+autoload -Uz compinit
+# Rebuild dump only when missing or older than 24h; otherwise skip security scan (-C)
+() {
+  setopt local_options extended_glob
+  local zdump=${ZDOTDIR:-$HOME}/.zcompdump
+  if [[ -n $zdump(#qN.mh+24) ]]; then
+    compinit -d $zdump
+  else
+    compinit -C -d $zdump
+  fi
+}
 
 # for WSL.
 if [[ "$(uname -r)" == *microsoft* ]]; then
