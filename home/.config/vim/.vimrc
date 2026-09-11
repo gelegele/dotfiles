@@ -1,5 +1,3 @@
-filetype off
-
 "XDG_CONFIG_HOME
 let g:netrw_home = $XDG_CONFIG_HOME."/vim"
 set viminfofile=$XDG_CONFIG_HOME/vim/viminfo
@@ -41,8 +39,8 @@ noremap # #N
 "検索単語移動＋スクロール
 noremap n nzz
 noremap N Nzz
-"ESCハイライト消去
-noremap <silent> <ESC> :nohl<CR><ESC>
+"ハイライト消去（<Esc>直マップは端末シーケンスと衝突しやすい）
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 "Space + s to replace search highlighted words.
 noremap <Leader>s :%s///gc<Left><Left><Left>
 
@@ -52,8 +50,6 @@ noremap <Leader>w :set wrap!<CR>
 "----------------------------------------------------------
 " Setting
 "----------------------------------------------------------
-"viとの互換性を優先しない
-set nocompatible
 "バックスペースキー有効化
 set backspace=indent,eol,start
 "自動再読み込み
@@ -79,12 +75,13 @@ set autoindent
 set ruler
 "検索結果をハイライトする
 set hlsearch
-"検索時に大文字を含んでいたら大/小を区別
+"検索時は大/小を無視。大文字を含んだら区別
+set ignorecase
 set smartcase
-"置換の時 g オプションをデフォルトで有効にする
-set gdefault
 "ヤンク文字列をクリップボードに
-set clipboard=unnamed,autoselect
+if has('clipboard')
+  set clipboard=unnamed,unnamedplus
+endif
 "自動改行無効
 set textwidth=0
 set formatoptions=q
