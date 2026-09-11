@@ -5,8 +5,8 @@
 
 # Lines configured by zsh-newuser-install
 HISTFILE=$ZDOTDIR/zsh_history
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 setopt hist_ignore_dups
 setopt hist_ignore_all_dups
 setopt hist_reduce_blanks
@@ -21,23 +21,24 @@ unsetopt beep
 # Prevent duplicated PATH
 typeset -U path PATH
 
-# LANGはutf8またはUTF-8にしたい（ll表示順に影響）。日本語にするなら ja_JP.UTF8
-# Linuxのバージョンによってどっちが入ってるかわからないのでどっちも対応できるよう
+# LANGは utf8 系にしたい（ll 表示順に影響）。日本語 UI にするなら ja_JP.UTF-8
 case $OSTYPE in
   darwin*)  #Mac
     export LANG='UTF-8'
     ;;
   linux*)   #Linux
-    export LANG=`locale -a | grep -i c.utf | grep 8`
+    export LANG=C.UTF-8
     ;;
 esac
 
 # Add brew PATH if Linux
-if [[ $OSTYPE == "linux"* ]]; then
+if [[ $OSTYPE == linux* && -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 # Enabled completions after brew shellenv
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+if [[ -n $HOMEBREW_PREFIX ]]; then
+  FPATH="$HOMEBREW_PREFIX/share/zsh/site-functions:${FPATH}"
+fi
 autoload -Uz compinit
 # Rebuild dump only when missing or older than 24h; otherwise skip security scan (-C)
 () {
@@ -128,7 +129,7 @@ if [[ -t 0 ]]; then
 fi
 
 # Go Settings
-if [[ -d /home/linuxbrew/.linuxbrew/bin/go ]] || type go &> /dev/null; then
+if type go &> /dev/null; then
   export GOPATH=$HOME/go
   export PATH=$PATH:$GOPATH/bin
 fi
@@ -141,7 +142,9 @@ if type eza &> /dev/null; then
 else
   alias ll='ls -alFh --time-style=long-iso --color=auto'
 fi
-alias cat=bat
+if type bat &> /dev/null; then
+  alias cat=bat
+fi
 alias gip='curl https://ifconfig.io'
 alias du='du -h --total'
 alias gr='grep --color=auto'
