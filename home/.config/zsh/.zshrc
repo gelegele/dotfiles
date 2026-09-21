@@ -83,11 +83,18 @@ bindkey -M menuselect '^p' up-line-or-history
 # aws cli completion
 case $OSTYPE in
   darwin*)  #Mac
+    if [[ -x /usr/local/bin/aws_completer ]]; then
     autoload bashcompinit && bashcompinit
     complete -C '/usr/local/bin/aws_completer' aws
+    elif [[ -x /opt/homebrew/bin/aws_completer ]]; then
+      autoload bashcompinit && bashcompinit
+      complete -C '/opt/homebrew/bin/aws_completer' aws
+    fi
     ;;
   linux*)   #Linux
-    source $HOMEBREW_PREFIX/share/zsh/site-functions/aws_zsh_completer.sh
+    if [[ -n $HOMEBREW_PREFIX && -f $HOMEBREW_PREFIX/share/zsh/site-functions/aws_zsh_completer.sh ]]; then
+      source "$HOMEBREW_PREFIX/share/zsh/site-functions/aws_zsh_completer.sh"
+    fi
     ;;
 esac
 
