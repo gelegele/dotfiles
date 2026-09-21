@@ -84,8 +84,8 @@ bindkey -M menuselect '^p' up-line-or-history
 case $OSTYPE in
   darwin*)  #Mac
     if [[ -x /usr/local/bin/aws_completer ]]; then
-    autoload bashcompinit && bashcompinit
-    complete -C '/usr/local/bin/aws_completer' aws
+      autoload bashcompinit && bashcompinit
+      complete -C '/usr/local/bin/aws_completer' aws
     elif [[ -x /opt/homebrew/bin/aws_completer ]]; then
       autoload bashcompinit && bashcompinit
       complete -C '/opt/homebrew/bin/aws_completer' aws
@@ -201,13 +201,6 @@ if [[ "$(uname -r)" == *microsoft* ]]; then
   alias wslshutdown='/mnt/c/WINDOWS/system32/wsl.exe --shutdown'
   alias cdwin='cd /mnt/c/Users/'
 fi
-
-# Google search
-function ggl() {
-    local search_query="$@"
-    local encoded_query=$(echo "$search_query" | sed 's/ /+/g')
-    open "https://www.google.com/search?q=$encoded_query"
-}
 
 # yazi - File Manager
 function f() {
