@@ -4,7 +4,11 @@
 # zmodload zsh/zprof
 
 # Lines configured by zsh-newuser-install
-HISTFILE=$ZDOTDIR/zsh_history
+mkdir -p "${XDG_STATE_HOME:-$HOME/.local/state}/zsh"
+HISTFILE=${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history
+if [[ -f $ZDOTDIR/zsh_history && ! -e $HISTFILE ]]; then
+  mv -- "$ZDOTDIR/zsh_history" "$HISTFILE"
+fi
 HISTSIZE=10000
 SAVEHIST=10000
 setopt hist_ignore_dups
