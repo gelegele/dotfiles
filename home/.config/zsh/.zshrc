@@ -134,7 +134,7 @@ function fzp() {
 
 # mkdir and cd
 function mkcd() {
-  mkdir $1 && cd $1
+  mkdir -p -- "$1" && cd -- "$1"
 }
 
 # Release ctrl + S and ctrl +q to be enabled to map.
