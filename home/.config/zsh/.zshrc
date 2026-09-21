@@ -184,7 +184,15 @@ alias pip=pip3
 alias venv-create='python -m venv venv'
 alias venv-activate='source ./venv/bin/activate'
 alias venv-deactivate='deactivate'
-alias env-load='set -a && source .env && set +a'
+env-load() {
+  if [[ ! -f .env ]]; then
+    echo "No .env in $PWD" >&2
+    return 1
+  fi
+  set -a
+  source ./.env
+  set +a
+}
 alias gcloud-config-list='gcloud config configurations list'
 alias gcloud-config-activate='gcloud config configurations activate'
 # for wsl2
