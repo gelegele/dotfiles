@@ -28,7 +28,7 @@ typeset -U path PATH fpath
 # LANGは utf8 系にしたい（ll 表示順に影響）。日本語 UI にするなら ja_JP.UTF-8
 case $OSTYPE in
   darwin*)  #Mac
-    export LANG='UTF-8'
+    export LANG='en_US.UTF-8'
     ;;
   linux*)   #Linux
     export LANG=C.UTF-8
