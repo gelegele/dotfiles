@@ -7,8 +7,6 @@ brew install eza
 
 # Configure theme in XDG_CONFIG_HOME
 $(dirname $0)/sub_mklink_config.sh eza
-git clone --depth 1 https://github.com/eza-community/eza-themes.git $XDG_CONFIG_HOME/eza/eza-themes
 
-# Select eza theme
+# Clone themes (if needed) and select one
 ~/.config/eza/theme-selector.sh
-

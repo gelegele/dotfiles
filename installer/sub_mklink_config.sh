@@ -12,9 +12,13 @@ confdir=$(cd $(dirname $0)/../home/.config;pwd)
 srcdir=$confdir/$appname
 dstdir=~/.config/$appname
 
-rm -rf $dstdir 2> /dev/null
-mkdir -p $dstdir
-for file in `ls -A $srcdir`; do
-  ln -sf $srcdir/$file $dstdir/$file
+mkdir -p "$dstdir"
+for file in $(ls -A "$srcdir"); do
+  src=$srcdir/$file
+  dst=$dstdir/$file
+  # Keep local-only files; only replace managed paths.
+  if [[ -e $dst || -L $dst ]] && [[ ! -L $dst ]]; then
+    mv --no-clobber "$dst" "${dst}.bak"
+  fi
+  ln -sfn "$src" "$dst"
 done
-
