@@ -5,6 +5,8 @@
 
 echo "Install Node.js via nvm..."
 
+$(dirname "$0")/sub_mklink_config.sh npm
+
 . "$(dirname "$0")/sub_load_nvm.sh"
 
 if type node &>/dev/null; then
