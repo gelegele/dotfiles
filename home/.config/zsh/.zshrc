@@ -22,8 +22,8 @@ setopt autocd
 unsetopt beep
 # End of lines configured by zsh-newuser-install
 
-# Prevent duplicated PATH
-typeset -U path PATH
+# Prevent duplicated PATH / fpath
+typeset -U path PATH fpath
 
 # LANGは utf8 系にしたい（ll 表示順に影響）。日本語 UI にするなら ja_JP.UTF-8
 case $OSTYPE in
@@ -43,6 +43,10 @@ fi
 if [[ -n $HOMEBREW_PREFIX ]]; then
   FPATH="$HOMEBREW_PREFIX/share/zsh/site-functions:${FPATH}"
 fi
+# zsh-completions must be on fpath before compinit (sheldon sources the rest later)
+_zsh_completions_src="${XDG_DATA_HOME:-$HOME/.local/share}/sheldon/repos/github.com/zsh-users/zsh-completions/src"
+[[ -d $_zsh_completions_src ]] && fpath=($_zsh_completions_src $fpath)
+unset _zsh_completions_src
 autoload -Uz compinit
 # Rebuild dump only when missing or older than 24h; otherwise skip security scan (-C)
 () {
