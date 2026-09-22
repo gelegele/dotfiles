@@ -176,6 +176,17 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.hl.on_yank({ higroup = 'IncSearch', timeout = 300 })
   end,
 })
+-- Neovim defaults map grn/gra/grr/... but not gd (built-in local declaration).
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'LSP buffer keymaps',
+  group = 'my-autocmd',
+  callback = function(args)
+    local opts = { silent = true, buffer = args.buf }
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gy', vim.lsp.buf.type_definition, opts)
+  end,
+})
 
 -- Install package manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -404,8 +415,16 @@ require('lazy').setup({
       })
 
       require('mason').setup()
-      require('mason-lspconfig').setup({})
+      require('mason-lspconfig').setup({
+        ensure_installed = { 'jdtls' },
+        -- jdtls is started via nvim-jdtls in ftplugin/java.lua
+        automatic_enable = { exclude = { 'jdtls' } },
+      })
     end,
+  },
+  { -- Java LSP (config: ftplugin/java.lua)
+    'mfussenegger/nvim-jdtls',
+    ft = 'java',
   },
   { -- completion
     "hrsh7th/nvim-cmp",
