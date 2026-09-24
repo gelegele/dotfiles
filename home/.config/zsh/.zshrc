@@ -158,7 +158,7 @@ else
   alias ll='ls -alFh --time-style=long-iso --color=auto'
 fi
 if type bat &> /dev/null; then
-  alias cat=bat
+  alias cat='bat --plain'
 fi
 alias gip='curl https://ifconfig.io'
 alias du='du -h --total'
