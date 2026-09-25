@@ -30,5 +30,7 @@ $(dirname $0)/sub_mklink_config.sh win32yank
 # Open url by Windows Browser.
 . "$(dirname "$0")/sub_load_nvm.sh"
 npm install -g wsl-open
-sudo ln -sf $(which wsl-open) /usr/local/bin/xdg-open
+brew_bin="$(brew --prefix)/bin"
+ln -sf "$(command -v wsl-open)" "$brew_bin/wsl-open"
+ln -sf "$(command -v wsl-open)" "$brew_bin/xdg-open"
 
