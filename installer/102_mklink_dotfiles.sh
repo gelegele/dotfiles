@@ -1,21 +1,30 @@
 #!/usr/bin/env bash
 
 # make symlinks of dotfiles in HOME
-homesrc=$(cd $(dirname $0)/../home;pwd)
+homesrc=$(cd "$(dirname "$0")/../home" && pwd)
 homedst=~
-for file in `ls -Ap $homesrc`; do
-  if [[ $file == */ || $file != .* ]]; then
-    # Skip directories and normal files.
+
+for file in "$homesrc"/.*; do
+  name="$(basename "$file")"
+  # Skip . and .. and directories
+  [[ "$name" == "." || "$name" == ".." ]] && continue
+  [[ -d "$file" ]] && continue
+  [[ -e "$file" ]] || continue
+
+  src="$file"
+  dst="$homedst/$name"
+
+  # Skip if destination is already linked to the correct source
+  if [[ -L "$dst" && "$(readlink "$dst")" == "$src" ]]; then
     continue
   fi
-  src=${homesrc}/${file}
-  dst=${homedst}/${file}
-  if [[ -f $dst ]]; then
-    # Backup if dst file exists.
-    mv --no-clobber ${dst} ${dst}.bak
+
+  # Backup existing regular file (not symlink)
+  if [[ -e "$dst" && ! -L "$dst" ]]; then
+    mv -n "$dst" "${dst}.bak"
   fi
-  makeln="ln -sf $src $dst"
-  echo $makeln
-	$makeln
+
+  echo "ln -sf $src $dst"
+  ln -sf "$src" "$dst"
 done
 
