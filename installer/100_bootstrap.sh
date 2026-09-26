@@ -12,15 +12,34 @@ if type apt-get &> /dev/null; then
   fi 
 fi
 
-# Install Homebrew and set PATH temporary if Linux
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-case $OSTYPE in
-  darwin*)  #Mac
-    ;;
-  linux*)   #Linux
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    ;;
-esac
+# Install Homebrew and set PATH temporary if needed
+if ! command -v brew &> /dev/null; then
+  case $OSTYPE in
+    darwin*)
+      for brew_bin in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+        [[ -x $brew_bin ]] && eval "$($brew_bin shellenv)" && break
+      done
+      ;;
+    linux*)
+      [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]] &&
+        eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+      ;;
+  esac
+fi
+
+if ! command -v brew &> /dev/null; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  case $OSTYPE in
+    darwin*)
+      for brew_bin in /opt/homebrew/bin/brew /usr/local/bin/brew; do
+        [[ -x $brew_bin ]] && eval "$($brew_bin shellenv)" && break
+      done
+      ;;
+    linux*)
+      eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+      ;;
+  esac
+fi
 
 # Execute 1xx_xxx.sh
 dir=$(dirname $0)
