@@ -18,7 +18,7 @@ for file in $(ls -A "$srcdir"); do
   dst=$dstdir/$file
   # Keep local-only files; only replace managed paths.
   if [[ -e $dst || -L $dst ]] && [[ ! -L $dst ]]; then
-    mv --no-clobber "$dst" "${dst}.bak"
+    mv -n "$dst" "${dst}.bak"
   fi
   ln -sfn "$src" "$dst"
 done
