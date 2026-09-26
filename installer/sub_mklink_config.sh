@@ -18,8 +18,8 @@ shopt -s nullglob dotglob
 for src in "$srcdir"/*; do
   file="$(basename "$src")"
   dst="$dstdir/$file"
-  # Keep local-only files; only replace managed paths.
-  if [[ -e $dst || -L $dst ]] && [[ ! -L $dst ]]; then
+  # Keep local-only files; only back up non-symlink paths
+  if [[ -e "$dst" && ! -L "$dst" ]]; then
     mv -n "$dst" "${dst}.bak"
   fi
   ln -sfn "$src" "$dst"
