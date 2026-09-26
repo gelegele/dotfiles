@@ -1,13 +1,11 @@
 gui:
   showIcons: true
-
 git:
   branchLogCmd: "git log --oneline --all --graph --decorate --color=always"
-  paging:
-    colorArg: always
-    pager: delta --dark --paging=never
-
+  diffRenderers:
+    - colorArg: always
+      command: delta --dark --paging=never
 keybinding:
-    universal:
-      return: 'q' # default was esc
-      quit: 'Q' # default was q
+  universal:
+    return: 'q' # default was esc
+    quit: 'Q' # default was q
