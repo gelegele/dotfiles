@@ -13,9 +13,11 @@ srcdir=$confdir/$appname
 dstdir=~/.config/$appname
 
 mkdir -p "$dstdir"
-for file in $(ls -A "$srcdir"); do
-  src=$srcdir/$file
-  dst=$dstdir/$file
+# Include hidden files (dotglob) and safely handle empty dirs (nullglob)
+shopt -s nullglob dotglob
+for src in "$srcdir"/*; do
+  file="$(basename "$src")"
+  dst="$dstdir/$file"
   # Keep local-only files; only replace managed paths.
   if [[ -e $dst || -L $dst ]] && [[ ! -L $dst ]]; then
     mv -n "$dst" "${dst}.bak"
