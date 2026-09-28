@@ -218,8 +218,11 @@ eval "$(sheldon source)"
 # color for zsh-autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=#008080'
 
-# nvm — lazy-load on first use
+# nvm — expose current Node bin on PATH; lazy-load full nvm only for `nvm`
+# NVM_SYMLINK_CURRENT keeps $NVM_DIR/current → active version (global CLIs: clasp, etc.)
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+export NVM_SYMLINK_CURRENT=true
+[[ -d $NVM_DIR/current/bin ]] && path=("$NVM_DIR/current/bin" $path)
 case $OSTYPE in
   darwin*)
     _NVM_SH="/usr/local/opt/nvm/nvm.sh"
@@ -230,16 +233,13 @@ case $OSTYPE in
     _NVM_COMPLETION="/home/linuxbrew/.linuxbrew/opt/nvm/etc/bash_completion.d/nvm"
     ;;
 esac
-_load_nvm() {
-  unset -f nvm node npm npx _load_nvm
+nvm() {
+  unset -f nvm
   [ -s "$_NVM_SH" ] && . "$_NVM_SH"
   [ -s "$_NVM_COMPLETION" ] && . "$_NVM_COMPLETION"
   unset _NVM_SH _NVM_COMPLETION
+  nvm "$@"
 }
-nvm()  { _load_nvm; nvm "$@"; }
-node() { _load_nvm; node "$@"; }
-npm()  { _load_nvm; npm "$@"; }
-npx()  { _load_nvm; npx "$@"; }
 
 # sdkman — expose current candidates via PATH; full init only on `sdk`
 export SDKMAN_DIR="$XDG_CONFIG_HOME/sdkman"

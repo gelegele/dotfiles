@@ -2,6 +2,7 @@
 # Usage: . "$(dirname "$0")/sub_load_nvm.sh"
 
 export NVM_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/nvm"
+export NVM_SYMLINK_CURRENT=true
 
 if ! command -v brew &>/dev/null; then
   # Ensure brew is on PATH when this is sourced from a non-login bash.

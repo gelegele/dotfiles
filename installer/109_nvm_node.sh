@@ -11,7 +11,9 @@ $(dirname "$0")/sub_mklink_config.sh npm
 
 if type node &>/dev/null; then
   echo "Node.js already installed: $(node -v)"
+  nvm use default >/dev/null
   exit 0
 fi
 
 nvm install node
+nvm use default >/dev/null
